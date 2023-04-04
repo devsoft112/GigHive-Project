@@ -79,3 +79,24 @@ class Artist(db.models):
             "type_of_artist": self.type_of_artist,
             "description": self.description
         }
+
+
+class Messages(db.models):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String, nullable=False)
+    id_sender = db.column(db.Integer, nullable=False)
+    id_receiver = db.column(db.Integer, nullable=False)
+    sent_date = db.column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f'<Messages {self.name}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "id_sender": self.id_sender,
+            "id_receiver": self.id_receiver,
+            "sent_date": self.sent_date,
+        }
+
