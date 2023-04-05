@@ -7,3 +7,6 @@
   text-align: center;
   padding-right: 10px;
 }
+.card {
+  display: flex;
+}
