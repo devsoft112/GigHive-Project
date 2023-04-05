@@ -27,6 +27,11 @@ export const Navbar = () => {
             </li>
             <li>
               <a>
+                <Link to="/">favorites</Link>
+              </a>
+            </li>
+            <li>
+              <a>
                 <Link to="/profile">Profile</Link>
               </a>
             </li>
