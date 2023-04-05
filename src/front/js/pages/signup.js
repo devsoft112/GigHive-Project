@@ -23,10 +23,11 @@ export const Signup = () => {
   const [capacity, setCapacity] = useState("");
   const [musicGenre, setMusicGenre] = useState("general");
   const [staging, setStaging] = useState("indoor");
-  const [isHiring, setIsHiring] = useState("");
+  const [isHiring, setIsHiring] = useState("no");
   const [payRate, setPayRate] = useState("N/A");
   const [feeRate, setFeeRate] = useState("N/A");
   const [equipInfo, setEquipInfo] = useState("yes");
+  const [aboutInfo, setAboutInfo] = useState("");
   const [instaHandle, setInstaHandle] = useState("");
   const [tikTokHandle, setTikTokHandle] = useState("");
   const [facebookHandle, setFacebookHandle] = useState("");
@@ -38,6 +39,7 @@ export const Signup = () => {
 
   const handleClick = () => {
     actions.signup(
+      userType,
       firstName,
       lastName,
       email,
@@ -54,6 +56,7 @@ export const Signup = () => {
       payRate,
       feeRate,
       equipInfo,
+      aboutInfo,
       instaHandle
     );
   };
@@ -163,7 +166,7 @@ export const Signup = () => {
             </div>
           </div>
           <div className="row">
-            <h4 className="mt-2"> More About your Venue</h4>
+            <h4 className="mt-2"> Venue Info</h4>
           </div>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-4">
@@ -381,6 +384,20 @@ export const Signup = () => {
                 />
               </div>
             </div>
+            <div className="row px-3 justify-content-start">
+              <div className="form-group col-md-9">
+                <label htmlFor="aboutInfo">About Your Venue</label>
+                <textarea
+                  type="text"
+                  rows="4"
+                  className="form-control"
+                  id="aboutInfo"
+                  placeholder="Tell us more about your venue"
+                  value={aboutInfo}
+                  onChange={(e) => setAboutInfo(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
           <h4 className="mt-2"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
@@ -585,8 +602,6 @@ export const Signup = () => {
                 <option value="other">Other</option>
               </select>
             </div>
-          </div>
-          <div className="row px-3 justify-content-start">
             <div className="col-md-3 pb-0 my-auto">
               <label className="mx-1" htmlFor="ArtistType">
                 Performance Type
@@ -605,7 +620,21 @@ export const Signup = () => {
                 <option value="electronic">Other</option>
               </select>
             </div>
-          </div>
+            </div>
+            <div className="row px-3 justify-content-start">
+              <div className="form-group col-md-9">
+                <label htmlFor="aboutInfo">About You</label>
+                <textarea
+                  type="text"
+                  rows="4"
+                  className="form-control"
+                  id="aboutInfo"
+                  placeholder="Tell us more about you as a musical artist/group"
+                  value={aboutInfo}
+                  onChange={(e) => setAboutInfo(e.target.value)}
+                />
+              </div>
+            </div>
           <h4 className="mt-2"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-3">
