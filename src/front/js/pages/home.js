@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
+import { Venuecard } from "../component/venuecards";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -30,11 +31,19 @@ export const Home = () => {
       <div>
         <h1 className="artistittle">Artists</h1>
       </div>
-      <div>
-        <h1 className="venuestittle">Venues</h1>
-      </div>
+      <section>
+        <div className="d-flex flex-row flex-nowrap overflow-auto">
+          <Artistcard />
+        </div>
+      </section>
 
-      <Artistcard />
+      <section>
+        <h2>Venues</h2>
+        <div className="d-flex flex-row flex-nowrap overflow-auto">
+          <Venuecard />
+        </div>
+      </section>
+
       <div className="alert alert-info">
         {store.message ||
           "Loading message from the backend (make sure your python backend is running)..."}

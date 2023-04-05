@@ -16,3 +16,24 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+
+@api.route('/artist', methods=['GET'])
+def artist_get():
+    artists = Artist.query.all()
+    serialized_artists = []
+    for artist in artists:
+        serialized_artists.append(artist.serialize())
+    
+
+    return jsonify(serialized_artists), 200
+
+@api.route('/venues', methods=['GET'])
+def venues_get():
+    venues = Venues.query.all()
+    serialized_venues = []
+    for venue in venues:
+        serialized_venues.append(venue.serialize())
+    
+
+    return jsonify(serialized_venues), 200
