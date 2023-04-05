@@ -21,8 +21,9 @@ export const Signup = () => {
   const [zipcode, setZipcode] = useState("");
   const [phone, setPhone] = useState("");
   const [capacity, setCapacity] = useState("");
-  const [musicType, setMusicType] = useState("general");
+  const [musicGenre, setMusicGenre] = useState("general");
   const [staging, setStaging] = useState("indoor");
+  const [isHiring, setIsHiring] = useState("");
   const [payRate, setPayRate] = useState("N/A");
   const [feeRate, setFeeRate] = useState("N/A");
   const [equipInfo, setEquipInfo] = useState("yes");
@@ -47,12 +48,13 @@ export const Signup = () => {
       zipcode,
       phone,
       capacity,
-      musicType,
+      musicGenre,
       staging,
+      isHiring,
       payRate,
       feeRate,
       equipInfo,
-      instaHandle,
+      instaHandle
     );
   };
 
@@ -296,13 +298,13 @@ export const Signup = () => {
               />
             </div>
             <div className="col-md-3 pb-0 my-auto">
-              <label className="mx-1" htmlFor="VenueMusicType">
-                Music Type
+              <label className="mx-1" htmlFor="VenueMusicGenre">
+                Genre
               </label>
               <select
                 className="form-control"
-                id="VenueMusicType"
-                onChange={(e) => setMusicType(e.target.value)}
+                id="VenueMusicGenre"
+                onChange={(e) => setMusicGenre(e.target.value)}
               >
                 <option defaultValue>Choose...</option>
                 <option value="general">General</option>
@@ -330,6 +332,18 @@ export const Signup = () => {
               </select>
             </div>
             <div className="row px-3 justify-content-start">
+              <div className="form-group col-md-4">
+                <label htmlFor="isHiring">Hiring?</label>
+                <select
+                  className="form-control"
+                  id="isHiring"
+                  onChange={(e) => setIsHiring(e.target.value)}
+                >
+                  <option defaultValue>Choose...</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
               <div className="form-group col-md-4">
                 <label htmlFor="pay-rate">Pay Rate</label>
                 <input
@@ -370,8 +384,10 @@ export const Signup = () => {
           </div>
           <h4 className="mt-2"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
-          <div className="form-group col-md-3">
-              <label htmlFor="instaHandle"><i className="fa-brands fa-instagram fa-xl"></i></label>
+            <div className="form-group col-md-3">
+              <label htmlFor="instaHandle">
+                <i className="fa-brands fa-instagram fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -383,7 +399,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="tikTokHandle"><i className="fa-brands fa-tiktok fa-xl"></i></label>
+              <label htmlFor="tikTokHandle">
+                <i className="fa-brands fa-tiktok fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -395,7 +413,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="facebookHandle"><i className="fa-brands fa-facebook fa-xl"></i></label>
+              <label htmlFor="facebookHandle">
+                <i className="fa-brands fa-facebook fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -408,8 +428,10 @@ export const Signup = () => {
             </div>
           </div>
           <div className="row px-3 justify-content-start my-3">
-          <div className="form-group col-md-3">
-              <label htmlFor="twitterHandle"><i className="fa-brands fa-twitter fa-xl"></i></label>
+            <div className="form-group col-md-3">
+              <label htmlFor="twitterHandle">
+                <i className="fa-brands fa-twitter fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -421,7 +443,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="soundcloudHandle"><i className="fa-brands fa-soundcloud fa-xl"></i></label>
+              <label htmlFor="soundcloudHandle">
+                <i className="fa-brands fa-soundcloud fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -433,7 +457,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="spotifyHandle"><i className="fa-brands fa-spotify fa-xl"></i></label>
+              <label htmlFor="spotifyHandle">
+                <i className="fa-brands fa-spotify fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -455,11 +481,9 @@ export const Signup = () => {
             </button>
           </div>
         </form>
-      ) 
-      : 
-      (
+      ) : (
         <form>
-<h4 className="mt-2"> Basic Info</h4>
+          <h4 className="mt-2"> Basic Info</h4>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-4">
               <label htmlFor="name">First Name</label>
@@ -543,13 +567,13 @@ export const Signup = () => {
             </div>
 
             <div className="col-md-3 pb-0 my-auto">
-              <label className="mx-1" htmlFor="VenueMusicType">
-                Music Type
+              <label className="mx-1" htmlFor="artistMusicGenre">
+                Genre
               </label>
               <select
                 className="form-control"
-                id="VenueMusicType"
-                onChange={(e) => setMusicType(e.target.value)}
+                id="artistMusicGenre"
+                onChange={(e) => setMusicGenre(e.target.value)}
               >
                 <option defaultValue>Choose...</option>
                 <option value="general">General</option>
@@ -573,8 +597,9 @@ export const Signup = () => {
                 onChange={(e) => setArtistType(e.target.value)}
               >
                 <option defaultValue>Choose...</option>
-                <option value="general">Singer</option>
-                <option value="rock">Solo Instrumental</option>
+                <option value="general">Vocalist</option>
+                <option value="rock">Rapper</option>
+                <option value="rock">Instrumentalist</option>
                 <option value="hip hop">Band</option>
                 <option value="jazz">DJ</option>
                 <option value="electronic">Other</option>
@@ -583,8 +608,10 @@ export const Signup = () => {
           </div>
           <h4 className="mt-2"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
-          <div className="form-group col-md-3">
-              <label htmlFor="instaHandle"><i className="fa-brands fa-instagram fa-xl"></i></label>
+            <div className="form-group col-md-3">
+              <label htmlFor="instaHandle">
+                <i className="fa-brands fa-instagram fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -596,7 +623,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="tikTokHandle"><i className="fa-brands fa-tiktok fa-xl"></i></label>
+              <label htmlFor="tikTokHandle">
+                <i className="fa-brands fa-tiktok fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -608,7 +637,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="facebookHandle"><i className="fa-brands fa-facebook fa-xl"></i></label>
+              <label htmlFor="facebookHandle">
+                <i className="fa-brands fa-facebook fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -621,8 +652,10 @@ export const Signup = () => {
             </div>
           </div>
           <div className="row px-3 justify-content-start my-3">
-          <div className="form-group col-md-3">
-              <label htmlFor="twitterHandle"><i className="fa-brands fa-twitter fa-xl"></i></label>
+            <div className="form-group col-md-3">
+              <label htmlFor="twitterHandle">
+                <i className="fa-brands fa-twitter fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -634,7 +667,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="soundcloudHandle"><i className="fa-brands fa-soundcloud fa-xl"></i></label>
+              <label htmlFor="soundcloudHandle">
+                <i className="fa-brands fa-soundcloud fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
@@ -646,7 +681,9 @@ export const Signup = () => {
               />
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="spotifyHandle"><i className="fa-brands fa-spotify fa-xl"></i></label>
+              <label htmlFor="spotifyHandle">
+                <i className="fa-brands fa-spotify fa-xl"></i>
+              </label>
               <input
                 type="text"
                 className="form-control-inline mx-2 w-75"
