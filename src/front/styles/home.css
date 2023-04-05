@@ -1,7 +1,9 @@
-/*
-    home.css: This website contains selectors only used in home.css
-
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.genre-list {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+.genre {
+  text-align: center;
+  padding-right: 10px;
+}
