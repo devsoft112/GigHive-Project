@@ -78,26 +78,26 @@ export const Signup = () => {
       <div className="row text-center my-2">
         <h2>Sign Up</h2>
       </div>
-      <div className="row mx-2 py-auto align-content-center">
-        <div className="col-md-1 my-auto p-0">
-          <b>I am a:</b>
-        </div>
+      <div className="row signup-user-type-select">
+          <h4 className="signup-user-type-select">I am a:</h4>
+        
+        
         <button
           className="account-type-button btn btn-success"
           onClick={isVenue}
         >
-          Venue{" "}
+          Venue
         </button>
         <button
           className="account-type-button btn btn-primary mx-2"
           onClick={isArtist}
         >
-          Artist{" "}
+          Artist
         </button>
       </div>
       {userType == "venue" ? (
         <form>
-          <h4 className="mt-2"> Basic Info</h4>
+          <h4 className="mt-2 signup-header"> Basic Info</h4>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-4">
               <label htmlFor="name">First Name</label>
@@ -166,7 +166,7 @@ export const Signup = () => {
             </div>
           </div>
           <div className="row">
-            <h4 className="mt-2"> Venue Info</h4>
+            <h4 className="mt-2 signup-header"> Venue Info</h4>
           </div>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-4">
@@ -399,9 +399,9 @@ export const Signup = () => {
               </div>
             </div>
           </div>
-          <h4 className="mt-2"> Social Handles</h4>
+          <h4 className="mt-2 signup-header"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="instaHandle">
                 <i className="fa-brands fa-instagram fa-xl"></i>
               </label>
@@ -415,7 +415,7 @@ export const Signup = () => {
                 onChange={(e) => setInstaHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="tikTokHandle">
                 <i className="fa-brands fa-tiktok fa-xl"></i>
               </label>
@@ -429,7 +429,7 @@ export const Signup = () => {
                 onChange={(e) => setTikTokHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="facebookHandle">
                 <i className="fa-brands fa-facebook fa-xl"></i>
               </label>
@@ -445,7 +445,7 @@ export const Signup = () => {
             </div>
           </div>
           <div className="row px-3 justify-content-start my-3">
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="twitterHandle">
                 <i className="fa-brands fa-twitter fa-xl"></i>
               </label>
@@ -459,7 +459,7 @@ export const Signup = () => {
                 onChange={(e) => setTwitterHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="soundcloudHandle">
                 <i className="fa-brands fa-soundcloud fa-xl"></i>
               </label>
@@ -473,7 +473,7 @@ export const Signup = () => {
                 onChange={(e) => setSoundcloudHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="spotifyHandle">
                 <i className="fa-brands fa-spotify fa-xl"></i>
               </label>
@@ -500,7 +500,7 @@ export const Signup = () => {
         </form>
       ) : (
         <form>
-          <h4 className="mt-2"> Basic Info</h4>
+          <h4 className="mt-2 signup-header"> Basic Info</h4>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-4">
               <label htmlFor="name">First Name</label>
@@ -568,7 +568,7 @@ export const Signup = () => {
               />
             </div>
           </div>
-          <h4 className="mt-2"> Artist Info</h4>
+          <h4 className="mt-2 signup-header"> Artist Info</h4>
           <div className="row px-3 justify-content-start my-2">
             <div className="form-group col-md-3">
               <label htmlFor="artistName">Stage/Artist Name</label>
@@ -635,9 +635,9 @@ export const Signup = () => {
                 />
               </div>
             </div>
-          <h4 className="mt-2"> Social Handles</h4>
+          <h4 className="mt-2 signup-header"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="instaHandle">
                 <i className="fa-brands fa-instagram fa-xl"></i>
               </label>
@@ -651,7 +651,7 @@ export const Signup = () => {
                 onChange={(e) => setInstaHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="tikTokHandle">
                 <i className="fa-brands fa-tiktok fa-xl"></i>
               </label>
@@ -665,7 +665,7 @@ export const Signup = () => {
                 onChange={(e) => setTikTokHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="facebookHandle">
                 <i className="fa-brands fa-facebook fa-xl"></i>
               </label>
@@ -681,7 +681,7 @@ export const Signup = () => {
             </div>
           </div>
           <div className="row px-3 justify-content-start my-3">
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="twitterHandle">
                 <i className="fa-brands fa-twitter fa-xl"></i>
               </label>
@@ -695,7 +695,7 @@ export const Signup = () => {
                 onChange={(e) => setTwitterHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="soundcloudHandle">
                 <i className="fa-brands fa-soundcloud fa-xl"></i>
               </label>
@@ -709,7 +709,7 @@ export const Signup = () => {
                 onChange={(e) => setSoundcloudHandle(e.target.value)}
               />
             </div>
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="spotifyHandle">
                 <i className="fa-brands fa-spotify fa-xl"></i>
               </label>
