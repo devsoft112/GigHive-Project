@@ -20,14 +20,16 @@ export const Signup = () => {
   const [locationState, setLocationState] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [phone, setPhone] = useState("");
-  const [capacity, setCapacity] = useState("");
+  const [capacity, setCapacity] = useState("N/A");
   const [musicGenre, setMusicGenre] = useState("general");
   const [staging, setStaging] = useState("indoor");
   const [isHiring, setIsHiring] = useState("no");
   const [payRate, setPayRate] = useState("N/A");
   const [feeRate, setFeeRate] = useState("N/A");
   const [equipInfo, setEquipInfo] = useState("yes");
-  const [aboutInfo, setAboutInfo] = useState("");
+  const [aboutInfo, setAboutInfo] = useState(
+    "More info about this venue hasn't been added yet!"
+  );
   const [instaHandle, setInstaHandle] = useState("");
   const [tikTokHandle, setTikTokHandle] = useState("");
   const [facebookHandle, setFacebookHandle] = useState("");
@@ -57,7 +59,12 @@ export const Signup = () => {
       feeRate,
       equipInfo,
       aboutInfo,
-      instaHandle
+      instaHandle,
+      tikTokHandle,
+      facebookHandle,
+      twitterHandle,
+      soundcloudHandle,
+      spotifyHandle
     );
   };
 
@@ -79,9 +86,8 @@ export const Signup = () => {
         <h2>Sign Up</h2>
       </div>
       <div className="row signup-user-type-select">
-          <h4 className="signup-user-type-select">I am a:</h4>
-        
-        
+        <h4 className="signup-user-type-select">I am a:</h4>
+
         <button
           className="account-type-button btn btn-success"
           onClick={isVenue}
@@ -285,6 +291,7 @@ export const Signup = () => {
                 maxLength="11"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -350,23 +357,23 @@ export const Signup = () => {
               <div className="form-group col-md-4">
                 <label htmlFor="pay-rate">Pay Rate</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="pay-rate"
                   placeholder="Pay rate (optional)"
-                  value=""
-                  onChange={(e) => setCapacity(e.target.value)}
+                  value={payRate}
+                  onChange={(e) => setPayRate(e.target.value)}
                 />
               </div>
               <div className="form-group col-md-4">
                 <label htmlFor="fees">Fees?</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="fees"
                   placeholder="Fees charged to artists (optional)"
-                  value=""
-                  onChange={(e) => setCapacity(e.target.value)}
+                  value={feeRate}
+                  onChange={(e) => setFeeRate(e.target.value)}
                 />
               </div>
             </div>
@@ -620,21 +627,21 @@ export const Signup = () => {
                 <option value="electronic">Other</option>
               </select>
             </div>
+          </div>
+          <div className="row px-3 justify-content-start">
+            <div className="form-group col-md-9">
+              <label htmlFor="aboutInfo">About You</label>
+              <textarea
+                type="text"
+                rows="4"
+                className="form-control"
+                id="aboutInfo"
+                placeholder="Tell us more about you as a musical artist/group"
+                value={aboutInfo}
+                onChange={(e) => setAboutInfo(e.target.value)}
+              />
             </div>
-            <div className="row px-3 justify-content-start">
-              <div className="form-group col-md-9">
-                <label htmlFor="aboutInfo">About You</label>
-                <textarea
-                  type="text"
-                  rows="4"
-                  className="form-control"
-                  id="aboutInfo"
-                  placeholder="Tell us more about you as a musical artist/group"
-                  value={aboutInfo}
-                  onChange={(e) => setAboutInfo(e.target.value)}
-                />
-              </div>
-            </div>
+          </div>
           <h4 className="mt-2 signup-header"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-4">
