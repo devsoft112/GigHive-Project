@@ -7,6 +7,7 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+artists_var = [{ "username" : "artist1", "email" : "test", "password" : "test" }]
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -17,8 +18,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-
-@api.route('/artist', methods=['GET'])
+# to populate the artist cards on the front
+@api.route('/', methods=['GET'])
 def artist_get():
     artists = Artist.query.all()
     serialized_artists = []
@@ -28,41 +29,69 @@ def artist_get():
 
     return jsonify(serialized_artists), 200
 
-@api.route('/venues', methods=['GET'])
-def venues_get():
-    venues = Venues.query.all()
-    serialized_venues = []
-    for venue in venues:
-        serialized_venues.append(venue.serialize())
-    return jsonify(serialized_venues), 200
+#to populate the venue cards on the front
+@api.route('/', methods=['GET'])
+def venue_get():
+    artists = Artist.query.all()
+    serialized_artists = []
+    for artist in artists:
+        serialized_artists.append(artist.serialize())
 
-# @api.route('/register', methods=['POST'])
-# def create_user():
-#     request_body = request.get_json()
-#     email = request_body.get('email')
-#     password = request_body.get('password')
-#     username = request_body.get('username')
+    return jsonify(serialized_artists), 200
 
-#     if not request_body["username"]:
-#         return jsonify({"msg": "Name is required"}), 400
-#     if not request_body["email"]:
-#         return jsonify({"msg": "Email is required"}), 400
-#     if not request_body["password"]:
-#         return jsonify({"msg": "Password is required"}), 400
+# to sign up artists
+@api.route('/register/artist', methods=['POST'])
+def register_artist():
+    response_body = request.get_json()
+    artist = Artist(first_name=response_body["first_name"], 
+                  last_name=response_body["last_name"], 
+                  username=response_body["username"], 
+                  email=response_body["email"], 
+                  password=response_body["password"], 
+                  artist_name=response_body["artist_name"],
+                  genre=response_body["genre"],
+                  performance_type=response_body["performance_type"],
+                  image=response_body["image"],
+                  instagram=response_body["instagram"],
+                  facebook=response_body["facebook"],
+                  twitter=response_body["twitter"],
+                  tiktok=response_body["tiktok"],
+                  soundcloud=response_body["soundcloud"],
+                  spotify=response_body["spotify"],
+                  )
+    db.session.add(artist)
+    db.session.commit()
+    return jsonify(response_body), 200
 
-#     user = User.query.filter_by(email=email).first()
-#     if user is not None:
-#         return jsonify({'message': 'User already exists'}), 400
+# to sign up venues
+@api.route('/register/venue', methods=['POST'])
+def register_venue():
+    response_body = request.get_json()
+    venue = Venue(first_name=response_body["first_name"], 
+                  last_name=response_body["last_name"], 
+                  username=response_body["username"], 
+                  email=response_body["email"], 
+                  password=response_body["password"], 
+                  venue_name=response_body["venue_name"],
+                  address=response_body["address"],
+                  state=response_body["state"],
+                  zip_code=response_body["zip_code"],
+                  phone_number=response_body["phone_number"],
+                  venue_capacity=response_body["venue_capacity"],
+                  music_Type=response_body["music_Type"],
+                  in_out=response_body["in_out"],
+                  hiring=response_body["hiring"],
+                  pay_rate=response_body["pay_rate"],
+                  fees=response_body["fees"],
+                  equipment=response_body["equipment"],
+                  image=response_body["image"],
+                  instagram=response_body["instagram"],
+                  facebook=response_body["facebook"],
+                  twitter=response_body["twitter"],
+                  tiktok=response_body["tiktok"],
+                  soundcloud=response_body["soundcloud"],
+                  spotify=response_body["spotify"],)
+    db.session.add(venue)
+    db.session.commit()
+    return jsonify(response_body), 200
 
-#     new_user = User(email=email, password=password, username=username)
-#     db.session.add(new_user)
-#     db.session.commit()
-#     return jsonify(new_user.serialize()), 201
-
-
-# @api.route('/register', methods=['POST'])
-# def login_user():
-#     user = User.query.filter_by(id=id).first()
-#     if user is None:
-#         return jsonify(User.serialize()), 200
-#     return jsonify({'message': 'User does not exist'}), 400
