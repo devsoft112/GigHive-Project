@@ -11,6 +11,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Signup } from "./pages/signup";
 import { ArtistProfile } from "./pages/artistProfile";
+import { VenueProfile } from "./pages/venueProfile";
 
 //create your first component
 const Layout = () => {
