@@ -16,3 +16,24 @@
     position: absolute;
     top: -5px;
 } */
+
+.social-link {
+    color: black;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+}
+
+.smImage {
+    background-color: gainsboro;
+    width: 100px;
+    height: 200px;
+}
+
+.smImageRow {
+    background-color: burlywood;
+}
+
+.calendar {
+    width: 300px;
+}

@@ -31,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading artists", error);
         }
       },
+      
     },
   };
 };
