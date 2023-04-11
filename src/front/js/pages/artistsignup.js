@@ -14,40 +14,38 @@ export default function Artistsignup() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [phone, setPhone] = useState("");
+  const [genre, setGenre] = useState("");
 
-  const [instaHandle, setInstaHandle] = useState("");
-  const [tikTokHandle, setTikTokHandle] = useState("");
-  const [facebookHandle, setFacebookHandle] = useState("");
-  const [twitterHandle, setTwitterHandle] = useState("");
-  const [soundcloudHandle, setSoundcloudHandle] = useState("");
-  const [spotifyHandle, setSpotifyHandle] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [tikTok, setTikTok] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [soundcloud, setSoundcloud] = useState("");
+  const [spotify, setSpotify] = useState("");
   const [artistName, setArtistName] = useState("");
-  const [artistType, setArtistType] = useState("Other");
+  const [performance_type, setPerformance_type] = useState("Other");
 
-  const handleClick = () => {
-    actions.signup(
-      userType,
+  const handleSubmit = () => {
+    actions.postArtist(
       firstName,
       lastName,
+      username,
       email,
       password,
-      phone,
-      aboutInfo,
-      instaHandle,
-      tikTokHandle,
-      facebookHandle,
-      twitterHandle,
-      soundcloudHandle,
-      spotifyHandle
+      artistName,
+      genre,
+      performance_type,
+      instagram,
+      tikTok,
+      facebook,
+      twitter,
+      soundcloud,
+      spotify
     );
   };
 
-  if (store.token && store.token != "" && store.token != undefined) {
-    navigate("/login");
-  }
-
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h4 className="mt-2 signup-header"> Basic Info</h4>
       <div className="row px-3 justify-content-start">
         <div className="form-group col-md-4">
@@ -138,7 +136,8 @@ export default function Artistsignup() {
           <select
             className="form-control"
             id="artistMusicGenre"
-            onChange={(e) => setMusicGenre(e.target.value)}
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
           >
             <option defaultValue>Choose...</option>
             <option value="general">General</option>
@@ -157,7 +156,8 @@ export default function Artistsignup() {
           <select
             className="form-control"
             id="ArtistType"
-            onChange={(e) => setArtistType(e.target.value)}
+            value={performance_type}
+            onChange={(e) => setPerformance_type(e.target.value)}
           >
             <option defaultValue>Choose...</option>
             <option value="general">Vocalist</option>
@@ -182,8 +182,8 @@ export default function Artistsignup() {
             name="instaHandle"
             id="instaHandle"
             placeholder="Instagram username/handle"
-            value={instaHandle}
-            onChange={(e) => setInstaHandle(e.target.value)}
+            value={instagram}
+            onChange={(e) => setInstagram(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -196,8 +196,8 @@ export default function Artistsignup() {
             name="tikTokHandle"
             id="tikTokHandle"
             placeholder="TikTok username/handle"
-            value={tikTokHandle}
-            onChange={(e) => setTikTokHandle(e.target.value)}
+            value={tikTok}
+            onChange={(e) => setTikTok(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -210,8 +210,8 @@ export default function Artistsignup() {
             name="facebookHandle"
             id="facebookHandle"
             placeholder="Facebook username/handle"
-            value={facebookHandle}
-            onChange={(e) => setFacebookHandle(e.target.value)}
+            value={facebook}
+            onChange={(e) => setFacebook(e.target.value)}
           />
         </div>
       </div>
@@ -226,8 +226,8 @@ export default function Artistsignup() {
             name="twitterHandle"
             id="twitterHandle"
             placeholder="Twitter username/handle"
-            value={twitterHandle}
-            onChange={(e) => setTwitterHandle(e.target.value)}
+            value={twitter}
+            onChange={(e) => setTwitter(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -240,8 +240,8 @@ export default function Artistsignup() {
             name="soundcloudHandle"
             id="soundcloudHandle"
             placeholder="Soundcloud username/handle"
-            value={soundcloudHandle}
-            onChange={(e) => setSoundcloudHandle(e.target.value)}
+            value={soundcloud}
+            onChange={(e) => setSoundcloud(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -254,8 +254,8 @@ export default function Artistsignup() {
             name="spotifyHandle"
             id="spotifyHandle"
             placeholder="Spotify username/handle"
-            value={spotifyHandle}
-            onChange={(e) => setSpotifyHandle(e.target.value)}
+            value={spotify}
+            onChange={(e) => setSpotify(e.target.value)}
           />
         </div>
       </div>
@@ -264,7 +264,6 @@ export default function Artistsignup() {
         <button
           type="submit"
           className="btn btn-primary w-25 mx-auto mt-2 signup-button"
-          onClick={handleClick}
         >
           Sign up
         </button>
