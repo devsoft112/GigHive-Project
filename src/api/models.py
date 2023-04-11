@@ -3,13 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class User(db.Model):
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.column(db.String(120), unique=True, primary_key= True, nullable=False)
+    username = db.Column(db.String(120), unique= True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, primary_key=True, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    venue_id = db.relationship('Venue', lazy=True)
-    artist_id = db.relationship('Artist', lazy=True)
+    password = db.Column(db.String(120), unique=False, nullable=False)
+    venue = db.relationship('Venue',  lazy=True)
+    artist = db.relationship('Artist', back_populates="user", lazy=True) 
 
     
     def __repr__(self):
@@ -23,19 +23,21 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Venue(db.models):
+class Venue(db.Model):
+    __tablename__ = "venue"
+
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    address = db.Column(db.String, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    address = db.Column(db.String(120), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     phone_number = db.Column(db.Integer, nullable=False)
-    venue_capacity = db.column(db.String, nullable=False)
-    music_type = db.Column(db.String, nullable = False)
-    paying_fees = db.column(db.String, nullable=False)
-    in_out = db.column(db.String, nullable=False)
-    equipment = db.column(db.String, nullable=False)
-    parking_lot = db.column(db.String, nullable=False)
-    image = db.column(db.String, nullable=True)
+    venue_capacity = db.Column(db.String(120), nullable=False)
+    music_type = db.Column(db.String(120), nullable = False)
+    paying_fees = db.Column(db.String(120), nullable=False)
+    in_out = db.Column(db.String(120), nullable=False)
+    equipment = db.Column(db.String(120), nullable=False)
+    parking_lot = db.Column(db.String(120), nullable=False)
+    image = db.Column(db.String(120), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
 
     
@@ -58,14 +60,17 @@ class Venue(db.models):
             "image": self.image
         }
         
-class Artist(db.models):
+class Artist(db.Model):
+    __tablename__ = "artist"
+
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    type_of_music = db.column(db.String, nullable=False)
-    social_links = db.column(db.String, nullable=False)
-    type_of_artist = db.column(db.String, nullable=False)
-    description = db.column(db.String, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    type_of_music = db.Column(db.String(120), nullable=False)
+    social_links = db.Column(db.String(120), nullable=True)
+    type_of_artist = db.Column(db.String(120), nullable=False)
+    description = db.Column(db.String(120), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+    user = db.relationship('User', back_populates="artist", lazy=True) 
 
     def __repr__(self):
         return f'<Artist {self.name}>'
@@ -79,3 +84,24 @@ class Artist(db.models):
             "type_of_artist": self.type_of_artist,
             "description": self.description
         }
+
+
+class Messages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(120), nullable=False)
+    id_sender = db.Column(db.Integer, nullable=False)
+    id_receiver = db.Column(db.Integer, nullable=False)
+    sent_date = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f'<Messages {self.name}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "id_sender": self.id_sender,
+            "id_receiver": self.id_receiver,
+            "sent_date": self.sent_date,
+        }
+
