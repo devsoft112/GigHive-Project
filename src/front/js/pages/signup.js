@@ -11,10 +11,10 @@ export const Signup = () => {
       <div className="row signup-user-type-select">
         <h4 className="signup-user-type-select">I am a:</h4>
 
-        <Link to="/register/venue">
+        <Link to="/registervenue">
           <button className="account-type-button btn btn-success">Venue</button>
         </Link>
-        <Link to="/register/artist">
+        <Link to="/registerartist">
           <button className="account-type-button btn btn-primary mx-2">
             Artist
           </button>
