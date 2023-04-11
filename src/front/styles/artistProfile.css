@@ -4,6 +4,15 @@
     padding: auto;
 }
 
+.mainRow {
+    height: 500px;
+}
+
+.secondRow {
+    height: 450px;
+    display: inline-block;
+}
+
 .artistName {
     display: inline-block;
 }

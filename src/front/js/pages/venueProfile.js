@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 
-import "./CalendarPlaceholder.png"
+
 
 import "../../styles/venueProfile.css";
+
+import CalendarPlaceholder from './CalendarPlaceholder.png'
+import MapPlaceholder from './MapPlaceholder.png'
 
 import { Context } from "../store/appContext";
 
@@ -11,7 +14,7 @@ export function VenueProfile() {
 
   return (
     <div className="container-fluid">
-      <div className="row px-2 gx-3">
+      <div className="row mt-4 px-2 gx-3 d-flex mainRow">
         <div className="col-md-5 mt-2 rounded profile-main-img">
           Image goes here
         </div>
@@ -38,10 +41,23 @@ export function VenueProfile() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, 
+              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+              et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
-            <b>Music Type:</b>
-            <b>Performance Type:</b>
+            <p className="my-0"><b>Capacity: </b></p>
+            <p className="my-0"><b>Music Type: </b></p>
+            <p className="my-0"><b>Hiring?: </b></p>
+            <p className="my-0"><b>Pay Rate: </b></p>
+            <p className="my-0"><b>Fee Rate: </b></p>
+            <p className="my-0"><b>Equipment Info: </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, 
+              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+              et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           </div>
           <div className="row mt-3 px-2">
             <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-instagram fa-xl"></i></div>
@@ -52,7 +68,7 @@ export function VenueProfile() {
             <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-spotify fa-xl"></i></div>
           </div>
         </div>
-        <div className="row px-2 d-flex justify-content-between align-items-center">
+        <div className="row px-2 d-flex justify-content-between align-items-center secondRow">
             <div className="col-md-5 mx-1">
               <div className="row d-flex justify-content-between">
                 <div className="col-md m-2 rounded smImage">
@@ -77,10 +93,11 @@ export function VenueProfile() {
                 </div>
               </div>
             </div>
-            <div className="col-md-6"><img className="calendar" src="./CalendarPlaceholder.png" /><img className="calendar mx-5" src="./CalendarPlaceholder.png" /></div>
+            <div className="col-md-6"><img className="calendar" src={CalendarPlaceholder} /><img className="calendar mx-5" src={CalendarPlaceholder} /></div>
           </div>
-          
+          <div className="row rounded"><img src={MapPlaceholder} /></div>
       </div>
-    </div>
+           
+      </div>
   );
 }

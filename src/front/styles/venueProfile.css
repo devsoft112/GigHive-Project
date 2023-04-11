@@ -1,7 +1,15 @@
 .profile-main-img {
-    height: 300px;
+    height: 100%;
     background-color: grey;
     padding: auto;
+}
+
+.mainRow {
+    height: 500px;
+}
+
+.secondRow {
+    height: 450px;
 }
 
 .venueName {

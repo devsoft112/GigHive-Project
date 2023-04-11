@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import "./CalendarPlaceholder.png"
+import CalendarPlaceholder from "./CalendarPlaceholder.png"
 
 import "../../styles/artistProfile.css";
 
@@ -11,7 +11,7 @@ export function ArtistProfile() {
 
   return (
     <div className="container-fluid">
-      <div className="row px-2 gx-3">
+      <div className="row px-2 gx-3 mt-4 mainRow">
         <div className="col-md-5 mt-2 rounded profile-main-img">
           Image goes here
         </div>
@@ -77,9 +77,8 @@ export function ArtistProfile() {
                 </div>
               </div>
             </div>
-            <div className="col-md-6"><img className="calendar" src="./CalendarPlaceholder.png" /><img className="calendar mx-5" src="./CalendarPlaceholder.png" /></div>
+            <div className="col-md-6"><img className="calendar" src={CalendarPlaceholder} /><img className="calendar mx-5" src={CalendarPlaceholder} /></div>
           </div>
-          
       </div>
     </div>
   );

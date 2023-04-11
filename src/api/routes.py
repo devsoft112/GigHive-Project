@@ -30,7 +30,7 @@ def artist_get():
 
 @api.route('/venues', methods=['GET'])
 def venues_get():
-    venues = Venues.query.all()
+    venues = Venue.query.all()
     serialized_venues = []
     for venue in venues:
         serialized_venues.append(venue.serialize())
