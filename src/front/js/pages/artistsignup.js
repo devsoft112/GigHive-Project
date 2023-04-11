@@ -53,8 +53,7 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control"
-            name="name"
-            id="name"
+            id="firstName"
             placeholder="First name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -66,8 +65,7 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control"
-            name="name"
-            id="name"
+            id="lastName"
             placeholder="Last name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -81,7 +79,6 @@ export default function Artistsignup() {
           <input
             type="email"
             className="form-control"
-            name="email"
             id="inputEmail4"
             placeholder="Email"
             value={email}
@@ -121,7 +118,6 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control"
-            name="artistName"
             id="artistName"
             placeholder="Stage/Artist Name"
             value={artistName}
@@ -179,7 +175,6 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control-inline mx-2 w-75"
-            name="instaHandle"
             id="instaHandle"
             placeholder="Instagram username/handle"
             value={instagram}
@@ -193,7 +188,6 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control-inline mx-2 w-75"
-            name="tikTokHandle"
             id="tikTokHandle"
             placeholder="TikTok username/handle"
             value={tikTok}
@@ -207,7 +201,6 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control-inline mx-2 w-75"
-            name="facebookHandle"
             id="facebookHandle"
             placeholder="Facebook username/handle"
             value={facebook}
@@ -223,7 +216,6 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control-inline mx-2 w-75"
-            name="twitterHandle"
             id="twitterHandle"
             placeholder="Twitter username/handle"
             value={twitter}
@@ -237,7 +229,6 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control-inline mx-2 w-75"
-            name="soundcloudHandle"
             id="soundcloudHandle"
             placeholder="Soundcloud username/handle"
             value={soundcloud}
@@ -251,7 +242,6 @@ export default function Artistsignup() {
           <input
             type="text"
             className="form-control-inline mx-2 w-75"
-            name="spotifyHandle"
             id="spotifyHandle"
             placeholder="Spotify username/handle"
             value={spotify}
