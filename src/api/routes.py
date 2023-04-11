@@ -32,7 +32,7 @@ def artist_get():
 #to populate the venue cards on the front
 @api.route('/', methods=['GET'])
 def venue_get():
-    artists = Artist.query.all()
+    artists = Venue.query.all()
     serialized_artists = []
     for artist in artists:
         serialized_artists.append(artist.serialize())
@@ -40,10 +40,11 @@ def venue_get():
     return jsonify(serialized_artists), 200
 
 # to sign up artists
-@api.route('/register/artist', methods=['POST'])
+@api.route('/registerartist', methods=['POST'])
 def register_artist():
     response_body = request.get_json()
-    artist = Artist(first_name=response_body["first_name"], 
+    artist = Artist(
+                  first_name=response_body["first_name"], 
                   last_name=response_body["last_name"], 
                   username=response_body["username"], 
                   email=response_body["email"], 
@@ -51,20 +52,20 @@ def register_artist():
                   artist_name=response_body["artist_name"],
                   genre=response_body["genre"],
                   performance_type=response_body["performance_type"],
-                  image=response_body["image"],
                   instagram=response_body["instagram"],
                   facebook=response_body["facebook"],
                   twitter=response_body["twitter"],
                   tiktok=response_body["tiktok"],
                   soundcloud=response_body["soundcloud"],
                   spotify=response_body["spotify"],
-                  )
+                  user_id=response_body["user_id"])
+    print("this is artist: ", artist)
     db.session.add(artist)
     db.session.commit()
     return jsonify(response_body), 200
 
 # to sign up venues
-@api.route('/register/venue', methods=['POST'])
+@api.route('/registervenue', methods=['POST'])
 def register_venue():
     response_body = request.get_json()
     venue = Venue(first_name=response_body["first_name"], 
@@ -93,5 +94,5 @@ def register_venue():
                   spotify=response_body["spotify"],)
     db.session.add(venue)
     db.session.commit()
-    return jsonify(response_body), 200
+    return jsonify(response_body = response_body), 200
 

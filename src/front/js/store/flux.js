@@ -5,15 +5,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       venues: [],
     },
     actions: {
-      // Use getActions to call a function within a fuction
-
       getArtist: async () => {
         try {
-          // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/api/artist");
           const data = await resp.json();
           setStore({ artists: data });
-          // don't forget to return something, that is how the async resolves
           return data;
         } catch (error) {
           console.log("Error loading artists", error);
@@ -21,14 +17,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
           const data = await resp.json();
           setStore({ venues: data });
-          // don't forget to return something, that is how the async resolves
           return data;
         } catch (error) {
-          console.log("Error loading artists", error);
+          console.log("Error loading venues", error);
         }
       },
       postArtist: async (
@@ -39,8 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         password,
         artist_name,
         genre,
-        performmance_type,
-        image,
+        performance_type,
         instagram,
         facebook,
         twitter,
@@ -61,19 +54,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             password: password,
             artist_name: artist_name,
             genre: genre,
-            performmance_type: performmance_type,
-            image: image,
+            performance_type: performance_type,
             instagram: instagram,
             facebook: facebook,
             twitter: twitter,
             soundcloud: soundcloud,
             spotify: spotify,
             tiktok: tiktok,
+            // user_id: 1,
           }),
         };
         try {
           const response = await fetch(
-            process.env.BACKEND_URL + "/api/register/artist",
+            process.env.BACKEND_URL + "/api/registerartist",
             opts
           );
           if (response.status !== 200) {
@@ -81,9 +74,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          console.log("backend token: " + data);
-          sessionStorage.setItem("user", data.access_token);
-          setStore({ token: data.access_token });
+          console.log("artist signed up: " + data);
+          sessionStorage.setItem("artist", data.response_body);
+          setStore({ artists: data.response_body });
           return true;
         } catch (error) {
           console.error("Error! Description: " + error);

@@ -13,7 +13,7 @@ class User(db.Model):
 
     
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<User {self.username}>'
 
     def serialize(self):
         return {
@@ -44,7 +44,6 @@ class Venue(db.Model):
     pay_rate = db.Column(db.String(120), nullable=False)
     fees = db.Column(db.String(120), nullable=False)
     equipment = db.Column(db.String(120), nullable=False)
-    image = db.Column(db.String(120), nullable=True)
     instagram = db.Column(db.String(120), nullable=True)
     facebook = db.Column(db.String(120), nullable=True)
     twitter = db.Column(db.String(120), nullable=True)
@@ -55,12 +54,12 @@ class Venue(db.Model):
 
     
     def __repr__(self):
-         return f'<Venue {self.name}>'
+         return f'<Venue {self.venue_name}>'
      
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "venue_name": self.venue_name,
             "address": self.address,
             "zip_code": self.zip_Code,
             "phone_number": self.phone_Number,
@@ -85,7 +84,6 @@ class Artist(db.Model):
     artist_name = db.Column(db.String(120), nullable=False)
     genre = db.Column(db.String(120), nullable=False)
     performance_type = db.Column(db.String(120), nullable=False)
-    image = db.Column(db.String(120), nullable=True)   
     instagram = db.Column(db.String(120), nullable=True)
     facebook = db.Column(db.String(120), nullable=True)
     twitter = db.Column(db.String(120), nullable=True)
@@ -96,17 +94,27 @@ class Artist(db.Model):
     user = db.relationship('User', back_populates="artist", lazy=True) 
 
     def __repr__(self):
-        return f'<Artist {self.name}>'
+        return f'<Artist {self.first_name}>'
     
     def serialize(self):
         return {
-            "id": self.id,
-            "name": self.name,
-            "type_of_music": self.type_of_music,
-            "social_links": self.social_links,
-            "type_of_artist": self.type_of_artist,
-            "description": self.description
-        }
+        "id": self.id,
+        "first_name": self.first_name,
+        "last_name": self.last_name,
+        "email": self.email,
+        "username": self.username,
+        "artist_name": self.artist_name,
+        "genre": self.genre,
+        "performance_type": self.performance_type,
+        "instagram": self.instagram,
+        "facebook": self.facebook,
+        "twitter": self.twitter,
+        "tiktok": self.tiktok,
+        "soundcloud": self.soundcloud,
+        "spotify": self.spotify,
+        "user_id": self.user_id,
+        "user": self.user.serialize() if self.user else None
+    }
 
 
 class Messages(db.Model):
