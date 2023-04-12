@@ -1,21 +1,12 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import { Link } from "react-router-dom";
 
 export default function Artistsignup() {
   const { store, actions } = useContext(Context);
-  const navigate = useNavigate();
-
-  const [userType, setUserType] = useState("artist");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
   const [phone, setPhone] = useState("");
   const [genre, setGenre] = useState("");
-
   const [instagram, setInstagram] = useState("");
   const [tikTok, setTikTok] = useState("");
   const [facebook, setFacebook] = useState("");
@@ -27,11 +18,6 @@ export default function Artistsignup() {
 
   const handleSubmit = () => {
     actions.postArtist(
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
       artistName,
       genre,
       performance_type,
@@ -46,71 +32,6 @@ export default function Artistsignup() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h4 className="mt-2 signup-header"> Basic Info</h4>
-      <div className="row px-3 justify-content-start">
-        <div className="form-group col-md-4">
-          <label htmlFor="name">First Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="firstName"
-            placeholder="First name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group col-md-4">
-          <label htmlFor="name">Last Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="lastName"
-            placeholder="Last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-      <div className="row px-3 justify-content-start">
-        <div className="form-group col-md-4">
-          <label htmlFor="inputEmail4">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            id="inputEmail4"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group col-md-4">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group col-md-4">
-          <label htmlFor="username">Username</label>
-          <input
-            type="username"
-            className="form-control"
-            id="username"
-            placeholder="Desired username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-      </div>
       <h4 className="mt-2 signup-header"> Artist Info</h4>
       <div className="row px-3 justify-content-start my-2">
         <div className="form-group col-md-3">
@@ -251,12 +172,14 @@ export default function Artistsignup() {
       </div>
 
       <div className="row justify-content-center">
-        <button
-          type="submit"
-          className="btn btn-primary w-25 mx-auto mt-2 signup-button"
-        >
-          Sign up
-        </button>
+        <Link to="/">
+          <button
+            type="submit"
+            className="btn btn-primary w-25 mx-auto mt-2 signup-button"
+          >
+            Sign up
+          </button>
+        </Link>
       </div>
     </form>
   );

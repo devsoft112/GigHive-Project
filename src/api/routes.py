@@ -39,26 +39,38 @@ def venue_get():
 
     return jsonify(serialized_artists), 200
 
+
+# to sign up users
+@api.route('/register', methods=['POST'])
+def register_user():
+    response_body = request.get_json()
+    user = User(
+                first_name=response_body['first_name'],
+                last_name=response_body['last_name'],
+                username=response_body["username"], 
+                email=response_body["email"], 
+                password=response_body["password"]
+                )
+    print("this is user: ", user)
+    db.session.add(user)
+    db.session.commit()
+    return jsonify(response_body), 200
+
+
 # to sign up artists
 @api.route('/registerartist', methods=['POST'])
 def register_artist():
     response_body = request.get_json()
-    artist = Artist(
-                  first_name=response_body["first_name"], 
-                  last_name=response_body["last_name"], 
-                  username=response_body["username"], 
-                  email=response_body["email"], 
-                  password=response_body["password"], 
-                  artist_name=response_body["artist_name"],
-                  genre=response_body["genre"],
-                  performance_type=response_body["performance_type"],
-                  instagram=response_body["instagram"],
-                  facebook=response_body["facebook"],
-                  twitter=response_body["twitter"],
-                  tiktok=response_body["tiktok"],
-                  soundcloud=response_body["soundcloud"],
-                  spotify=response_body["spotify"],
-                  user_id=response_body["user_id"])
+    artist = Artist(artist_name=response_body["artist_name"],
+                    genre=response_body["genre"],
+                    performance_type=response_body["performance_type"],
+                    instagram=response_body["instagram"],
+                    facebook=response_body["facebook"],
+                    twitter=response_body["twitter"],
+                    tiktok=response_body["tiktok"],
+                    soundcloud=response_body["soundcloud"],
+                    spotify=response_body["spotify"],
+                    user_id=response_body["user_id"])
     print("this is artist: ", artist)
     db.session.add(artist)
     db.session.commit()
@@ -68,12 +80,7 @@ def register_artist():
 @api.route('/registervenue', methods=['POST'])
 def register_venue():
     response_body = request.get_json()
-    venue = Venue(first_name=response_body["first_name"], 
-                  last_name=response_body["last_name"], 
-                  username=response_body["username"], 
-                  email=response_body["email"], 
-                  password=response_body["password"], 
-                  venue_name=response_body["venue_name"],
+    venue = Venue(venue_name=response_body["venue_name"],
                   address=response_body["address"],
                   state=response_body["state"],
                   zip_code=response_body["zip_code"],

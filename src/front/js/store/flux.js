@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      users: [],
       artists: [],
       venues: [],
     },
@@ -25,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading venues", error);
         }
       },
+
       postArtist: async (
         first_name,
         last_name,
@@ -77,6 +79,45 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("artist signed up: " + data);
           sessionStorage.setItem("artist", data.response_body);
           setStore({ artists: data.response_body });
+          return true;
+        } catch (error) {
+          console.error("Error! Description: " + error);
+        }
+      },
+
+      registerUser: async (
+        first_name,
+        last_name,
+        username,
+        email,
+        password
+      ) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            first_name: first_name,
+            last_name: last_name,
+            username: username,
+            email: email,
+            password: password,
+          }),
+        };
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/register",
+            opts
+          );
+          if (response.status !== 200) {
+            alert("Response was not a code 200.");
+            return false;
+          }
+          const data = await response.json();
+          console.log("user signed up: " + data);
+          sessionStorage.setItem("user", data.response_body);
+          setStore({ users: data.response_body });
           return true;
         } catch (error) {
           console.error("Error! Description: " + error);

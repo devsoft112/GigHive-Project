@@ -5,6 +5,8 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(120), nullable=False)
+    last_name = db.Column(db.String(120), nullable=False)
     username = db.Column(db.String(120), unique= True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
@@ -18,8 +20,10 @@ class User(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "username": self.username,
             "email": self.email,
-            "username": self.username
             # do not serialize the password, its a security breach
         }
 
@@ -27,11 +31,6 @@ class Venue(db.Model):
     __tablename__ = "venue"
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(120), nullable=False)
-    last_name = db.Column(db.String(120), nullable=False)
-    email = db.Column(db.String(120), nullable=False)
-    password = db.Column(db.String(120), nullable=False)
-    username = db.Column(db.String(120), nullable=False)
     venue_name = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
     state = db.Column(db.String(120), nullable=False)
@@ -76,11 +75,6 @@ class Artist(db.Model):
     __tablename__ = "artist"
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(120), nullable=False)
-    last_name = db.Column(db.String(120), nullable=False)
-    email = db.Column(db.String(120), nullable=False)
-    password = db.Column(db.String(120), nullable=False)
-    username = db.Column(db.String(120), nullable=False)
     artist_name = db.Column(db.String(120), nullable=False)
     genre = db.Column(db.String(120), nullable=False)
     performance_type = db.Column(db.String(120), nullable=False)
@@ -99,10 +93,6 @@ class Artist(db.Model):
     def serialize(self):
         return {
         "id": self.id,
-        "first_name": self.first_name,
-        "last_name": self.last_name,
-        "email": self.email,
-        "username": self.username,
         "artist_name": self.artist_name,
         "genre": self.genre,
         "performance_type": self.performance_type,
