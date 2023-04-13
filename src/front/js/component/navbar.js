@@ -1,16 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GigHive from "../../img/GigHive.png";
 
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container">
         <Link to="/">
-          <span className="navbar-brand mb-0 h1">React Boilerplate</span>
+          <span className="navbar-brand mb-0 h1">
+            <img src={GigHive} alt="" height={50} />
+            The Gig Hive
+          </span>
         </Link>
         <div className="dropdown">
           <a
-            className="btn btn-secondary dropdown-toggle rounded-pill"
+            className="btn btn-secondary dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -27,17 +31,22 @@ export const Navbar = () => {
             </li>
             <li>
               <a>
-                <Link to="/">favorites</Link>
-              </a>
-            </li>
-            <li>
-              <a>
                 <Link to="/profile">Profile</Link>
               </a>
             </li>
             <li>
               <a>
-                <Link to="/Works">Browse Works</Link>
+                <Link to="/artists">Artists</Link>
+              </a>
+            </li>
+            <li>
+              <a>
+                <Link to="/venues">Venues</Link>
+              </a>
+            </li>
+            <li>
+              <a>
+                <Link to="/artists">Browse Works</Link>
               </a>
             </li>
             <li>
@@ -51,8 +60,8 @@ export const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/login">
-                <a>Sign in</a>
+              <Link to="/single">
+                <a>Log in</a>
               </Link>
             </li>
           </ul>
