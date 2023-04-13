@@ -14,7 +14,9 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container-flex">
+    <div className="container-fluid">
+
+      {/* EVERYTHING ABOVE THIS LINE FOR HEADER TESTS */}
       <div className="row header-image p-3"><h1 className="header-text">Find<br></br>Your Crowd</h1></div>
       <div className="row text-center">
         <h1>Bringing Musicians and Venues Together!</h1>
