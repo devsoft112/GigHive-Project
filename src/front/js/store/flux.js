@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       getArtist: async () => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/artist");
+          const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
           const data = await resp.json();
           setStore({ artists: data });
           return data;

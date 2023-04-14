@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Artistcard = () => {
+export const Artistcard = (props) => {
   return (
     <div className="card" style={{ minWidth: "18rem" }}>
       <img
@@ -9,7 +9,8 @@ export const Artistcard = () => {
         alt="Card image cap"
       ></img>
       <div className="card-body d-flex flex-column">
-        <h5 className="card-title">artist.name</h5>
+        <h5 className="card-title">{props.name}</h5>
+        <p>{props.genre}</p>
       </div>
     </div>
   );

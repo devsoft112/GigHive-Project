@@ -19,7 +19,8 @@ def handle_hello():
     return jsonify(response_body), 200
 
 # to populate the artist cards on the front
-@api.route('/', methods=['GET'])
+
+@api.route('/artists', methods=['GET'])
 def artist_get():
     artists = Artist.query.all()
     serialized_artists = []
@@ -30,15 +31,15 @@ def artist_get():
     return jsonify(serialized_artists), 200
 
 #to populate the venue cards on the front
-@api.route('/', methods=['GET'])
+
+@api.route('/venues', methods=['GET'])
 def venue_get():
-    artists = Venue.query.all()
-    serialized_artists = []
-    for artist in artists:
-        serialized_artists.append(artist.serialize())
+    venues = Venue.query.all()
+    serialized_venues = []
+    for venue in venues:
+        serialized_venues.append(venue.serialize())
 
-    return jsonify(serialized_artists), 200
-
+    return jsonify(serialized_venues), 200
 
 # to sign up users
 @api.route('/register', methods=['POST'])

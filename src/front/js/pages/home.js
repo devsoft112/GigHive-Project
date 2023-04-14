@@ -12,15 +12,24 @@ import ClassicalMusic from "../../img/ClassicalMusic.png"
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  const [ artists, setArtists ] = useState(store.artists)
+  const artists = store.artists
+
+  const rockArtists = store.artists.filter(artist => artist.genre == "rock");
+  const hipHopArtists = artists.filter(artist => artist.genre == "hip hop");
+  const jazzArtists = artists.filter(artist => artist.genre == "jazz");
+  const electronicArtists = artists.filter(artist => artist.genre == "electronic");
+  const classicalArtists = artists.filter(artist => artist.genre == "classical")
+
+  console.log(rockArtists)
 
   console.log(artists)
 
-  const rockFilter = () => setArtists(store.artists.filter(artist => artist.genre == "rock"));
-  const hipHopFilter = () => setArtists(store.artists.filter(artist => artist.genre == "hip hop"));
-  const jazzFilter = () => setArtists(store.artists.filter(artist => artist.genre == "jazz"));
-  const electronicFilter = () => setArtists(store.artists.filter(artist => artist.genre == "electronic"));
-  const classicalFilter = () => setArtists(store.artists.filter(artist => artist.genre == "classical"));
+  const rockFilter = () => setArtists(rockArtists);
+  const hipHopFilter = () => setArtists(hipHopArtists);
+  const jazzFilter = () => setArtists(jazzArtists);
+  const electronicFilter = () => setArtists(electronicArtists);
+  const classicalFilter = () => setArtists(classicalArtists)
+
 
 
   return (
@@ -36,7 +45,7 @@ export const Home = () => {
       </div>
       <div className="genre-list row d-flex justify-content-center px-3">
           <div className="genre d-flex rounded-circle justify-content-center mx-1">
-            <img className="genreImage" src={rockMusic} onClick={rockFilter} />
+            <img className="genreImage" src={rockMusic} onClick={console.log(artists)} />
             <p className="genreText">Rock</p>
           </div>
           <div className="genre d-flex rounded-circle justify-content-center mx-1">
@@ -61,10 +70,11 @@ export const Home = () => {
        
       </div>
       <div className="row px-3">
+        <p>{artists.map(artist => artist.artist_name)}</p>
         <h1 className="artistitle">Artists</h1>
       </div>
         <div className="d-flex flex-row flex-nowrap overflow-auto px-3">
-          <Artistcard />
+          {artists.map(artist => <Artistcard name={artist.artist_name} genre={artist.genre}/>)}
         </div>
 
       <div className="row px-3 mt-3">
