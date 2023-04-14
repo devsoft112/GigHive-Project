@@ -2,19 +2,19 @@
 .header-image {
   height: 500px;
   background-color: black;
-  background-image: url('https://media.cntraveller.com/photos/611bed73a954a4e571f6f36c/16:9/w_2580,c_limit/sofar-sounds-dec18-jane-jimenez-for-sofar-sounds.jpg');
+  background-image: url('https://howtosingbetter101.com/wp-content/uploads/2019/11/cool-things-to-do-on-stage-while-performing.jpg');
   background-size: cover;
-  background-position: 70% 60%;
+  background-position: 40% 55%;
   position: relative;
 }
 
 .header-text {
   color: white;
-  font-size: 48px;
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
+  font-size: 60px;
+  font-weight: 400;
 }
+
+
 .genre-list {
   display: flex;
   margin: auto;
@@ -28,7 +28,8 @@
   overflow: hidden;
   position: relative;
   background-color: black;
-  outline: black 2px solid;
+  /* outline: black 2px solid; */
+  box-shadow: 3px 3px 5px rgba(0,0,0,.5);
 
 }
 
