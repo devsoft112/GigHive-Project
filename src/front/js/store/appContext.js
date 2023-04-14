@@ -22,7 +22,7 @@ const injectContext = (PassedComponent) => {
     );
 
     // useEffect(() => {
-    //   state.actions.getArtist();
+      state.actions.getArtist();
     //   state.actions.getVenue();
     // }, []);
 

@@ -14,11 +14,13 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const [ artists, setArtists ] = useState(store.artists)
 
-  const rockFilter = () => setArtists(artists.filter(artist => artist.genre == "rock"));
-  const hipHopFilter = () => setArtists(artists.filter(artist => artist.genre == "hip hop"));
-  const jazzFilter = () => setArtists(artists.filter(artist => artist.genre == "jazz"));
-  const electronicFilter = () => setArtists(artists.filter(artist => artist.genre == "electronic"));
-  const classicalFilter = () => setArtists(artists.filter(artist => artist.genre == "classical"));
+  console.log(artists)
+
+  const rockFilter = () => setArtists(store.artists.filter(artist => artist.genre == "rock"));
+  const hipHopFilter = () => setArtists(store.artists.filter(artist => artist.genre == "hip hop"));
+  const jazzFilter = () => setArtists(store.artists.filter(artist => artist.genre == "jazz"));
+  const electronicFilter = () => setArtists(store.artists.filter(artist => artist.genre == "electronic"));
+  const classicalFilter = () => setArtists(store.artists.filter(artist => artist.genre == "classical"));
 
 
   return (
