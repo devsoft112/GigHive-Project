@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 
-export default function Artistsignup() {
+export function Artistsignup() {
   const { store, actions } = useContext(Context);
   const [phone, setPhone] = useState("");
   const [genre, setGenre] = useState("");

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
-export default function Venuesignup() {
+export function Venuesignup() {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
