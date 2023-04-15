@@ -1,17 +1,41 @@
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "../../styles/login.css";
+
+import GigHive from "../../img/GigHive.png";
+import { Signup } from "./signup";
 
 export function Login() {
+  const { store, actions } = useContext(Context);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useNavigate();
+
+  function handleClick(e) {
+    e.preventDefault();
+    actions.login(email, password);
+  }
+  useEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined)
+      history("/");
+  }, [store.token, history]);
+
   return (
     <div>
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-            <div className="border border-3 border-primary"></div>
+            <div className="border border-0 border-primary"></div>
             <Card className="shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-                  <h2 className="fw-bold mb-2 text-uppercase ">Brand</h2>
+                  <h2 className="fw-bold mb-2 text-uppercase">
+                    <img src={GigHive} alt="" height={50} />
+                    Gig Hive
+                  </h2>
                   <p className=" mb-5">Please enter your login and password!</p>
                   <div className="mb-3">
                     <Form>
@@ -19,7 +43,12 @@ export function Login() {
                         <Form.Label className="text-center">
                           Email address
                         </Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control
+                          type="email"
+                          placeholder="Enter email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
                       </Form.Group>
 
                       <Form.Group
@@ -27,7 +56,12 @@ export function Login() {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control
+                          type="password"
+                          placeholder="Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
@@ -40,7 +74,11 @@ export function Login() {
                         </p>
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button
+                          variant="primary"
+                          type="submit"
+                          onClick={handleClick}
+                        >
                           Login
                         </Button>
                       </div>
@@ -48,9 +86,9 @@ export function Login() {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Don't have an account?{" "}
-                        <a href="{''}" className="text-primary fw-bold">
-                          Sign Up
-                        </a>
+                        <Link to="/register">
+                          <a>Sign up</a>
+                        </Link>
                       </p>
                     </div>
                   </div>

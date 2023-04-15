@@ -60,7 +60,7 @@ export const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/single">
+              <Link to="/login">
                 <a>Log in</a>
               </Link>
             </li>
