@@ -11,6 +11,7 @@ export const Artistcard = (props) => {
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">{props.name}</h5>
         <p>{props.genre}</p>
+        <p>{props.performance_type}</p>
       </div>
     </div>
   );
