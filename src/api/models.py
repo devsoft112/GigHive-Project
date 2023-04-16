@@ -11,7 +11,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
     venue = db.relationship('Venue',  lazy=True)
-    artist = db.relationship('Artist', back_populates="user", lazy=True) 
+    artist = db.relationship('Artist', lazy=True) 
 
     
     def __repr__(self):
@@ -85,7 +85,7 @@ class Artist(db.Model):
     soundcloud = db.Column(db.String(120), nullable=True)
     spotify = db.Column(db.String(120), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    user = db.relationship('User', back_populates="artist", lazy=True) 
+
 
     def __repr__(self):
         return f'<Artist {self.first_name}>'
@@ -102,8 +102,6 @@ class Artist(db.Model):
         "tiktok": self.tiktok,
         "soundcloud": self.soundcloud,
         "spotify": self.spotify,
-        "user_id": self.user_id,
-        "user": self.user.serialize() if self.user else None
     }
 
 
