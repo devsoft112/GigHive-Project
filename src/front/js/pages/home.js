@@ -36,6 +36,11 @@ export const Home = () => {
 
 
 
+  useEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined)
+      actions.getMessage();
+  }, [store.token]);
+
   return (
     <div className="container-fluid">
 
