@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const { store, actions } = useContext(Context);
@@ -10,7 +11,12 @@ export const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useNavigate();
 
+  useEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined)
+      history("/login");
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
     actions.registerUser(first_name, last_name, username, email, password);

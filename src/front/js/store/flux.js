@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      token: null,
       users: [],
       token: null,
       message: null,
@@ -8,9 +9,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       venues: [],
     },
     actions: {
+      logout: () => {
+        sessionStorage.removeItem("token");
+        console.log("loging out");
+        setStore({ token: null });
+      },
+      syncTokenfromSessionStorage: () => {
+        const token = sessionStorage.getItem("token");
+        if (token && token !== undefined && token !== "")
+          setStore({ token: token });
+      },
       getArtist: async () => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/artist");
+          const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
           const data = await resp.json();
           setStore({ artists: data });
           return data;
@@ -79,7 +90,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           console.log("artist signed up: " + data);
-          sessionStorage.setItem("artist", data.response_body);
           setStore({ artists: data.response_body });
           return true;
         } catch (error) {
@@ -117,76 +127,30 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          console.log("user signed up: " + data);
-          sessionStorage.setItem("user", data.response_body);
-          setStore({ users: data.response_body });
+          console.log("user signed up: " + data[0]);
+          sessionStorage.setItem("token", data[1]);
+          setStore({ artists: data[0] });
+          setStore({ token: data[1] });
+
           return true;
         } catch (error) {
           console.error("Error! Description: " + error);
         }
       },
-      syncTokenFromSessionStore: () => {
-        const token = sessionStorage.getItem("token");
-        console.log("Application just loaded and syncing application");
-        if (token && token != "" && token != undefined)
-          setStore({ token: token });
-      },
-
-      logout: () => {
-        sessionStorage.removeItem("token");
-        console.log("Logging Out");
-        setStore({ token: null });
-      },
-
-      login: async (email, password) => {
-        const opts = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        };
-        try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/token",
-            opts
-          );
-          if (resp.status !== 200) {
-            alert("There has been an error");
-            return false;
-          }
-
-          const data = await resp.json();
-          console.log("this came from the backend", data);
-          sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token });
-          return true;
-        } catch (error) {
-          console.error("There has been an error logging in");
-        }
-      },
-
-      getMessage: async () => {
+      Authorization: () => {
         const store = getStore();
         const opts = {
           headers: {
             Authorization: "Bearer " + store.token,
           },
         };
+        // fetching data from the backend
+        fetch(process.env.BACKEND_URL + "/api/private", opts)
+          .then((resp) => resp.json())
+          .then((data) => setStore({ message: data.artists.username }))
+          .catch((error) => console.log(error));
 
-        try {
-          // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL + "api/hello", opts);
-          const data = await resp.json();
-          setStore({ message: data.message });
-          // don't forget to return something, that is how the async resolves
-          return data;
-        } catch (error) {
-          console.log("Error loading message from backend", error);
-        }
+        // don't forget to return something, that is how the async resolves
       },
     },
   };

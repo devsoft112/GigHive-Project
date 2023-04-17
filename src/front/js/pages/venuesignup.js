@@ -15,6 +15,7 @@ export function Venuesignup() {
   const [username, setUsername] = useState("");
   const [venueName, setVenueName] = useState("");
   const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
   const [locationState, setLocationState] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [phone, setPhone] = useState("");
@@ -45,6 +46,7 @@ export function Venuesignup() {
       venueName,
       address,
       locationState,
+      city,
       zipcode,
       phone,
       capacity,
@@ -155,6 +157,21 @@ export function Venuesignup() {
             required
           />
         </div>
+        <div className="form-group col-md-2">
+          <label htmlFor="phone">Phone Number</label>
+          <input
+            type="number"
+            className="form-control"
+            name="phone"
+            id="phone"
+            placeholder="Phone number"
+            pattern="[0-9]{10}"
+            maxLength="11"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
+        </div>
       </div>
       <div className="row px-3 justify-content-start">
         <div className="form-group col-md-4">
@@ -167,6 +184,20 @@ export function Venuesignup() {
             placeholder="Street address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group col-md-2">
+          <label htmlFor="phone">City</label>
+          <input
+            type="text"
+            className="form-control"
+            name="city"
+            id="city"
+            placeholder="City"
+            maxLength="11"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
             required
           />
         </div>
@@ -243,21 +274,6 @@ export function Venuesignup() {
             value={zipcode}
             onChange={(e) => setZipcode(e.target.value)}
             maxLength="5"
-            required
-          />
-        </div>
-        <div className="form-group col-md-2">
-          <label htmlFor="phone">Phone Number</label>
-          <input
-            type="number"
-            className="form-control"
-            name="phone"
-            id="phone"
-            placeholder="Phone number"
-            pattern="[0-9]{10}"
-            maxLength="11"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
             required
           />
         </div>

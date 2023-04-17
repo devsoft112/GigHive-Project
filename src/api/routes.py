@@ -1,25 +1,21 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Artist, Venue
-from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 api = Blueprint('api', __name__)
 
+
 artists_var = [{ "username" : "artist1", "email" : "test", "password" : "test" }]
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
-
 # to populate the artist cards on the front
-@api.route('/', methods=['GET'])
+
+@api.route('/artists', methods=['GET'])
 def artist_get():
     artists = Artist.query.all()
     serialized_artists = []
@@ -30,15 +26,15 @@ def artist_get():
     return jsonify(serialized_artists), 200
 
 #to populate the venue cards on the front
-@api.route('/', methods=['GET'])
+
+@api.route('/venues', methods=['GET'])
 def venue_get():
-    artists = Venue.query.all()
-    serialized_artists = []
-    for artist in artists:
-        serialized_artists.append(artist.serialize())
+    venues = Venue.query.all()
+    serialized_venues = []
+    for venue in venues:
+        serialized_venues.append(venue.serialize())
 
-    return jsonify(serialized_artists), 200
-
+    return jsonify(serialized_venues), 200
 
 # to sign up users
 @api.route('/register', methods=['POST'])
@@ -52,10 +48,15 @@ def register_user():
                 password=response_body["password"]
                 )
     print("this is user: ", user)
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    access_token = create_access_token(identity=username)
+    db.session.add(user)
     db.session.add(user)
     db.session.commit()
-    return jsonify(response_body), 200
+    return jsonify(response_body, access_token), 200
 
+# to authenticate your users(login) and return JWTs.
 
 # to sign up artists
 @api.route('/registerartist', methods=['POST'])
@@ -70,7 +71,7 @@ def register_artist():
                     tiktok=response_body["tiktok"],
                     soundcloud=response_body["soundcloud"],
                     spotify=response_body["spotify"],
-                    user_id=response_body["user_id"])
+                    )
     print("this is artist: ", artist)
     db.session.add(artist)
     db.session.commit()
@@ -82,6 +83,7 @@ def register_venue():
     response_body = request.get_json()
     venue = Venue(venue_name=response_body["venue_name"],
                   address=response_body["address"],
+                  city=response_body["city"],
                   state=response_body["state"],
                   zip_code=response_body["zip_code"],
                   phone_number=response_body["phone_number"],
@@ -92,7 +94,7 @@ def register_venue():
                   pay_rate=response_body["pay_rate"],
                   fees=response_body["fees"],
                   equipment=response_body["equipment"],
-                  image=response_body["image"],
+                  images=response_body["images"],
                   instagram=response_body["instagram"],
                   facebook=response_body["facebook"],
                   twitter=response_body["twitter"],

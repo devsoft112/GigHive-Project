@@ -11,7 +11,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
     venue = db.relationship('Venue',  lazy=True)
-    artist = db.relationship('Artist', back_populates="user", lazy=True) 
+    artist = db.relationship('Artist', lazy=True) 
 
     
     def __repr__(self):
@@ -33,6 +33,7 @@ class Venue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     venue_name = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
+    # city = db.Column (db.String(120), nullable=False) 
     state = db.Column(db.String(120), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     phone_number = db.Column(db.Integer, nullable=False)
@@ -60,15 +61,24 @@ class Venue(db.Model):
             "id": self.id,
             "venue_name": self.venue_name,
             "address": self.address,
+            # "city": self.city,
+            "state": self.state,
             "zip_code": self.zip_Code,
             "phone_number": self.phone_Number,
             "venue_capacity": self.venue_capacity,
             "music_type": self.music_Type,
-            "paying_fees": self.paying_fees,
             "in_out": self.in_out,
+            "hiring": self.hiring,
+            "pay_rate": self.pay_rate,
+            "fees": self.fees,
             "equipment": self.equipment,
-            "parking_lot": self.parking_lot,
-            "image": self.image
+            "instagram": self.instagram,
+            "facebook": self.facebook,
+            "twitter": self.twitter,
+            "tiktok": self.tiktok,
+            "soundcloud": self.soundcloud,
+            "spotify": self.spotify,
+            "images": self.images
         }
         
 class Artist(db.Model):
@@ -85,7 +95,7 @@ class Artist(db.Model):
     soundcloud = db.Column(db.String(120), nullable=True)
     spotify = db.Column(db.String(120), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    user = db.relationship('User', back_populates="artist", lazy=True) 
+
 
     def __repr__(self):
         return f'<Artist {self.first_name}>'
@@ -102,8 +112,6 @@ class Artist(db.Model):
         "tiktok": self.tiktok,
         "soundcloud": self.soundcloud,
         "spotify": self.spotify,
-        "user_id": self.user_id,
-        "user": self.user.serialize() if self.user else None
     }
 
 
