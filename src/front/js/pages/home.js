@@ -24,17 +24,13 @@ export const Home = () => {
   const electronicArtists = artists.filter(artist => artist.genre == "electronic");
   const classicalArtists = artists.filter(artist => artist.genre == "classical")
 
-  console.log(rockArtists)
-
-  console.log(artists)
-
   const rockFilter = () => setArtists(rockArtists);
   const hipHopFilter = () => setArtists(hipHopArtists);
   const jazzFilter = () => setArtists(jazzArtists);
   const electronicFilter = () => setArtists(electronicArtists);
   const classicalFilter = () => setArtists(classicalArtists)
 
-
+  console.log(artists)
 
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
