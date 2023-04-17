@@ -22,8 +22,8 @@ const injectContext = (PassedComponent) => {
     );
 
     useEffect(() => {
-        state.actions.getArtist();
-        state.actions.getVenue();
+      state.actions.getArtist();
+      state.actions.getVenue();
       state.actions.syncTokenfromSessionStorage();
     }, []);
 

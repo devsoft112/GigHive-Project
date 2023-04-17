@@ -83,6 +83,7 @@ def register_venue():
     response_body = request.get_json()
     venue = Venue(venue_name=response_body["venue_name"],
                   address=response_body["address"],
+                  city=response_body["city"],
                   state=response_body["state"],
                   zip_code=response_body["zip_code"],
                   phone_number=response_body["phone_number"],
@@ -93,7 +94,7 @@ def register_venue():
                   pay_rate=response_body["pay_rate"],
                   fees=response_body["fees"],
                   equipment=response_body["equipment"],
-                  image=response_body["image"],
+                  images=response_body["images"],
                   instagram=response_body["instagram"],
                   facebook=response_body["facebook"],
                   twitter=response_body["twitter"],

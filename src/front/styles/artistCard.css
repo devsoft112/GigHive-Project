@@ -1,0 +1,35 @@
+.card {
+    width: 300px;
+}
+
+.card-img-top {
+    position: relative;
+}
+
+.card-heart {
+    position: absolute;
+    top: 15px;
+    right: 7px;
+}
+
+.card-heart:hover {
+    color: red;
+}
+
+.card-title {
+    font-weight: 700;
+}
+
+.star-rating {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.musicGenre {
+    font-weight: 500;
+}
+
+.buttonDiv {
+    width: 40%;
+    font-size: 14px;
+}

@@ -40,6 +40,9 @@ export const Home = () => {
     if (store.token && store.token != "" && store.token != undefined)
       actions.getMessage();
   }, [store.token]);
+  useEffect(() => {
+    actions.getArtist();
+  }, [])
 
   return (
     <div className="container-fluid">
@@ -81,8 +84,11 @@ export const Home = () => {
       <div className="row px-3">
         <h1 className="artistitle">Artists</h1>
       </div>
+      <div className="d-flex flex-row flex-nowrap overflow-auto px-3">
+          <Artistcard artist_name="Jimi Hendrix" genre="rock" performance_type="singer" starRating="5.0"/>
+        </div>
         <div className="d-flex flex-row flex-nowrap overflow-auto px-3">
-          {artists.map(artist => <Artistcard name={artist.artist_name} genre={artist.genre} performance_type={artist.performance_type}/>)}
+          {artists.map((artist, index) => {<Artistcard name={artist.artist_name} genre={artist.genre} performance_type={artist.performance_type} link={"/artists/" + index}/>})}
         </div>
 
       <div className="row px-3 mt-3">
