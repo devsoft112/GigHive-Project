@@ -14,7 +14,8 @@ api = Blueprint('api', __name__)
 artists_var = [{ "username" : "artist1", "email" : "test", "password" : "test" }]
 
 # to populate the artist cards on the front
-@api.route('/', methods=['GET'])
+
+@api.route('/artists', methods=['GET'])
 def artist_get():
     artists = Artist.query.all()
     serialized_artists = []
@@ -25,15 +26,15 @@ def artist_get():
     return jsonify(serialized_artists), 200
 
 #to populate the venue cards on the front
-@api.route('/', methods=['GET'])
+
+@api.route('/venues', methods=['GET'])
 def venue_get():
-    artists = Venue.query.all()
-    serialized_artists = []
-    for artist in artists:
-        serialized_artists.append(artist.serialize())
+    venues = Venue.query.all()
+    serialized_venues = []
+    for venue in venues:
+        serialized_venues.append(venue.serialize())
 
-    return jsonify(serialized_artists), 200
-
+    return jsonify(serialized_venues), 200
 
 # to sign up users
 @api.route('/register', methods=['POST'])
@@ -82,6 +83,7 @@ def register_venue():
     response_body = request.get_json()
     venue = Venue(venue_name=response_body["venue_name"],
                   address=response_body["address"],
+                  city=response_body["city"],
                   state=response_body["state"],
                   zip_code=response_body["zip_code"],
                   phone_number=response_body["phone_number"],
@@ -92,7 +94,7 @@ def register_venue():
                   pay_rate=response_body["pay_rate"],
                   fees=response_body["fees"],
                   equipment=response_body["equipment"],
-                  image=response_body["image"],
+                  images=response_body["images"],
                   instagram=response_body["instagram"],
                   facebook=response_body["facebook"],
                   twitter=response_body["twitter"],
