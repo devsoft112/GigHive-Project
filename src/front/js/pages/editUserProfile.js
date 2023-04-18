@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import "../../styles/editUserProfile.css";
 import propTypes from "prop-types";
 
-export function EditUserProfile() {
+export function EditUserProfile(props) {
   const [editMode, setEditMode] = useState(false)
   const editToggle = () => {
     editMode == true ? setEditMode(false): setEditMode(true)
@@ -11,55 +11,82 @@ export function EditUserProfile() {
   }
   return (
     <div className="container-fluid">
+      
       <div className="row text-center mt-2">
         <h2>Your Profile Info</h2>
         <button className="btn btn-success" onClick={editToggle}>EDIT?</button>
       </div>
       <div className="row">
+        
         <div className="col-md-10">
           <div className="row align-items-start p-2">
             <h4 className="info-header">Your Basic Info</h4>
           </div>
-          {/* <div className="row my-0 mx-2">
-            <b>First Name:</b>{editMode == false ? {artists[user_id].first_name} : <input type="text" value={props.first_name}></input>}
-          </div> */}
-          <div className="row my-0 mx-2">
-            <b>Last Name:</b> {props.last_name}
+          <div className="row my-0 pb-0 mx-2 d-flex">
+            {editMode == false ?<><p className="mb-0"><b>First Name: </b>TEST</p></> : <><p className="mb-0"><b>First Name: </b><input type="text" value="TEST"></input></p></>}
           </div>
           <div className="row my-0 mx-2">
-            <b>Email:</b> {props.last_name}
+            {editMode == false ?<><p className="mb-0"><b>Last Name: </b>TEST</p></> : <><p className="mb-0"><b>Last Name: </b><input type="text" value="TEST"></input></p></>}
+          </div>
+          <div className="row my-0 mx-2">
+            {editMode == false ?<><p className="mb-0"><b>Email: </b>TEST</p></> : <><p className="mb-0"><b>Email: </b><input type="text" value="TEST"></input></p></>}
           </div>
           {/* -----Artist Info----- */}
           <div className="row align-items-start p-2">
             <h4 className="info-header">Artist Info</h4>
           </div>
           <div className="row my-0 mx-2">
-            <b>Artist Name:</b> {props.artist_name}
+            {editMode == false ?<><p className="mb-0"><b>Artist Name: </b>TEST</p></> : <><p className="mb-0"><b>Artist Name: </b><input type="text" value="TEST"></input></p></>}
           </div>
           <div className="row my-0 mx-2">
-            <b>Artist Info:</b> {props.artist_info}
+            {editMode == false ?<><p className="mb-0"><b>Artist Info: </b>TEST</p></> : <><p className="mb-0"><b>Artist Info: </b><input type="text" value="TEST"></input></p></>}
           </div>
           <div className="row my-0 mx-2">
-            <b>Genre:</b> {props.genre}
+            {editMode == false ?<><p className="mb-0"><b>Genre: </b>TEST</p></> : <><p className="mb-0"><b>Genre: </b><select
+              className="form-control"
+              id="artistMusicGenre"
+              
+            >
+              <option defaultValue>Choose...</option>
+              <option value="general">General</option>
+              <option value="rock">Rock</option>
+              <option value="hip hop">Hip Hop</option>
+              <option value="jazz">Jazz</option>
+              <option value="electronic">Electronic</option>
+              <option value="classical">Classical</option>
+              <option value="other">Other</option>
+            </select></p></>}
           </div>
           <div className="row my-0 mx-2">
-            <b>Performance Type:</b> {props.performance_type}
+          {editMode == false ?<><p className="mb-0"><b>Performance Type: </b>TEST</p></> : <><p className="mb-0"><b>Performance Type: </b><select
+            className="form-control"
+            id="ArtistType"
+
+          >
+            <option defaultValue>Choose...</option>
+            <option value="general">Vocalist</option>
+            <option value="rock">Rapper</option>
+            <option value="rock">Instrumentalist</option>
+            <option value="hip hop">Band</option>
+            <option value="jazz">DJ</option>
+            <option value="electronic">Other</option>
+          </select></p></>}
           </div>
           <div className="row align-items-start p-2">
-            <h4 className="info-header">Social Info</h4>
+            <h4 className="info-header">Artist Social Info</h4>
           </div>
           <div className="row my-0 mx-2">
-            <b>Instagram Handle:</b> {props.instagram}
+            {editMode == false ?<><p className="mb-0"><b>Instagram Handle: </b>TEST</p></> : <><p className="mb-0"><b>Instagram Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Facebook Handle:</b> {props.facebook}
+            {editMode == false ?<><p className="mb-0"><b>Facebook Handle: </b>TEST</p></> : <><p className="mb-0"><b>Facebook Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Twitter Handle:</b> {props.twitter}
+            {editMode == false ?<><p className="mb-0"><b>Twitter Handle: </b>TEST</p></> : <><p className="mb-0"><b>Twitter Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>TikTok Handle:</b> {props.tiktok}
+            {editMode == false ?<><p className="mb-0"><b>TikTok Handle: </b>TEST</p></> : <><p className="mb-0"><b>TikTok Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Soundcloud Handle:</b> {props.soundcloud}
+            {editMode == false ?<><p className="mb-0"><b>Soundcloud Handle: </b>TEST</p></> : <><p className="mb-0"><b>Soundcloud Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Spotify Handle:</b> {props.spotify}
+            {editMode == false ?<><p className="mb-0"><b>Spotify Handle: </b>TEST</p></> : <><p className="mb-0"><b>Spotify Handle: </b><input type="text" value="TEST"></input></p></>}
           </div>
           {/* -----Venue Info----- */}
           <div className="row align-items-start p-2">
@@ -67,66 +94,156 @@ export function EditUserProfile() {
           </div>
           <div className="row my-0 mx-2">
           <div className="col-md-3">
-              <b>Venue Name:</b> {props.venue_name}
-            </div><div className="col-md-3">
-              <b>Phone Number:</b> {props.phone_number}
+            {editMode == false ?<><p className="mb-0"><b>Venue Name: </b>TEST</p></> : <><p className="mb-0"><b>Venue Name: </b><input type="text" value="TEST"></input></p></>}
+            </div>
+            <div className="col-md-3">
+              {editMode == false ?<><p className="mb-0"><b>Phone Number: </b>9999999999</p></> : <><p className="mb-0"><b>Phone Number: </b><input type="number" value="9999999999"></input></p></>}
             </div>
           </div>
           <div className="row my-0 mx-2">
             <div className="col-md-3">
-              <b>Street Address:</b> {props.address}
+              {editMode == false ?<><p className="mb-0"><b>Street Address: </b>TEST</p></> : <><p className="mb-0"><b>Street Address: </b><input type="text" value="TEST"></input></p></>}
             </div>
             <div className="col-md-3">
-              <b>City:</b> {props.city}
+              {editMode == false ?<><p className="mb-0"><b>City: </b>TEST</p></> : <><p className="mb-0"><b>City: </b><input type="text" value="TEST"></input></p></>}
             </div> 
             <div className="col-md-3">
-              <b>State:</b> {props.state}
+              {editMode == false ?<><p className="mb-0"><b>State: </b>TEST</p></> : <><p className="mb-0"><b>State: </b><select
+            className="form-control"
+            id="state"
+            // onChange={(e) => setLocationState(e.target.value)}
+          >
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select></p></>}
             </div>
             <div className="col-md-3">
-              <b>Zipcode:</b> {props.zip_code}
+              {editMode == false ?<><p className="mb-0"><b>Zipcode: </b>99999</p></> : <><p className="mb-0"><b>Zipcode: </b><input type="number" value="99999"></input></p></>}
             </div>    
           </div>
           <div className="row my-0 mx-2">
             <div className="col-md-3">
-              <b>Capacity:</b> {props.venue_capacity}
+              {editMode == false ?<><p className="mb-0"><b>Capacity: </b>999</p></> : <><p className="mb-0"><b>Capacity: </b><input type="number" value="999"></input></p></>}
             </div>
             <div className="col-md-3">
-              <b>Music Type:</b> {props.music_type}
+              {editMode == false ?<><p className="mb-0"><b>Music Type: </b>TEST</p></> : <><p className="mb-0"><b>Music Type: </b><select
+            className="form-control"
+            id="VenueMusicGenre"
+            // onChange={(e) => setMusicGenre(e.target.value)}
+          >
+            <option defaultValue>Choose...</option>
+            <option value="general">General</option>
+            <option value="rock">Rock</option>
+            <option value="hip hop">Hip Hop</option>
+            <option value="jazz">Jazz</option>
+            <option value="electronic">Electronic</option>
+            <option value="classical">Classical</option>
+            <option value="other">Other</option>
+          </select></p></>}
             </div> 
             <div className="col-md-3">
-              <b>Indoor/Outdoor Staging?:</b> {props.in_out}
+              {editMode == false ?<><p className="mb-0"><b>Indoor/Outdoor Staging: </b>TEST</p></> : <><p className="mb-0"><b>Indoor/Outdoor Staging: </b><select
+            className="form-control"
+            id="staging"
+            // onChange={(e) => setStaging(e.target.value)}
+          >
+            <option defaultValue>Choose...</option>
+            <option value="indoor">Indoor</option>
+            <option value="outdoor">Outdoor</option>
+            <option value="both">Both</option>
+          </select></p></>}
             </div>
             
           </div>
           <div className="row my-0 mx-2">
             <div className="col-md-3">
-              <b>Hiring:</b> {props.hiring}
+              {editMode == false ?<><p className="mb-0"><b>Hiring: </b>TEST</p></> : <><p className="mb-0"><b>Hiring: </b><select
+              className="form-control"
+              id="isHiring"
+              // onChange={(e) => setIsHiring(e.target.value)}
+            >
+              <option defaultValue>Choose...</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select></p></>}
             </div>
             <div className="col-md-3">
-              <b>Pay Rate:</b> {props.pay_rate}
+              {editMode == false ?<><p className="mb-0"><b>Pay Rate: </b>99</p></> : <><p className="mb-0"><b>Pay Rate: </b><input type="number" value="99"></input></p></>}
             </div>
             <div className="col-md-3">
-              <b>Fees:</b> {props.fees}
+              {editMode == false ?<><p className="mb-0"><b>Fees: </b>99</p></> : <><p className="mb-0"><b>Fees: </b><input type="number" value="99"></input></p></>}
             </div>
           </div>
           <div className="row my-0 mx-2">
             <div className="col-md-3">
-              <b>Equipment Info:</b> {props.equipment}
+              {editMode == false ?<><p className="mb-0"><b>Equipment Info: </b>TEST</p></> : <><p className="mb-0"><b>Equipment Info: </b><input type="text" value="TEST"></input></p></>}
             </div>
           </div>
+          <div className="row align-items-start p-2">
+            <h4 className="info-header">Venue Social Info</h4>
+          </div>
           <div className="row my-0 mx-2">
-            <b>Instagram Handle:</b> {props.instagram}
+            {editMode == false ?<><p className="mb-0"><b>Instagram Handle: </b>TEST</p></> : <><p className="mb-0"><b>Instagram Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Facebook Handle:</b> {props.facebook}
+            {editMode == false ?<><p className="mb-0"><b>Facebook Handle: </b>TEST</p></> : <><p className="mb-0"><b>Facebook Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Twitter Handle:</b> {props.twitter}
+            {editMode == false ?<><p className="mb-0"><b>Twitter Handle: </b>TEST</p></> : <><p className="mb-0"><b>Twitter Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>TikTok Handle:</b> {props.tiktok}
+            {editMode == false ?<><p className="mb-0"><b>TikTok Handle: </b>TEST</p></> : <><p className="mb-0"><b>TikTok Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Soundcloud Handle:</b> {props.soundcloud}
+            {editMode == false ?<><p className="mb-0"><b>Soundcloud Handle: </b>TEST</p></> : <><p className="mb-0"><b>Soundcloud Handle: </b><input type="text" value="TEST"></input></p></>}
           </div><div className="row my-0 mx-2">
-            <b>Spotify Handle:</b> {props.spotify}
-          </div>    
+            {editMode == false ?<><p className="mb-0"><b>Spotify Handle: </b>TEST</p></> : <><p className="mb-0"><b>Spotify Handle: </b><input type="text" value="TEST"></input></p></>}
+          </div>   
         </div>
       </div>
     </div>
