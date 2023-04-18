@@ -20,7 +20,7 @@ export function Login() {
   }
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
-      history("/");
+      history("/login");
   }, [store.token, history]);
 
   return (
