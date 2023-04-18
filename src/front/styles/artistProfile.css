@@ -16,8 +16,17 @@
 .artistName {
     display: inline-block;
 }
+
+.star-wrapper{
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
 .star-wrapper i:hover {
-    color: gold}
+    color: gold
+  }
 
   .s1:hover ~ i {
     color: gold;
