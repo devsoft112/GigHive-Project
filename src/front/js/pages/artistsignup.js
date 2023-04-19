@@ -7,6 +7,7 @@ export function Artistsignup() {
   const { store, actions } = useContext(Context);
   const [phone, setPhone] = useState("");
   const [genre, setGenre] = useState("");
+  const [aboutInfo, setAboutInfo] = useState("More info about this venue hasn't been added yet!");
   const [instagram, setInstagram] = useState("");
   const [tikTok, setTikTok] = useState("");
   const [facebook, setFacebook] = useState("");
@@ -21,6 +22,7 @@ export function Artistsignup() {
       artistName,
       genre,
       performance_type,
+      aboutInfo,
       instagram,
       tikTok,
       facebook,
@@ -85,6 +87,19 @@ export function Artistsignup() {
             <option value="electronic">Other</option>
           </select>
         </div>
+      </div>
+      <div className="row px-3 justify-content-start my-2">
+      <div className="form-group col-md-9">
+            <label htmlFor="aboutInfo">About You</label>
+            <textarea
+              type="text"
+              rows="4"
+              className="form-control"
+              id="aboutInfo"
+              placeholder="Tell us more about you as an artist"
+              onChange={(e) => setAboutInfo(e.target.value)}
+            />
+          </div>
       </div>
 
       <h4 className="mt-2 signup-header"> Social Handles</h4>
