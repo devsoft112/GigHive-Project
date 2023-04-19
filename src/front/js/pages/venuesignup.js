@@ -31,7 +31,7 @@ export function Venuesignup() {
   const [spotify, setSpotify] = useState("");
 
   const handleClick = () => {
-    actions.signup(
+    actions.postVenue(
       venue_name,
       address,
       state,

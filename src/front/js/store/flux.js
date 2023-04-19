@@ -79,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            process.env.BACKEND_URL + "/api/registerartist",
+            process.env.BACKEND_URL + "/api/register/artist",
             opts
           );
           if (response.status !== 200) {
@@ -148,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            process.env.BACKEND_URL + "/api/registervenue",
+            process.env.BACKEND_URL + "/api/register/venue",
             opts
           );
           if (response.status !== 200) {
