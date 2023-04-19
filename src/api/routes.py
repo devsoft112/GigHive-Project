@@ -57,6 +57,17 @@ def register_user():
     return jsonify(response_body, access_token), 200
 
 # to authenticate your users(login) and return JWTs.
+@api.route('/login', methods=['POST'])
+def login_user():
+    response_body = request.get_json()
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    user = User.query.filter_by(username=username).first()
+    if user and user.check_password(password):
+        access_token = create_access_token(identity=username)
+        return jsonify(response_body, access_token), 200
+    else:
+        return jsonify(response_body), 401
 
 # to sign up artists
 @api.route('/register/artist', methods=['POST'])
