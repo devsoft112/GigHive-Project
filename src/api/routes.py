@@ -59,7 +59,7 @@ def register_user():
 # to authenticate your users(login) and return JWTs.
 
 # to sign up artists
-@api.route('/registerartist', methods=['POST'])
+@api.route('/register/artist', methods=['POST'])
 def register_artist():
     response_body = request.get_json()
     artist = Artist(artist_name=response_body["artist_name"],
@@ -78,7 +78,7 @@ def register_artist():
     return jsonify(response_body), 200
 
 # to sign up venues
-@api.route('/registervenue', methods=['POST'])
+@api.route('/register/venue', methods=['POST'])
 def register_venue():
     response_body = request.get_json()
     venue = Venue(venue_name=response_body["venue_name"],
@@ -88,20 +88,21 @@ def register_venue():
                   zip_code=response_body["zip_code"],
                   phone_number=response_body["phone_number"],
                   venue_capacity=response_body["venue_capacity"],
-                  music_Type=response_body["music_Type"],
+                  music_type=response_body["music_type"],
                   in_out=response_body["in_out"],
                   hiring=response_body["hiring"],
                   pay_rate=response_body["pay_rate"],
                   fees=response_body["fees"],
                   equipment=response_body["equipment"],
-                  images=response_body["images"],
+                #   images=response_body["images"],
                   instagram=response_body["instagram"],
                   facebook=response_body["facebook"],
                   twitter=response_body["twitter"],
                   tiktok=response_body["tiktok"],
                   soundcloud=response_body["soundcloud"],
-                  spotify=response_body["spotify"],)
+                  spotify=response_body["spotify"])
+    print("this is venue: ", venue)
     db.session.add(venue)
     db.session.commit()
-    return jsonify(response_body = response_body), 200
+    return jsonify(response_body), 200
 

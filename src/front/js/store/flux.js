@@ -95,6 +95,73 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      postVenue: async (
+        venue_name,
+        address,
+        city,
+        state,
+        zip_code,
+        phone_number,
+        venue_capacity,
+        music_type,
+        in_out,
+        hiring,
+        pay_rate,
+        fees,
+        equipment,
+        instagram,
+        facebook,
+        twitter,
+        soundcloud,
+        spotify,
+        tiktok
+      ) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            venue_name: venue_name,
+            address: address,
+            city: city,
+            state: state,
+            zip_code: zip_code,
+            phone_number: phone_number,
+            venue_capacity: venue_capacity,
+            music_type: music_type,
+            in_out: in_out,
+            hiring: hiring,
+            pay_rate: pay_rate,
+            fees: fees,
+            equipment,
+            instagram: instagram,
+            facebook: facebook,
+            twitter: twitter,
+            soundcloud: soundcloud,
+            spotify: spotify,
+            tiktok: tiktok,
+            // user_id: 1,
+          }),
+        };
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/registervenue",
+            opts
+          );
+          if (response.status !== 200) {
+            alert("Response was not a code 200.");
+            return false;
+          }
+          const data = await response.json();
+          console.log("venue signed up: " + data);
+          setStore({ venues: data.response_body });
+          return true;
+        } catch (error) {
+          console.error("Error! Description: " + error);
+        }
+      },
+
       registerUser: async (
         first_name,
         last_name,
