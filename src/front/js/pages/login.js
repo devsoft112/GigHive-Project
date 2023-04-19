@@ -34,9 +34,8 @@ export function Login() {
                 <div className="mb-3 mt-md-4">
                   <h2 className="fw-bold mb-2 text-uppercase">
                     <img src={GigHive} alt="" height={50} />
-                    Gig Hive <MyApp />
                   </h2>
-                  
+
                   <p className=" mb-5">Please enter your login and password!</p>
                   <div className="mb-3">
                     <Form>
