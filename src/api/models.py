@@ -33,17 +33,18 @@ class Venue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     venue_name = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
-    # city = db.Column (db.String(120), nullable=False) 
+    city = db.Column (db.String(120), nullable=False) 
     state = db.Column(db.String(120), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     phone_number = db.Column(db.Integer, nullable=False)
     venue_capacity = db.Column(db.String(120), nullable=False)
     music_type = db.Column(db.String(120), nullable = False)
     in_out = db.Column(db.String(120), nullable=False)
-    hiring = db.Column(db.Boolean, nullable=False)
+    hiring = db.Column(db.String(120), nullable=False)
     pay_rate = db.Column(db.String(120), nullable=False)
     fees = db.Column(db.String(120), nullable=False)
     equipment = db.Column(db.String(120), nullable=False)
+    about = db.Column(db.String(120), nullable=True)
     instagram = db.Column(db.String(120), nullable=True)
     facebook = db.Column(db.String(120), nullable=True)
     twitter = db.Column(db.String(120), nullable=True)
@@ -61,7 +62,7 @@ class Venue(db.Model):
             "id": self.id,
             "venue_name": self.venue_name,
             "address": self.address,
-            # "city": self.city,
+            "city": self.city,
             "state": self.state,
             "zip_code": self.zip_Code,
             "phone_number": self.phone_Number,
@@ -72,6 +73,7 @@ class Venue(db.Model):
             "pay_rate": self.pay_rate,
             "fees": self.fees,
             "equipment": self.equipment,
+            "about": self.about,
             "instagram": self.instagram,
             "facebook": self.facebook,
             "twitter": self.twitter,

@@ -29,7 +29,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/register/venues"
+          );
           const data = await resp.json();
           setStore({ venues: data });
           return data;
@@ -79,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            process.env.BACKEND_URL + "/api/registerartist",
+            process.env.BACKEND_URL + "/api/register/artist",
             opts
           );
           if (response.status !== 200) {
@@ -89,6 +91,75 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           console.log("artist signed up: " + data);
           setStore({ artists: data.response_body });
+          return true;
+        } catch (error) {
+          console.error("Error! Description: " + error);
+        }
+      },
+
+      postVenue: async (
+        venue_name,
+        address,
+        city,
+        state,
+        zip_code,
+        phone_number,
+        venue_capacity,
+        music_type,
+        in_out,
+        hiring,
+        pay_rate,
+        fees,
+        equipment,
+        about,
+        instagram,
+        facebook,
+        twitter,
+        soundcloud,
+        spotify,
+        tiktok
+      ) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            venue_name: venue_name,
+            address: address,
+            city: city,
+            state: state,
+            zip_code: zip_code,
+            phone_number: phone_number,
+            venue_capacity: venue_capacity,
+            music_type: music_type,
+            in_out: in_out,
+            hiring: hiring,
+            pay_rate: pay_rate,
+            fees: fees,
+            equipment,
+            about,
+            instagram: instagram,
+            facebook: facebook,
+            twitter: twitter,
+            soundcloud: soundcloud,
+            spotify: spotify,
+            tiktok: tiktok,
+            // user_id: 1,
+          }),
+        };
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/register/venue",
+            opts
+          );
+          if (response.status !== 200) {
+            alert("Response was not a code 200.");
+            return false;
+          }
+          const data = await response.json();
+          console.log("venue signed up: " + data);
+          setStore({ venues: data.response_body });
           return true;
         } catch (error) {
           console.error("Error! Description: " + error);
