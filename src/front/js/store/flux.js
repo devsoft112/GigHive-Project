@@ -29,7 +29,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/register/venues"
+          );
           const data = await resp.json();
           setStore({ venues: data });
           return data;

@@ -44,7 +44,7 @@ class Venue(db.Model):
     pay_rate = db.Column(db.String(120), nullable=False)
     fees = db.Column(db.String(120), nullable=False)
     equipment = db.Column(db.String(120), nullable=False)
-    about = db.Column(db.String(120), nullable=False)
+    about = db.Column(db.String(120), nullable=True)
     instagram = db.Column(db.String(120), nullable=True)
     facebook = db.Column(db.String(120), nullable=True)
     twitter = db.Column(db.String(120), nullable=True)
