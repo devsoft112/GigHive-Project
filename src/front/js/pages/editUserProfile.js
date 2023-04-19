@@ -12,7 +12,7 @@ export function EditUserProfile(props) {
   //----useState Hooks for Artist Info---
   const [artistGenre, setArtistGenre] = useState(user.artist.genre);
   const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
-  const [tikTok, setTikTok] = useState("");
+  const [tikTok, setTikTok] = useState(user.artist.tiktok);
   const [facebook, setFacebook] = useState("");
   const [twitter, setTwitter] = useState("");
   const [soundcloud, setSoundcloud] = useState("");
