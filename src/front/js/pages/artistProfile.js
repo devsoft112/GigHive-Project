@@ -25,12 +25,12 @@ export function ArtistProfile(props) {
             </div>
           </div>
           <div className="row mt-0">
-            <div>
-              <i className="fa-regular fa-star"></i>
-              <i className="fa-regular fa-star"></i>
-              <i className="fa-regular fa-star"></i>
-              <i className="fa-regular fa-star"></i>
-              <i className="fa-regular fa-star"></i>
+            <div className="star-wrapper">
+              <i className="fa-solid fa-star s1"></i>
+              <i className="fa-solid fa-star s2"></i>
+              <i className="fa-solid fa-star s3"></i>
+              <i className="fa-solid fa-star s4"></i>
+              <i className="fa-solid fa-star s5"></i>
             </div>
           </div>
           <div className="row mt-3">
