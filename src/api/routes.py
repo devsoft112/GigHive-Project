@@ -94,6 +94,7 @@ def register_venue():
                   pay_rate=response_body["pay_rate"],
                   fees=response_body["fees"],
                   equipment=response_body["equipment"],
+                  about=response_body["about"],
                 #   images=response_body["images"],
                   instagram=response_body["instagram"],
                   facebook=response_body["facebook"],
