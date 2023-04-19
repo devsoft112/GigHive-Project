@@ -17,6 +17,33 @@
     display: inline-block;
 }
 
+.star-wrapper{
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.star-wrapper i:hover {
+    color: gold
+  }
+
+  .s1:hover ~ i {
+    color: gold;
+  }
+  .s2:hover ~ i {
+    color: gold;
+  }
+  .s3:hover ~ i {
+    color: gold;
+  }
+  .s4:hover ~ i {
+    color: gold;
+  }
+  .s5:hover ~ i {
+    color: gold;
+  }
+
 /* .star-rating-row {
     position: relative;
 }
