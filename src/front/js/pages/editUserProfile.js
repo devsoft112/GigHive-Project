@@ -1,10 +1,25 @@
 import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 
 import "../../styles/editUserProfile.css";
 import propTypes from "prop-types";
 
 export function EditUserProfile(props) {
+  const [store, actions] = useContext(Context)
   const [editMode, setEditMode] = useState(false)
+
+
+  //----useState Hooks for Artist Info---
+  const [artistGenre, setArtistGenre] = useState(user.artist.genre);
+  const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
+  const [tikTok, setTikTok] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [soundcloud, setSoundcloud] = useState("");
+  const [spotify, setSpotify] = useState("");
+  const [artistName, setArtistName] = useState("");
+  const [performance_type, setPerformance_type] = useState("Other");
+
   const editToggle = () => {
     editMode == true ? setEditMode(false): setEditMode(true)
     console.log(editMode)
@@ -170,12 +185,12 @@ export function EditUserProfile(props) {
               {editMode == false ?<><p className="mb-0"><b>Zipcode: </b>99999</p></> : <><p className="mb-0"><b>Zipcode: </b><input type="number" value="99999"></input></p></>}
             </div>    
           </div>
-          <div className="row my-0 mx-2">
-            <div className="col-md-3">
-              {editMode == false ?<><p className="mb-0"><b>Capacity: </b>999</p></> : <><p className="mb-0"><b>Capacity: </b><input type="number" value="999"></input></p></>}
+          <div className="row my-0 mx-2 d-flex">
+            <div className="col-md-3 d-flex">
+              {editMode == false ?<><p className="mb-0"><b>Capacity: </b>999</p></> : <><p className="mb-0"><b>Capacity: </b><input type="number" value="999" id="venueCapacity"></input></p></>}
             </div>
             <div className="col-md-3">
-              {editMode == false ?<><p className="mb-0"><b>Music Type: </b>TEST</p></> : <><p className="mb-0"><b>Music Type: </b><select
+              {editMode == false ?<><p className="mb-0"><b>Music Type: </b>TEST</p></> : <><label htmlFor="VenueMusicGenre" className="mb-0"><b>Music Type: </b></label><select
             className="form-control"
             id="VenueMusicGenre"
             // onChange={(e) => setMusicGenre(e.target.value)}
@@ -188,9 +203,9 @@ export function EditUserProfile(props) {
             <option value="electronic">Electronic</option>
             <option value="classical">Classical</option>
             <option value="other">Other</option>
-          </select></p></>}
+          </select></>}
             </div> 
-            <div className="col-md-3">
+            <div className="col-md-3 select-inline">
               {editMode == false ?<><p className="mb-0"><b>Indoor/Outdoor Staging: </b>TEST</p></> : <><p className="mb-0"><b>Indoor/Outdoor Staging: </b><select
             className="form-control"
             id="staging"

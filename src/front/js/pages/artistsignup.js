@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export function Artistsignup() {
   const { store, actions } = useContext(Context);
-  const [phone, setPhone] = useState("");
   const [genre, setGenre] = useState("");
   const [instagram, setInstagram] = useState("");
   const [tikTok, setTikTok] = useState("");

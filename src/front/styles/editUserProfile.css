@@ -8,3 +8,7 @@
   .profileInfo {
     display: inline-block;
   }
+
+  .select-inline {
+    display: inline-block;
+  }
