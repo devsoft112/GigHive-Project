@@ -6,7 +6,7 @@ import "../../styles/artistProfile.css";
 
 import { Context } from "../store/appContext";
 
-export function ArtistProfile() {
+export function ArtistProfile(props) {
   const { store, actions } = useContext(Context);
 
   return (
