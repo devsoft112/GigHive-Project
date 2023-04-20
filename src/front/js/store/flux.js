@@ -207,14 +207,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
-      login: async (email, password) => {
+      login: async (username, password) => {
         const opts = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: email,
+            username: username,
             password: password,
           }),
         };

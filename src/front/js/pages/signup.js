@@ -15,7 +15,7 @@ export const Signup = () => {
 
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
-      history("/login");
+      history("/");
   });
   const handleSubmit = (e) => {
     e.preventDefault();
