@@ -219,7 +219,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/User", opts);
+          const resp = await fetch(process.env.BACKEND_URL + "/api/register", opts);
           if (resp.status !== 200) {
             alert("There has been an error");
             return false;
