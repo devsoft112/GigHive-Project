@@ -1,3 +1,4 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -9,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       logout: () => {
         sessionStorage.removeItem("token");
-        console.log("loging out");
+        console.log("logging out");
         setStore({ token: null });
       },
       syncTokenfromSessionStorage: () => {
@@ -30,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getVenue: async () => {
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + "/api/register/venues"
+            process.env.BACKEND_URL + "/api/venues"
           );
           const data = await resp.json();
           setStore({ venues: data });

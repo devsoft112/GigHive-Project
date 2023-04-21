@@ -11,7 +11,6 @@ from flask_jwt_extended import jwt_required
 api = Blueprint('api', __name__)
 
 
-artists_var = [{ "username" : "artist1", "email" : "test", "password" : "test" }]
 
 # to populate the artist cards on the front
 

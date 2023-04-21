@@ -14,17 +14,13 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const [artists, setArtists] = useState(store.artists)
 
-  
-
   const [filter, setFilter] = useState(artists)
 
-  const rockArtists = store.artists.filter(artist => artist.genre == "Rock");
+  const rockArtists = artists.filter(artist => artist.genre == "Rock");
   const hipHopArtists = artists.filter(artist => artist.genre == "hip hop");
   const jazzArtists = artists.filter(artist => artist.genre == "jazz");
   const electronicArtists = artists.filter(artist => artist.genre == "electronic");
   const classicalArtists = artists.filter(artist => artist.genre == "classical")
-
-  console.log(rockArtists)
 
   console.log(artists)
 
