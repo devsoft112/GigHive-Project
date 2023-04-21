@@ -98,7 +98,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
-      //to push a new one(delete it afterwards) stage changed
       postVenue: async (
         venue_name,
         address,
