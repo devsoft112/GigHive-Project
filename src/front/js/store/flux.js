@@ -62,6 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
             first_name: first_name,
@@ -98,7 +99,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
-
       postVenue: async (
         venue_name,
         address,
@@ -125,6 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
             venue_name: venue_name,
@@ -208,29 +209,30 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
-      login: async (email, password) => {
+      login: async (username, password) => {
         const opts = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: email,
+            username: username,
             password: password,
           }),
         };
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/User", opts);
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/login",
+            opts
+          );
           if (resp.status !== 200) {
             alert("There has been an error");
             return false;
           }
 
           const data = await resp.json();
-          console.log("this came from the backend", data);
-          sessionStorage.setItem("token", data[1]);
-          setStore({ artists: data[0] });
-          setStore({ token: data[1] });
+          sessionStorage.setItem("token", data.access_token);
+          setStore({ token: data.access_token });
           return true;
         } catch (error) {
           console.error("There has been an error logging in");

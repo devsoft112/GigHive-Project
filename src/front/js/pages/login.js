@@ -6,21 +6,21 @@ import { Link } from "react-router-dom";
 import "../../styles/login.css";
 
 import GigHive from "../../img/GigHive.png";
-import { Signup } from "./signup";
+// import { Signup } from "./signup";
 
 export function Login() {
   const { store, actions } = useContext(Context);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const history = useNavigate();
 
   function handleClick(e) {
     e.preventDefault();
-    actions.login(email, password);
+    actions.login(username, password);
   }
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
-      history("/login");
+      history("/");
   }, [store.token, history]);
 
   return (
@@ -41,13 +41,13 @@ export function Login() {
                     <Form>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
-                          Email address
+                          Username
                         </Form.Label>
                         <Form.Control
                           type="email"
-                          placeholder="Enter email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter username"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
                         />
                       </Form.Group>
 
