@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useLayoutEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
@@ -11,8 +11,15 @@ import ElectronicMusic from "../../img/ElectronicMusic.png";
 import ClassicalMusic from "../../img/ClassicalMusic.png";
 
 export const Home = () => {
+
+  
+  useLayoutEffect(() => {
+    actions.getArtist();
+  }, []);
   const { store, actions } = useContext(Context);
-  const [artists, setArtists] = useState(store.artists);
+  const artists = store.artists
+
+  
 
   const [filter, setFilter] = useState(artists)
 
@@ -34,9 +41,7 @@ export const Home = () => {
     if (store.token && store.token != "" && store.token != undefined)
       actions.getMessage();
   }, [store.token]);
-  useEffect(() => {
-    actions.getArtist();
-  }, []);
+  ;
 
   return (
     <div className="container-fluid">
@@ -92,23 +97,24 @@ export const Home = () => {
       <div className="row px-3">
         <h1 className="artistitle">Artists</h1>
       </div>
-      <div className="d-flex flex-row flex-nowrap overflow-auto px-3">
+      {/* <div className="d-flex flex-row flex-nowrap overflow-auto px-3">
         <Artistcard
           artist_name="Jimi Hendrix"
           genre="rock"
           performance_type="singer"
           starRating="5.0"
         />
-      </div>
-      <div className="d-flex flex-row flex-nowrap overflow-auto px-3">
-        {artists.map((artist, index) => {
-          <Artistcard
-            name={artist.artist_name}
-            genre={artist.genre}
-            performance_type={artist.performance_type}
-            link={"/artists/" + index}
-          />;
-        })}
+      </div> */}
+      <div className="card-row d-flex flex-row flex-nowrap overflow-auto px-3">
+        {artists.map((artist) => {
+    return <Artistcard
+    artist_name={artist.artist_name}
+    genre={artist.genre}
+    performance_type={artist.performance_type}
+    imgUrl={artist.images}
+    starRating="5.0"
+  />
+  })}
       </div>
 
       <div className="row px-3 mt-3">

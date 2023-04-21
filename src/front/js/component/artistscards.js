@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 export const Artistcard = (props) => {
   return (
-    <div className="artist-card">
-      <img
+    <div className="card artist-card mx-2">
+      <div className="crd-img"><img
         className="card-img-top"
-        src="https://thorntons-investments.co.uk/wp-content/uploads/2017/08/400x200.png"
+        src={props.imgUrl}
         alt="Card image cap"
-      ></img>
+      ></img></div>
       <span className="fa-regular fa-lg fa-heart card-heart"></span>
       <div className="card-body d-flex flex-column">
         <div className="row d-flex">

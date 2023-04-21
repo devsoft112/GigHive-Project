@@ -51,6 +51,7 @@ class Venue(db.Model):
     tiktok = db.Column(db.String(120), nullable=True)
     soundcloud = db.Column(db.String(120), nullable=True)
     spotify = db.Column(db.String(120), nullable=True)
+    images = db.Column(db.TEXT(), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
 
     
@@ -96,6 +97,7 @@ class Artist(db.Model):
     tiktok = db.Column(db.String(120), nullable=True)
     soundcloud = db.Column(db.String(120), nullable=True)
     spotify = db.Column(db.String(120), nullable=True)
+    images = db.Column(db.TEXT(), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
 
 
@@ -114,6 +116,7 @@ class Artist(db.Model):
         "tiktok": self.tiktok,
         "soundcloud": self.soundcloud,
         "spotify": self.spotify,
+        "images": self.images
     }
 
 
