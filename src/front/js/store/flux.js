@@ -98,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
-
+      //to push a new one(delete it afterwards)
       postVenue: async (
         venue_name,
         address,
@@ -209,30 +209,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
-      login: async (username, password) => {
+      login: async (email, password) => {
         const opts = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: username,
+            email: email,
             password: password,
           }),
         };
         try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/login",
-            opts
-          );
+          const resp = await fetch(process.env.BACKEND_URL + "/api/User", opts);
           if (resp.status !== 200) {
             alert("There has been an error");
             return false;
           }
 
           const data = await resp.json();
-          sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token });
+          console.log("this came from the backend", data);
+          sessionStorage.setItem("token", data[1]);
+          setStore({ artists: data[0] });
+          setStore({ token: data[1] });
           return true;
         } catch (error) {
           console.error("There has been an error logging in");
