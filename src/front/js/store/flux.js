@@ -148,6 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             soundcloud: soundcloud,
             spotify: spotify,
             tiktok: tiktok,
+            // user_id: 1,
           }),
         };
         try {
@@ -237,6 +238,25 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("There has been an error logging in");
         }
       },
+      getMessage: async () => {
+        const store = getStore();
+        const opts = {
+          headers: {
+            Authorization: "Bearer " + store.token,
+          },
+        };
+
+        try {
+          // fetching data from the backend
+          const resp = await fetch("api/hello", opts);
+          const data = await resp.json();
+          setStore({ message: data.message });
+          // don't forget to return something, that is how the async resolves
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
 
       Authorization: () => {
         const store = getStore();
@@ -246,7 +266,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         // fetching data from the backend
-        fetch(process.env.BACKEND_URL + "/api", opts)
+        fetch(process.env.BACKEND_URL + "/api/private", opts)
           .then((resp) => resp.json())
           .then((data) => setStore({ message: data.artists.username }))
           .catch((error) => console.log(error));
