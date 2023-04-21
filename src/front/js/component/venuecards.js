@@ -4,7 +4,7 @@ import "../../styles/venueCard.css"
 
 export const Venuecard = (props) => {
   return (
-    <div className="card">
+    <div className="venue-card">
       <img
         className="card-img-top"
         src="https://thorntons-investments.co.uk/wp-content/uploads/2017/08/400x200.png"
