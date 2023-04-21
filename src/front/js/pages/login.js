@@ -41,7 +41,7 @@ export function Login() {
                     <Form>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
-                          Email address
+                          Username
                         </Form.Label>
                         <Form.Control
                           type="email"

@@ -61,6 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
             first_name: first_name,
@@ -124,6 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
             venue_name: venue_name,
@@ -146,7 +148,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             soundcloud: soundcloud,
             spotify: spotify,
             tiktok: tiktok,
-            // user_id: 1,
           }),
         };
         try {
@@ -219,39 +220,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/User", opts);
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/login",
+            opts
+          );
           if (resp.status !== 200) {
             alert("There has been an error");
             return false;
           }
 
           const data = await resp.json();
-          console.log("this came from the backend", data);
-          sessionStorage.setItem("token", data[1]);
-          setStore({ artists: data[0] });
-          setStore({ token: data[1] });
+          sessionStorage.setItem("token", data.access_token);
+          setStore({ token: data.access_token });
           return true;
         } catch (error) {
           console.error("There has been an error logging in");
-        }
-      },
-      getMessage: async () => {
-        const store = getStore();
-        const opts = {
-          headers: {
-            Authorization: "Bearer " + store.token,
-          },
-        };
-
-        try {
-          // fetching data from the backend
-          const resp = await fetch("api/hello", opts);
-          const data = await resp.json();
-          setStore({ message: data.message });
-          // don't forget to return something, that is how the async resolves
-          return data;
-        } catch (error) {
-          console.log("Error loading message from backend", error);
         }
       },
 
@@ -263,7 +246,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         // fetching data from the backend
-        fetch(process.env.BACKEND_URL + "/api/private", opts)
+        fetch(process.env.BACKEND_URL + "/api", opts)
           .then((resp) => resp.json())
           .then((data) => setStore({ message: data.artists.username }))
           .catch((error) => console.log(error));
