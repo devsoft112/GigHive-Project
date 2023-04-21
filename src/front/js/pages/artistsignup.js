@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
@@ -7,7 +7,9 @@ export function Artistsignup() {
   const { store, actions } = useContext(Context);
   const [phone, setPhone] = useState("");
   const [genre, setGenre] = useState("");
-  const [aboutInfo, setAboutInfo] = useState("More info about this venue hasn't been added yet!");
+  const [aboutInfo, setAboutInfo] = useState(
+    "More info about this venue hasn't been added yet!"
+  );
   const [instagram, setInstagram] = useState("");
   const [tikTok, setTikTok] = useState("");
   const [facebook, setFacebook] = useState("");
@@ -31,7 +33,10 @@ export function Artistsignup() {
       spotify
     );
   };
-
+  useEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined)
+      actions.Authorization();
+  }, [store.token]);
   return (
     <form onSubmit={handleSubmit}>
       <h4 className="mt-2 signup-header"> Artist Info</h4>
@@ -89,17 +94,17 @@ export function Artistsignup() {
         </div>
       </div>
       <div className="row px-3 justify-content-start my-2">
-      <div className="form-group col-md-9">
-            <label htmlFor="aboutInfo">About You</label>
-            <textarea
-              type="text"
-              rows="4"
-              className="form-control"
-              id="aboutInfo"
-              placeholder="Tell us more about you as an artist"
-              onChange={(e) => setAboutInfo(e.target.value)}
-            />
-          </div>
+        <div className="form-group col-md-9">
+          <label htmlFor="aboutInfo">About You</label>
+          <textarea
+            type="text"
+            rows="4"
+            className="form-control"
+            id="aboutInfo"
+            placeholder="Tell us more about you as an artist"
+            onChange={(e) => setAboutInfo(e.target.value)}
+          />
+        </div>
       </div>
 
       <h4 className="mt-2 signup-header"> Social Handles</h4>

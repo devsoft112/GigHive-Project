@@ -16,7 +16,7 @@ export const Home = () => {
 
   const [filter, setFilter] = useState(artists);
 
-  const rockArtists = store.artists.filter((artist) => artist.genre == "Rock");
+  const rockArtists = artists.filter((artist) => artist.genre == "Rock");
   const hipHopArtists = artists.filter((artist) => artist.genre == "hip hop");
   const jazzArtists = artists.filter((artist) => artist.genre == "jazz");
   const electronicArtists = artists.filter(
@@ -38,7 +38,7 @@ export const Home = () => {
 
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
-      actions.getMessage();
+      actions.Authorization();
   }, [store.token]);
   useEffect(() => {
     actions.getArtist();
