@@ -7,7 +7,7 @@ export function Artistsignup() {
   const { store, actions } = useContext(Context);
   const [phone, setPhone] = useState("");
   const [genre, setGenre] = useState("");
-  const [aboutInfo, setAboutInfo] = useState(
+  const [about_info, setAbout_Info] = useState(
     "More info about this venue hasn't been added yet!"
   );
   const [instagram, setInstagram] = useState("");
@@ -24,7 +24,7 @@ export function Artistsignup() {
       artistName,
       genre,
       performance_type,
-      aboutInfo,
+      about_info,
       instagram,
       tikTok,
       facebook,
@@ -102,7 +102,7 @@ export function Artistsignup() {
             className="form-control"
             id="aboutInfo"
             placeholder="Tell us more about you as an artist"
-            onChange={(e) => setAboutInfo(e.target.value)}
+            onChange={(e) => setAbout_Info(e.target.value)}
           />
         </div>
       </div>

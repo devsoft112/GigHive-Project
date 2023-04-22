@@ -20,11 +20,11 @@
 
 
 .card-info-row {
-  height: 80px;
+  height: 70px;
+  /* outline: 1px dotted red; */
 }
 .card-title {
   font-weight: 700;
-  white-space: normal;
 }
 
 .star-rating {
