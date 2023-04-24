@@ -8,6 +8,8 @@ import "../../styles/navbar.css";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
 
+  
+
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="gradient-bg"></div>
@@ -66,11 +68,11 @@ export const Navbar = () => {
             </li>
             <li>
               {!store.token ? (
-                <Link to="/single">
+                <Link to="/login">
                   <a>Log in</a>
                 </Link>
               ) : (
-                <Link to="/single">
+                <Link to="/">
                   <a onClick={() => actions.logout()}>Log out</a>
                 </Link>
               )}

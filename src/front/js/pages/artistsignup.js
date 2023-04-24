@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
 import { Link } from "react-router-dom";
@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 export function Artistsignup() {
   const { store, actions } = useContext(Context);
   const [genre, setGenre] = useState("");
-  const [aboutInfo, setAboutInfo] = useState("More info about this venue hasn't been added yet!");
+  const [about_info, setAbout_Info] = useState(
+    "More info about this venue hasn't been added yet!"
+  );
   const [instagram, setInstagram] = useState("");
   const [tikTok, setTikTok] = useState("");
   const [facebook, setFacebook] = useState("");
@@ -21,7 +23,7 @@ export function Artistsignup() {
       artistName,
       genre,
       performance_type,
-      aboutInfo,
+      about_info,
       instagram,
       tikTok,
       facebook,
@@ -30,7 +32,10 @@ export function Artistsignup() {
       spotify
     );
   };
-
+  useEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined)
+      actions.Authorization();
+  }, [store.token]);
   return (
     <form onSubmit={handleSubmit}>
       <h4 className="mt-2 signup-header"> Artist Info</h4>
@@ -58,13 +63,13 @@ export function Artistsignup() {
             onChange={(e) => setGenre(e.target.value)}
           >
             <option defaultValue>Choose...</option>
-            <option value="general">General</option>
-            <option value="rock">Rock</option>
-            <option value="hip hop">Hip Hop</option>
-            <option value="jazz">Jazz</option>
-            <option value="electronic">Electronic</option>
-            <option value="classical">Classical</option>
-            <option value="other">Other</option>
+            <option value="General">General</option>
+            <option value="Rock">Rock</option>
+            <option value="Hip-Hop">Hip Hop</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Classical">Classical</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="col-md-3 pb-0 my-auto">
@@ -78,27 +83,27 @@ export function Artistsignup() {
             onChange={(e) => setPerformance_type(e.target.value)}
           >
             <option defaultValue>Choose...</option>
-            <option value="general">Vocalist</option>
-            <option value="rock">Rapper</option>
-            <option value="rock">Instrumentalist</option>
-            <option value="hip hop">Band</option>
-            <option value="jazz">DJ</option>
-            <option value="electronic">Other</option>
+            <option value="Vocalist">Vocalist</option>
+            <option value="Rapper">Rapper</option>
+            <option value="Instrumentalist">Instrumentalist</option>
+            <option value="Band">Band</option>
+            <option value="DJ">DJ</option>
+            <option value="Other">Other</option>
           </select>
         </div>
       </div>
       <div className="row px-3 justify-content-start my-2">
-      <div className="form-group col-md-9">
-            <label htmlFor="aboutInfo">About You</label>
-            <textarea
-              type="text"
-              rows="4"
-              className="form-control"
-              id="aboutInfo"
-              placeholder="Tell us more about you as an artist"
-              onChange={(e) => setAboutInfo(e.target.value)}
-            />
-          </div>
+        <div className="form-group col-md-9">
+          <label htmlFor="aboutInfo">About You</label>
+          <textarea
+            type="text"
+            rows="4"
+            className="form-control"
+            id="aboutInfo"
+            placeholder="Tell us more about you as an artist"
+            onChange={(e) => setAbout_Info(e.target.value)}
+          />
+        </div>
       </div>
 
       <h4 className="mt-2 signup-header"> Social Handles</h4>

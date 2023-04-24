@@ -1,15 +1,17 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
       users: [],
+      message: null,
       artists: [],
       venues: [],
     },
     actions: {
       logout: () => {
         sessionStorage.removeItem("token");
-        console.log("loging out");
+        console.log("logging out");
         setStore({ token: null });
       },
       syncTokenfromSessionStorage: () => {
@@ -30,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getVenue: async () => {
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + "/api/register/venues"
+            process.env.BACKEND_URL + "/api/venues"
           );
           const data = await resp.json();
           setStore({ venues: data });
@@ -60,6 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
             first_name: first_name,
@@ -70,6 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             artist_name: artist_name,
             genre: genre,
             performance_type: performance_type,
+            about_info: about_info,
             instagram: instagram,
             facebook: facebook,
             twitter: twitter,
@@ -96,7 +100,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
-
       postVenue: async (
         venue_name,
         address,
@@ -111,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         pay_rate,
         fees,
         equipment,
-        about,
+        about_info,
         instagram,
         facebook,
         twitter,
@@ -123,6 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
             venue_name: venue_name,
@@ -137,8 +141,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             hiring: hiring,
             pay_rate: pay_rate,
             fees: fees,
-            equipment,
-            about,
+            equipment: equipment,
+            about_info: about_info,
             instagram: instagram,
             facebook: facebook,
             twitter: twitter,
@@ -206,6 +210,55 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error! Description: " + error);
         }
       },
+      login: async (username, password) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          }),
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/login",
+            opts
+          );
+          if (resp.status !== 200) {
+            alert("There has been an error");
+            return false;
+          }
+
+          const data = await resp.json();
+          sessionStorage.setItem("token", data.access_token);
+          setStore({ token: data.access_token });
+          return true;
+        } catch (error) {
+          console.error("There has been an error logging in");
+        }
+      },
+      getMessage: async () => {
+        const store = getStore();
+        const opts = {
+          headers: {
+            Authorization: "Bearer " + store.token,
+          },
+        };
+
+        try {
+          // fetching data from the backend
+          const resp = await fetch("api/hello", opts);
+          const data = await resp.json();
+          setStore({ message: data.message });
+          // don't forget to return something, that is how the async resolves
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+
       Authorization: () => {
         const store = getStore();
         const opts = {
