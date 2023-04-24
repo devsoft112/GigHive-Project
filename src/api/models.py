@@ -11,8 +11,8 @@ class User(db.Model):
     username = db.Column(db.String(120), unique= True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
-    venue = db.relationship('Venue',  lazy=True)
-    artist = db.relationship('Artist', lazy=True) 
+    venue_id = db.relationship('Venue',  lazy=True)
+    artist_id = db.relationship('Artist', lazy=True) 
 
     
     def __repr__(self):
@@ -25,6 +25,8 @@ class User(db.Model):
             "last_name": self.last_name,
             "username": self.username,
             "email": self.email,
+            "artist": self.artist,
+            "venue": self.venue
             # do not serialize the password, its a security breach
         }
 
