@@ -223,13 +223,13 @@ export function Venuesignup() {
             onChange={(e) => setMusic_type(e.target.value)}
           >
             <option defaultValue>Choose...</option>
-            <option value="general">General</option>
-            <option value="rock">Rock</option>
-            <option value="hip hop">Hip Hop</option>
-            <option value="jazz">Jazz</option>
-            <option value="electronic">Electronic</option>
-            <option value="classical">Classical</option>
-            <option value="other">Other</option>
+            <option value="General">General</option>
+            <option value="Rock">Rock</option>
+            <option value="Hip-Hop">Hip Hop</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Classical">Classical</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="col-md-3 pb-0 my-auto justify-content-start">
@@ -243,9 +243,9 @@ export function Venuesignup() {
             onChange={(e) => setIn_out(e.target.value)}
           >
             <option defaultValue>Choose...</option>
-            <option value="indoor">Indoor</option>
-            <option value="outdoor">Outdoor</option>
-            <option value="both">Both</option>
+            <option value="Indoor">Indoor</option>
+            <option value="Outdoor">Outdoor</option>
+            <option value="Both">Both</option>
           </select>
         </div>
         <div className="row px-3 justify-content-start">
@@ -258,8 +258,8 @@ export function Venuesignup() {
               onChange={(e) => setIsHiring(e.target.value)}
             >
               <option defaultValue>Choose...</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
             </select>
           </div>
           <div className="form-group col-md-4">
