@@ -28,14 +28,15 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<Demo />} path="/demo" />
-            <Route element={<Venuesignup />} path="/register/venue" />
-            <Route element={<Artistsignup />} path="/register/artist" />
-            <Route element={<ArtistProfile />} path="/artists/:id" />
-            <Route element={<Signup />} path="/register" />
-            <Route element={<Login />} path="/login" />
-            <Route element={<h1>Not found!</h1>} />
+            <Route element = {<Home />} path = "/" />
+            <Route element = {<Demo />} path = "/demo" />
+            <Route element = {<Venuesignup />} path = "/register/venue" />
+            <Route element = {<Artistsignup />} path = "/register/artist" />
+            <Route element = {<ArtistProfile />} path = "/artists/:id" />
+            <Route element = {<VenueProfile />} path = "/venues/:id" />
+            <Route element = {<Signup />} path = "/register" />
+            <Route element = {<Login />} path = "/login" />
+            <Route element = {<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>
         {/* <Footer /> */}

@@ -109,7 +109,7 @@ export const Home = () => {
     genre={artist.genre}
     performance_type={artist.performance_type}
     imgUrl={artist.images.split(", ")[0]}
-    link = {"https://3000-phorjax-gighiveproject-6436b2vaja0.ws-us95.gitpod.io/artists/" + index}
+    link = {"/artists/" + index}
     id={index}
     starRating="5.0"
   />
@@ -119,15 +119,17 @@ export const Home = () => {
       <div className="row px-3 mt-3">
         <h1>Venues</h1>
         <div className="card-row d-flex flex-nowrap px-3">
-          {venues.map ((venue) => {
-          return <Venuecard venue_name={venue.venue_name} city={venue.city} state={venue.state} imgUrl={venue.images} starRating="5.0"/>})}
+          {venues.map ((venue, index) => {
+          return <Venuecard 
+          venue_name={venue.venue_name} 
+          city={venue.city} 
+          state={venue.state} 
+          imgUrl={venue.images.split(", ")[0]}
+          link={"/venues/" + index}
+          id={index} 
+          starRating="5.0"/>})}
         </div>
       </div>
-
-      {/* <div className="alert alert-info">
-        {store.message ||
-          "Loading message from the backend (make sure your python backend is running)..."}
-      </div> */}
     </div>
   );
 };
