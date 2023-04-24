@@ -57,13 +57,13 @@ export function Artistsignup() {
             onChange={(e) => setGenre(e.target.value)}
           >
             <option defaultValue>Choose...</option>
-            <option value="general">General</option>
-            <option value="rock">Rock</option>
-            <option value="hip hop">Hip Hop</option>
-            <option value="jazz">Jazz</option>
-            <option value="electronic">Electronic</option>
-            <option value="classical">Classical</option>
-            <option value="other">Other</option>
+            <option value="General">General</option>
+            <option value="Rock">Rock</option>
+            <option value="Hip-Hop">Hip Hop</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Classical">Classical</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="col-md-3 pb-0 my-auto">
@@ -77,12 +77,12 @@ export function Artistsignup() {
             onChange={(e) => setPerformance_type(e.target.value)}
           >
             <option defaultValue>Choose...</option>
-            <option value="general">Vocalist</option>
-            <option value="rock">Rapper</option>
-            <option value="rock">Instrumentalist</option>
-            <option value="hip hop">Band</option>
-            <option value="jazz">DJ</option>
-            <option value="electronic">Other</option>
+            <option value="General">Vocalist</option>
+            <option value="Rapper">Rapper</option>
+            <option value="Instrumentalist">Instrumentalist</option>
+            <option value="Band">Band</option>
+            <option value="DJ">DJ</option>
+            <option value="Other">Other</option>
           </select>
         </div>
       </div>
