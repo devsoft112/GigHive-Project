@@ -1,13 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useLayoutEffect} from "react";
 
 import CalendarPlaceholder from "./CalendarPlaceholder.png"
 
 import "../../styles/artistProfile.css";
 
 import { Context } from "../store/appContext";
+import { useParams } from "react-router"
 
 export function ArtistProfile(props) {
   const { store, actions } = useContext(Context);
+  const { id } = useParams();
+  const artists = store.artists;
+  console.log(artists)
+
+  useLayoutEffect(() => {
+    actions.getArtist();
+    actions.getVenue();
+  }, []);
 
   return (
     <div className="container-fluid">
@@ -18,7 +27,7 @@ export function ArtistProfile(props) {
         <div className="col-md-7">
           <div class="d-flex flex-row mb-0">
             <div>
-              <h2 className="artistName m-0">Artist Name</h2>
+              <h2 className="artistName m-0">{artists[id]?.artist_name}</h2>
             </div>
             <div className="mx-2 pt-1">
               <button className="btn btn-sm btn-primary">Message</button>
@@ -34,13 +43,8 @@ export function ArtistProfile(props) {
             </div>
           </div>
           <div className="row mt-3">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <b>Music Type:</b>
+            <p>{artists[id]?.about_info}</p>
+            <p><b>Music Type: </b>{artists[id]?.genre}</p>
             <b>Performance Type:</b>
           </div>
           <div className="row mt-3 px-2">
