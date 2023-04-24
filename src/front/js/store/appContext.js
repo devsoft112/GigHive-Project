@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect} from "react";
 import getState from "./flux.js";
 
 // Don't change, here is where we initialize our context, by default it's just going to be null.
@@ -21,7 +21,7 @@ const injectContext = (PassedComponent) => {
       })
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       state.actions.getArtist();
       state.actions.getVenue();
       state.actions.syncTokenfromSessionStorage();

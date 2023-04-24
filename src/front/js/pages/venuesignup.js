@@ -20,7 +20,7 @@ export function Venuesignup() {
   const [pay_rate, setPay_rate] = useState("N/A");
   const [fees, setFees] = useState("N/A");
   const [equipment, setEquipment] = useState("yes");
-  const [about, setAbout] = useState(
+  const [about_info, setAbout_Info] = useState(
     "More info about this venue hasn't been added yet!"
   );
   const [instagram, setInstagram] = useState("");
@@ -45,7 +45,7 @@ export function Venuesignup() {
       pay_rate,
       fees,
       equipment,
-      about,
+      about_info,
       instagram,
       tikTok,
       facebook,

@@ -70,6 +70,11 @@
 .other-Text {
   color: black;
 }
+
+.card-row {
+  width: 100%;
+  white-space: nowrap;
+}
 .card {
   display: flex;
 }
