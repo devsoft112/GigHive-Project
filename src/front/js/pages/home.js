@@ -108,7 +108,7 @@ export const Home = () => {
     artist_name={artist.artist_name}
     genre={artist.genre}
     performance_type={artist.performance_type}
-    imgUrl={artist.images}
+    imgUrl={artist.images.split(", ")[0]}
     link = {"https://3000-phorjax-gighiveproject-6436b2vaja0.ws-us95.gitpod.io/artists/" + index}
     id={index}
     starRating="5.0"

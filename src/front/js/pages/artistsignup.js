@@ -84,7 +84,7 @@ export function Artistsignup() {
             onChange={(e) => setPerformance_type(e.target.value)}
           >
             <option defaultValue>Choose...</option>
-            <option value="General">Vocalist</option>
+            <option value="Vocalist">Vocalist</option>
             <option value="Rapper">Rapper</option>
             <option value="Instrumentalist">Instrumentalist</option>
             <option value="Band">Band</option>
