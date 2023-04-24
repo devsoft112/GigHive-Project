@@ -3,8 +3,12 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import GigHive from "../../img/GigHive.png";
 
+import "../../styles/navbar.css";
+
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
+
+  
 
   return (
     <nav className="navbar navbar-light bg-light">
@@ -12,7 +16,6 @@ export const Navbar = () => {
         <Link to="/">
           <span className="navbar-brand mb-0 h1">
             <img src={GigHive} alt="" height={50} />
-            The Gig Hive
           </span>
         </Link>
         <div className="dropdown">
@@ -64,11 +67,11 @@ export const Navbar = () => {
             </li>
             <li>
               {!store.token ? (
-                <Link to="/single">
+                <Link to="/login">
                   <a>Log in</a>
                 </Link>
               ) : (
-                <Link to="/single">
+                <Link to="/">
                   <a onClick={() => actions.logout()}>Log out</a>
                 </Link>
               )}

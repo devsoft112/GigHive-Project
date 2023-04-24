@@ -7,60 +7,51 @@ export function Venuesignup() {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
-  const [userType, setUserType] = useState("artist");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [venueName, setVenueName] = useState("");
+  const [venue_name, setVenue_name] = useState("");
   const [address, setAddress] = useState("");
-  const [locationState, setLocationState] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [phone, setPhone] = useState("");
-  const [capacity, setCapacity] = useState("N/A");
-  const [musicGenre, setMusicGenre] = useState("general");
-  const [staging, setStaging] = useState("indoor");
-  const [isHiring, setIsHiring] = useState("no");
-  const [payRate, setPayRate] = useState("N/A");
-  const [feeRate, setFeeRate] = useState("N/A");
-  const [equipInfo, setEquipInfo] = useState("yes");
-  const [aboutInfo, setAboutInfo] = useState(
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip_code, setZip_code] = useState("");
+  const [phone_number, setPhone_number] = useState("");
+  const [venue_capacity, setVenue_capacity] = useState("N/A");
+  const [music_type, setMusic_type] = useState("general");
+  const [in_out, setIn_out] = useState("indoor");
+  const [hiring, setIsHiring] = useState("no");
+  const [pay_rate, setPay_rate] = useState("N/A");
+  const [fees, setFees] = useState("N/A");
+  const [equipment, setEquipment] = useState("yes");
+  const [about_info, setAbout_Info] = useState(
     "More info about this venue hasn't been added yet!"
   );
-  const [instaHandle, setInstaHandle] = useState("");
-  const [tikTokHandle, setTikTokHandle] = useState("");
-  const [facebookHandle, setFacebookHandle] = useState("");
-  const [twitterHandle, setTwitterHandle] = useState("");
-  const [soundcloudHandle, setSoundcloudHandle] = useState("");
-  const [spotifyHandle, setSpotifyHandle] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [tikTok, setTikTok] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [soundcloud, setSoundcloud] = useState("");
+  const [spotify, setSpotify] = useState("");
 
   const handleClick = () => {
-    actions.signup(
-      userType,
-      firstName,
-      lastName,
-      email,
-      password,
-      venueName,
+    actions.postVenue(
+      venue_name,
       address,
-      locationState,
-      zipcode,
-      phone,
-      capacity,
-      musicGenre,
-      staging,
-      isHiring,
-      payRate,
-      feeRate,
-      equipInfo,
-      aboutInfo,
-      instaHandle,
-      tikTokHandle,
-      facebookHandle,
-      twitterHandle,
-      soundcloudHandle,
-      spotifyHandle
+      state,
+      city,
+      zip_code,
+      phone_number,
+      venue_capacity,
+      music_type,
+      in_out,
+      hiring,
+      pay_rate,
+      fees,
+      equipment,
+      about_info,
+      instagram,
+      tikTok,
+      facebook,
+      twitter,
+      soundcloud,
+      spotify
     );
   };
 
@@ -70,74 +61,6 @@ export function Venuesignup() {
 
   return (
     <form>
-      <h4 className="mt-2 signup-header"> Basic Info</h4>
-      <div className="row px-3 justify-content-start">
-        <div className="form-group col-md-4">
-          <label htmlFor="name">First Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            id="name"
-            placeholder="First name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group col-md-4">
-          <label htmlFor="name">Last Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            id="name"
-            placeholder="Last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-      <div className="row px-3 justify-content-start">
-        <div className="form-group col-md-4">
-          <label htmlFor="inputEmail4">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            id="inputEmail4"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group col-md-4">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group col-md-4">
-          <label htmlFor="username">Username</label>
-          <input
-            type="username"
-            className="form-control"
-            id="username"
-            placeholder="Desired username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-      </div>
       <div className="row">
         <h4 className="mt-2 signup-header"> Venue Info</h4>
       </div>
@@ -150,8 +73,23 @@ export function Venuesignup() {
             name="venueName"
             id="venueName"
             placeholder="Venue name"
-            value={venueName}
-            onChange={(e) => setVenueName(e.target.value)}
+            value={venue_name}
+            onChange={(e) => setVenue_name(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group col-md-2">
+          <label htmlFor="phone">Phone Number</label>
+          <input
+            type="number"
+            className="form-control"
+            name="phone"
+            id="phone"
+            placeholder="Phone number"
+            pattern="[0-9]{10}"
+            maxLength="11"
+            value={phone_number}
+            onChange={(e) => setPhone_number(e.target.value)}
             required
           />
         </div>
@@ -170,6 +108,20 @@ export function Venuesignup() {
             required
           />
         </div>
+        <div className="form-group col-md-2">
+          <label htmlFor="phone">City</label>
+          <input
+            type="text"
+            className="form-control"
+            name="city"
+            id="city"
+            placeholder="City"
+            maxLength="11"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+        </div>
         <div className="col-md-3 pb-0 my-auto">
           <label className="mx-1" htmlFor="state">
             State
@@ -177,7 +129,8 @@ export function Venuesignup() {
           <select
             className="form-control"
             id="state"
-            onChange={(e) => setLocationState(e.target.value)}
+            value={state}
+            onChange={(e) => setState(e.target.value)}
             required
           >
             <option value="AL">Alabama</option>
@@ -240,24 +193,9 @@ export function Venuesignup() {
             className="form-control"
             id="zipcode"
             placeholder="Zipcode"
-            value={zipcode}
-            onChange={(e) => setZipcode(e.target.value)}
+            value={zip_code}
+            onChange={(e) => setZip_code(e.target.value)}
             maxLength="5"
-            required
-          />
-        </div>
-        <div className="form-group col-md-2">
-          <label htmlFor="phone">Phone Number</label>
-          <input
-            type="number"
-            className="form-control"
-            name="phone"
-            id="phone"
-            placeholder="Phone number"
-            pattern="[0-9]{10}"
-            maxLength="11"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
             required
           />
         </div>
@@ -270,8 +208,8 @@ export function Venuesignup() {
             className="form-control"
             id="capacity"
             placeholder="Capacity"
-            value={capacity}
-            onChange={(e) => setCapacity(e.target.value)}
+            value={venue_capacity}
+            onChange={(e) => setVenue_capacity(e.target.value)}
           />
         </div>
         <div className="col-md-3 pb-0 my-auto">
@@ -281,7 +219,8 @@ export function Venuesignup() {
           <select
             className="form-control"
             id="VenueMusicGenre"
-            onChange={(e) => setMusicGenre(e.target.value)}
+            value={music_type}
+            onChange={(e) => setMusic_type(e.target.value)}
           >
             <option defaultValue>Choose...</option>
             <option value="general">General</option>
@@ -300,7 +239,8 @@ export function Venuesignup() {
           <select
             className="form-control"
             id="staging"
-            onChange={(e) => setStaging(e.target.value)}
+            value={in_out}
+            onChange={(e) => setIn_out(e.target.value)}
           >
             <option defaultValue>Choose...</option>
             <option value="indoor">Indoor</option>
@@ -314,6 +254,7 @@ export function Venuesignup() {
             <select
               className="form-control"
               id="isHiring"
+              value={hiring}
               onChange={(e) => setIsHiring(e.target.value)}
             >
               <option defaultValue>Choose...</option>
@@ -328,8 +269,8 @@ export function Venuesignup() {
               className="form-control"
               id="pay-rate"
               placeholder="Pay rate (optional)"
-              value={payRate}
-              onChange={(e) => setPayRate(e.target.value)}
+              value={pay_rate}
+              onChange={(e) => setPay_rate(e.target.value)}
             />
           </div>
           <div className="form-group col-md-4">
@@ -339,8 +280,8 @@ export function Venuesignup() {
               className="form-control"
               id="fees"
               placeholder="Fees charged to artists (optional)"
-              value={feeRate}
-              onChange={(e) => setFeeRate(e.target.value)}
+              value={fees}
+              onChange={(e) => setFees(e.target.value)}
             />
           </div>
         </div>
@@ -353,8 +294,8 @@ export function Venuesignup() {
               className="form-control"
               id="equipInfo"
               placeholder="please provide details about equipment on hand (if any)"
-              value=""
-              onChange={(e) => setEquipInfo(e.target.value)}
+              value={equipment}
+              onChange={(e) => setEquipment(e.target.value)}
             />
           </div>
         </div>
@@ -367,8 +308,8 @@ export function Venuesignup() {
               className="form-control"
               id="aboutInfo"
               placeholder="Tell us more about your venue"
-              value={aboutInfo}
-              onChange={(e) => setAboutInfo(e.target.value)}
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
             />
           </div>
         </div>
@@ -385,8 +326,8 @@ export function Venuesignup() {
             name="instaHandle"
             id="instaHandle"
             placeholder="Instagram username/handle"
-            value={instaHandle}
-            onChange={(e) => setInstaHandle(e.target.value)}
+            value={instagram}
+            onChange={(e) => setInstagram(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -399,8 +340,8 @@ export function Venuesignup() {
             name="tikTokHandle"
             id="tikTokHandle"
             placeholder="TikTok username/handle"
-            value={tikTokHandle}
-            onChange={(e) => setTikTokHandle(e.target.value)}
+            value={tikTok}
+            onChange={(e) => setTikTok(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -413,8 +354,8 @@ export function Venuesignup() {
             name="facebookHandle"
             id="facebookHandle"
             placeholder="Facebook username/handle"
-            value={facebookHandle}
-            onChange={(e) => setFacebookHandle(e.target.value)}
+            value={facebook}
+            onChange={(e) => setFacebook(e.target.value)}
           />
         </div>
       </div>
@@ -429,8 +370,8 @@ export function Venuesignup() {
             name="twitterHandle"
             id="twitterHandle"
             placeholder="Twitter username/handle"
-            value={twitterHandle}
-            onChange={(e) => setTwitterHandle(e.target.value)}
+            value={twitter}
+            onChange={(e) => setTwitter(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -443,8 +384,8 @@ export function Venuesignup() {
             name="soundcloudHandle"
             id="soundcloudHandle"
             placeholder="Soundcloud username/handle"
-            value={soundcloudHandle}
-            onChange={(e) => setSoundcloudHandle(e.target.value)}
+            value={soundcloud}
+            onChange={(e) => setSoundcloud(e.target.value)}
           />
         </div>
         <div className="form-group col-md-4">
@@ -457,8 +398,8 @@ export function Venuesignup() {
             name="spotifyHandle"
             id="spotifyHandle"
             placeholder="Spotify username/handle"
-            value={spotifyHandle}
-            onChange={(e) => setSpotifyHandle(e.target.value)}
+            value={spotify}
+            onChange={(e) => setSpotify(e.target.value)}
           />
         </div>
       </div>

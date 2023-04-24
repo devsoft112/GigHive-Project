@@ -12,6 +12,7 @@ import { Footer } from "./component/footer";
 import { Signup } from "./pages/signup";
 import { Venuesignup } from "./pages/venuesignup";
 import { Artistsignup } from "./pages/artistsignup";
+import { Login } from "./pages/login";
 import { ArtistProfile } from "./pages/artistProfile";
 import { VenueProfile } from "./pages/venueProfile";
 
@@ -32,8 +33,7 @@ const Layout = () => {
             <Route element={<Venuesignup />} path="/register/venue" />
             <Route element={<Artistsignup />} path="/register/artist" />
             <Route element={<Signup />} path="/register" />
-            <Route element={<ArtistProfile />} path="/artists/:theid" />
-            <Route element={<VenueProfile />} path="/venues/:theid" />
+            <Route element={<Login />} path="/login" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>
