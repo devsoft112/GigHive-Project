@@ -1,6 +1,10 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+:root {
+  --maingold: rgb(228, 175, 0);
+}
+
 .account-type-button {
   width: 100px;
   background-color: chocolate;

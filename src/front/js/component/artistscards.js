@@ -26,9 +26,9 @@ export const Artistcard = (props) => {
 
         
         <div className="buttonDiv">
-          <button className="btn btn-sm btn-primary" href={props.link}>
+          <a className="btn btn-sm btn-primary" href={props.link}>
             View Profile
-          </button>
+          </a>
         </div>
       </div>
     </div>

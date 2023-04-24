@@ -1,24 +1,32 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useLayoutEffect} from "react";
 
 import CalendarPlaceholder from "./CalendarPlaceholder.png"
 
 import "../../styles/artistProfile.css";
 
 import { Context } from "../store/appContext";
+import { useParams } from "react-router"
 
 export function ArtistProfile(props) {
   const { store, actions } = useContext(Context);
+  const { id } = useParams();
+  const artists = store.artists;
+  console.log(artists)
+  useLayoutEffect(() => {
+    actions.getArtist();
+    actions.getVenue();
+  }, []);
 
   return (
     <div className="container-fluid">
       <div className="row px-2 gx-3 mt-4 mainRow">
-        <div className="col-md-5 mt-2 rounded profile-main-img">
-          Image goes here
-        </div>
+        <img src={artists[id]?.images.split(", ")[0]} className="col-md-5 mt-2 p-0 rounded profile-main-img object-fit-contain">
+          
+        </img>
         <div className="col-md-7">
           <div class="d-flex flex-row mb-0">
             <div>
-              <h2 className="artistName m-0">Artist Name</h2>
+              <h2 className="artistName m-0">{artists[id]?.artist_name}</h2>
             </div>
             <div className="mx-2 pt-1">
               <button className="btn btn-sm btn-primary">Message</button>
@@ -34,27 +42,29 @@ export function ArtistProfile(props) {
             </div>
           </div>
           <div className="row mt-3">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <b>Music Type:</b>
-            <b>Performance Type:</b>
+            <p>{artists[id]?.about_info}</p>
+            <p className="my-0"><b>Music Type: </b>{artists[id]?.genre}</p>
+            <p><b>Performance Type:</b> {artists[id]?.performance_type}</p>
           </div>
-          <div className="row mt-3 px-2">
-            <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-instagram fa-xl"></i></div>
-            <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-tiktok fa-xl"></i></div>
-            <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-facebook fa-xl"></i></div>
-            <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-twitter fa-xl"></i></div>
-            <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-soundcloud fa-xl"></i></div>
-            <div className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-spotify fa-xl"></i></div>
+          <div className="row px-2">
+          {artists[id]?.instagram ? <a href={`http://instagram.com/${artists[id]?.instagram}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-instagram fa-xl"></i></a> : null}
+          {artists[id]?.tiktok ?<a href={`http://tiktok.com/@${artists[id]?.tiktok}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-tiktok fa-xl"></i></a> : null}
+          {artists[id]?.facebook ?<a href={`http://facebook.com/${artists[id]?.facebook}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-facebook fa-xl"></i></a> : null}
+          {artists[id]?.twitter ? <a href={`http://twitter.com/${artists[id]?.twitter}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-twitter fa-xl"></i></a> : null}
+          {artists[id]?.soundcloud ? <a href={`http://soundcloud.com/${artists[id]?.soundcloud}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-soundcloud fa-xl"></i></a> : null}
+          {artists[id]?.spotify ? <a href={`http://spotify.com`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-spotify fa-xl"></i></a> : null}
           </div>
         </div>
         <div className="row px-2 d-flex justify-content-between align-items-center">
             <div className="col-md-5 mx-1">
               <div className="row d-flex justify-content-between">
+              {artists[id]?.images.split(", ").map((image)=>{
+                return <img className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
+              })}
+              </div>
+            </div>
+            {/* <div className="col-md-5 mx-1">
+              <div className="row d-flex justify-content-between">
                 <div className="col-md m-2 rounded smImage">
                   Test
                 </div>
@@ -76,8 +86,17 @@ export function ArtistProfile(props) {
                   Test
                 </div>
               </div>
+            </div> */}
+            <div className="col-md-6">
+              <div className="row">
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
+              </div>
             </div>
-            <div className="col-md-6"><img className="calendar" src={CalendarPlaceholder} /><img className="calendar mx-5" src={CalendarPlaceholder} /></div>
           </div>
       </div>
     </div>

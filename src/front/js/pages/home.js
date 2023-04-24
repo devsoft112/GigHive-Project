@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
 import { Venuecard } from "../component/venuecards";
+import { useParams } from "react-router"
 
 import rockMusic from "../../img/RockMusic.png";
 import HipHopMusic from "../../img/HipHopMusic.png";
@@ -20,6 +21,7 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const artists = store.artists
   const venues = store.venues
+  const { id } = useParams();
 
   
 
@@ -101,12 +103,14 @@ export const Home = () => {
         <h1 className="artistitle">Artists</h1>
       </div>
       <div className="card-row d-flex flex-row flex-wrap justify-content-start">
-        {artists.map((artist) => {
+        {artists.map((artist, index) => {
     return <Artistcard
     artist_name={artist.artist_name}
     genre={artist.genre}
     performance_type={artist.performance_type}
-    imgUrl={artist.images}
+    imgUrl={artist.images.split(", ")[0]}
+    link = {"https://3000-phorjax-gighiveproject-6436b2vaja0.ws-us95.gitpod.io/artists/" + index}
+    id={index}
     starRating="5.0"
   />
   })}
