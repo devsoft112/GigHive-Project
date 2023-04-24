@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
 export function Venuesignup() {
   const { store, actions } = useContext(Context);
-  const navigate = useNavigate();
 
   const [venue_name, setVenue_name] = useState("");
   const [address, setAddress] = useState("");
@@ -55,10 +54,13 @@ export function Venuesignup() {
     );
   };
 
-  if (store.token && store.token != "" && store.token != undefined) {
-    navigate("/login");
-  }
-
+  useEffect(() => {
+    if (!token) {
+      useNavigate("/login");
+    }
+    if (store.token && store.token != "" && store.token != undefined)
+      actions.Authorization();
+  });
   return (
     <form>
       <div className="row">

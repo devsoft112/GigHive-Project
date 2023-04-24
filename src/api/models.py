@@ -101,7 +101,7 @@ class Artist(db.Model):
 
 
     def __repr__(self):
-        return f'<Artist {self.first_name}>'
+        return f'<Artist {self.artist_name}>'
     
     def serialize(self):
         return {

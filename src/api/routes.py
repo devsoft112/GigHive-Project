@@ -13,7 +13,6 @@ import datetime
 api = Blueprint('api', __name__)
 
 
-artists_var = [{ "username" : "artist1", "email" : "test", "password" : "test" }]
 
 # to populate the artist cards on the front
 
@@ -32,6 +31,15 @@ def artist_get():
 @api.route('/venues', methods=['GET'])
 def venue_get():
     venues = Venue.query.all()
+    serialized_venues = []
+    for venue in venues:
+        serialized_venues.append(venue.serialize())
+
+    return jsonify(serialized_venues), 200
+
+@api.route('/users', methods=['GET'])
+def user_get():
+    venues = User.query.all()
     serialized_venues = []
     for venue in venues:
         serialized_venues.append(venue.serialize())
@@ -84,9 +92,10 @@ def create_token():
     
 
 # to sign up artists
-@api.route('/register/artist', methods=['POST'])
+@api.route('/register/artist', methods=['GET', 'POST'])
 @jwt_required()
 def register_artist():
+    # username = get_jwt_identity()
     response_body = request.get_json()
     artist = Artist(artist_name=response_body["artist_name"],
                     genre=response_body["genre"],
@@ -103,6 +112,7 @@ def register_artist():
     db.session.commit()
     return jsonify(response_body), 200
 
+#  making register/artist private
 
 # to sign up venues
 @api.route('/register/venue', methods=['POST'])

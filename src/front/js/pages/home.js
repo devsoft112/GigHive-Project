@@ -36,10 +36,10 @@ export const Home = () => {
   const electronicFilter = () => setArtists(electronicArtists);
   const classicalFilter = () => setArtists(classicalArtists);
 
-  useEffect(() => {
-    if (store.token && store.token != "" && store.token != undefined)
-      actions.Authorization();
-  }, [store.token]);
+  // useEffect(() => {
+  //   if (store.token && store.token != "" && store.token != undefined)
+  //     actions.Authorization();
+  // }, [store.token]);
   useEffect(() => {
     actions.getArtist();
   }, []);
