@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       logout: () => {
         sessionStorage.removeItem("token");
-        console.log("loging out");
+        console.log("logging out");
         setStore({ token: null });
       },
       syncTokenfromSessionStorage: () => {
@@ -30,9 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/register/venues"
-          );
+          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
           const data = await resp.json();
           setStore({ venues: data });
           return data;
@@ -42,14 +40,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       postArtist: async (
-        first_name,
-        last_name,
-        username,
-        email,
-        password,
         artist_name,
         genre,
         performance_type,
+        about_info,
         instagram,
         facebook,
         twitter,
@@ -66,14 +60,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
-            first_name: first_name,
-            last_name: last_name,
-            username: username,
-            email: email,
-            password: password,
             artist_name: artist_name,
             genre: genre,
             performance_type: performance_type,
+            about_info: about_info,
             instagram: instagram,
             facebook: facebook,
             twitter: twitter,
@@ -113,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         pay_rate,
         fees,
         equipment,
-        about,
+        about_info,
         instagram,
         facebook,
         twitter,
@@ -141,15 +131,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             hiring: hiring,
             pay_rate: pay_rate,
             fees: fees,
-            equipment,
-            about,
+            equipment: equipment,
+            about_info: about_info,
             instagram: instagram,
             facebook: facebook,
             twitter: twitter,
             soundcloud: soundcloud,
             spotify: spotify,
             tiktok: tiktok,
-            // user_id: 1,
           }),
         };
         try {

@@ -4,15 +4,14 @@ db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)
-    public_id = db.Column(db.String(50), unique=True) # public
+    id = db.Column(db.Integer, primary_key=True)# public
     first_name = db.Column(db.String(120), nullable=False)
     last_name = db.Column(db.String(120), nullable=False)
     username = db.Column(db.String(120), unique= True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
-    venue_id = db.relationship('Venue',  lazy=True)
-    artist_id = db.relationship('Artist', lazy=True) 
+    venues = db.relationship('Venue', backref="venuesUser", lazy='subquery') 
+    artists = db.relationship('Artist', backref="artistUser", lazy='subquery') 
 
     
     def __repr__(self):
@@ -25,8 +24,8 @@ class User(db.Model):
             "last_name": self.last_name,
             "username": self.username,
             "email": self.email,
-            "artist": self.artist,
-            "venue": self.venue
+            "artists": list(map(lambda x: x.serialize(), self.artists)),
+            "venues": list(map(lambda x: x.serialize(), self.venues))
             # do not serialize the password, its a security breach
         }
 
@@ -39,7 +38,7 @@ class Venue(db.Model):
     city = db.Column (db.String(120), nullable=False) 
     state = db.Column(db.String(120), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
-    phone_number = db.Column(db.Integer, nullable=False)
+    phone_number = db.Column(db.String(120), nullable=False)
     venue_capacity = db.Column(db.String(120), nullable=False)
     music_type = db.Column(db.String(120), nullable = False)
     in_out = db.Column(db.String(120), nullable=False)
@@ -47,14 +46,16 @@ class Venue(db.Model):
     pay_rate = db.Column(db.String(120), nullable=False)
     fees = db.Column(db.String(120), nullable=False)
     equipment = db.Column(db.String(120), nullable=False)
-    about = db.Column(db.String(120), nullable=True)
+    about_info = db.Column(db.String(120), nullable=True)
     instagram = db.Column(db.String(120), nullable=True)
     facebook = db.Column(db.String(120), nullable=True)
     twitter = db.Column(db.String(120), nullable=True)
     tiktok = db.Column(db.String(120), nullable=True)
     soundcloud = db.Column(db.String(120), nullable=True)
     spotify = db.Column(db.String(120), nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+    images = db.Column(db.String(120), nullable=True)
+    user_id = db.Column('User', db.Integer, db.ForeignKey('user.id'),nullable=False)
+   
 
     
     def __repr__(self):
@@ -67,16 +68,16 @@ class Venue(db.Model):
             "address": self.address,
             "city": self.city,
             "state": self.state,
-            "zip_code": self.zip_Code,
-            "phone_number": self.phone_Number,
+            "zip_code": self.zip_code,
+            "phone_number": self.phone_number,
             "venue_capacity": self.venue_capacity,
-            "music_type": self.music_Type,
+            "music_type": self.music_type,
             "in_out": self.in_out,
             "hiring": self.hiring,
             "pay_rate": self.pay_rate,
             "fees": self.fees,
             "equipment": self.equipment,
-            "about": self.about,
+            "about_info": self.about_info,
             "instagram": self.instagram,
             "facebook": self.facebook,
             "twitter": self.twitter,
@@ -84,6 +85,7 @@ class Venue(db.Model):
             "soundcloud": self.soundcloud,
             "spotify": self.spotify,
             "images": self.images
+           
         }
         
 class Artist(db.Model):
@@ -93,13 +95,16 @@ class Artist(db.Model):
     artist_name = db.Column(db.String(120), nullable=False)
     genre = db.Column(db.String(120), nullable=False)
     performance_type = db.Column(db.String(120), nullable=False)
+    about_info = db.Column(db.String(120), nullable=True)
     instagram = db.Column(db.String(120), nullable=True)
     facebook = db.Column(db.String(120), nullable=True)
     twitter = db.Column(db.String(120), nullable=True)
     tiktok = db.Column(db.String(120), nullable=True)
     soundcloud = db.Column(db.String(120), nullable=True)
     spotify = db.Column(db.String(120), nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+    images = db.Column(db.String(120), nullable=True)
+    user_id = db.Column('User', db.Integer, db.ForeignKey('user.id'),nullable=False)
+
 
 
     def __repr__(self):
@@ -111,12 +116,13 @@ class Artist(db.Model):
         "artist_name": self.artist_name,
         "genre": self.genre,
         "performance_type": self.performance_type,
+        "about_info": self.about_info,
         "instagram": self.instagram,
         "facebook": self.facebook,
         "twitter": self.twitter,
         "tiktok": self.tiktok,
         "soundcloud": self.soundcloud,
-        "spotify": self.spotify,
+        "spotify": self.spotify
     }
 
 
@@ -136,6 +142,6 @@ class Messages(db.Model):
             "content": self.content,
             "id_sender": self.id_sender,
             "id_receiver": self.id_receiver,
-            "sent_date": self.sent_date,
+            "sent_date": self.sent_date
         }
 

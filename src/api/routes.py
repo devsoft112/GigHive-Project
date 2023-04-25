@@ -92,22 +92,25 @@ def create_token():
     
 
 # to sign up artists
-@api.route('/register/artist', methods=['GET', 'POST'])
+@api.route('/register/artist', methods=['POST'])
 @jwt_required()
 def register_artist():
-    # username = get_jwt_identity()
+    username = get_jwt_identity()
+    user=User.query.filter_by(username=username).first()
     response_body = request.get_json()
     artist = Artist(artist_name=response_body["artist_name"],
                     genre=response_body["genre"],
                     performance_type=response_body["performance_type"],
                     instagram=response_body["instagram"],
+                    about_info=response_body["about_info"],
                     facebook=response_body["facebook"],
                     twitter=response_body["twitter"],
                     tiktok=response_body["tiktok"],
                     soundcloud=response_body["soundcloud"],
                     spotify=response_body["spotify"],
+                    user_id=user.id
                     )
-    print("this is artist: ", artist)
+
     db.session.add(artist)
     db.session.commit()
     return jsonify(response_body), 200
@@ -116,7 +119,10 @@ def register_artist():
 
 # to sign up venues
 @api.route('/register/venue', methods=['POST'])
+@jwt_required()
 def register_venue():
+    username = get_jwt_identity()
+    user=User.query.filter_by(username=username).first()
     response_body = request.get_json()
     venue = Venue(venue_name=response_body["venue_name"],
                   address=response_body["address"],
@@ -130,6 +136,7 @@ def register_venue():
                   hiring=response_body["hiring"],
                   pay_rate=response_body["pay_rate"],
                   fees=response_body["fees"],
+                  about_info=response_body["about_info"],
                   equipment=response_body["equipment"],
                   about=response_body["about"],
                 #   images=response_body["images"],
@@ -138,7 +145,9 @@ def register_venue():
                   twitter=response_body["twitter"],
                   tiktok=response_body["tiktok"],
                   soundcloud=response_body["soundcloud"],
-                  spotify=response_body["spotify"])
+                  spotify=response_body["spotify"],
+                  user_id=user.id
+                  )
     print("this is venue: ", venue)
     db.session.add(venue)
     db.session.commit()
