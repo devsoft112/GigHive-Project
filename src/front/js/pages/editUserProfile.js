@@ -1,24 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 
 import "../../styles/editUserProfile.css";
 import propTypes from "prop-types";
 
 export function EditUserProfile(props) {
-  const [store, actions] = useContext(Context)
+  const {store, actions} = useContext(Context)
   const [editMode, setEditMode] = useState(false)
-
+  useEffect(() => {
+    actions.getCurrentUser();
+  }, []);
 
   //----useState Hooks for Artist Info---
-  const [artistGenre, setArtistGenre] = useState(user.artist.genre);
-  const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
-  const [tikTok, setTikTok] = useState(user.artist.tiktok);
+  // const [artistGenre, setArtistGenre] = useState(user.artist.genre);
+  // const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
+  // const [tikTok, setTikTok] = useState(user.artist.tiktok);
   const [facebook, setFacebook] = useState("");
   const [twitter, setTwitter] = useState("");
   const [soundcloud, setSoundcloud] = useState("");
   const [spotify, setSpotify] = useState("");
   const [artistName, setArtistName] = useState("");
   const [performance_type, setPerformance_type] = useState("Other");
+
+
 
   const editToggle = () => {
     editMode == true ? setEditMode(false): setEditMode(true)

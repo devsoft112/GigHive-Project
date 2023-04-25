@@ -37,6 +37,7 @@ const Layout = () => {
             <Route element = {<VenueProfile />} path = "/venues/:id" />
             <Route element = {<Signup />} path = "/register" />
             <Route element = {<Login />} path = "/login" />
+            <Route element = {<EditUserProfile />} path = "/myprofile" />
             <Route element = {<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>
