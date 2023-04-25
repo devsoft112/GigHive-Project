@@ -1,11 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import "../../styles/signup.css";
 import { Link } from "react-router-dom";
 
 export function Artistsignup() {
   const { store, actions } = useContext(Context);
-  const [phone, setPhone] = useState("");
   const [genre, setGenre] = useState("");
   const [about_info, setAbout_Info] = useState(
     "More info about this venue hasn't been added yet!"

@@ -16,6 +16,7 @@ import { Login } from "./pages/login";
 import { ArtistProfile } from "./pages/artistProfile";
 import { VenueProfile } from "./pages/venueProfile";
 import { UserProfile } from "./pages/userprofile";
+import { EditUserProfile } from "./pages/editUserProfile";
 
 //create your first component
 const Layout = () => {
@@ -38,6 +39,7 @@ const Layout = () => {
             <Route element = {<VenueProfile />} path = "/venues/:id" />
             <Route element = {<Signup />} path = "/register" />
             <Route element = {<Login />} path = "/login" />
+            <Route element = {<EditUserProfile />} path = "/myprofile" />
             <Route element = {<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>
