@@ -8,7 +8,7 @@ export const UserProfile = () => {
         <div className="col-md-1 my-auto p-0">
           <b>I am a:</b>
         </div>
-        <Link to="/register/venues">
+        <Link to="/register/venue">
           <button type="button">Venue </button>
         </Link>
         <Link to="/register/artist">

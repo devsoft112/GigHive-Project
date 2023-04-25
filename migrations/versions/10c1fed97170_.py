@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 098d377b0ace
+Revision ID: 10c1fed97170
 Revises: 
-Create Date: 2023-04-12 15:08:24.581500
+Create Date: 2023-04-25 20:13:22.829191
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '098d377b0ace'
+revision = '10c1fed97170'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,7 +28,7 @@ def upgrade():
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('first_name', sa.String(length=120), nullable=True),
+    sa.Column('first_name', sa.String(length=120), nullable=False),
     sa.Column('last_name', sa.String(length=120), nullable=False),
     sa.Column('username', sa.String(length=120), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
@@ -42,12 +42,14 @@ def upgrade():
     sa.Column('artist_name', sa.String(length=120), nullable=False),
     sa.Column('genre', sa.String(length=120), nullable=False),
     sa.Column('performance_type', sa.String(length=120), nullable=False),
+    sa.Column('about_info', sa.TEXT(), nullable=True),
     sa.Column('instagram', sa.String(length=120), nullable=True),
     sa.Column('facebook', sa.String(length=120), nullable=True),
     sa.Column('twitter', sa.String(length=120), nullable=True),
     sa.Column('tiktok', sa.String(length=120), nullable=True),
     sa.Column('soundcloud', sa.String(length=120), nullable=True),
     sa.Column('spotify', sa.String(length=120), nullable=True),
+    sa.Column('images', sa.TEXT(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -56,22 +58,25 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('venue_name', sa.String(length=120), nullable=False),
     sa.Column('address', sa.String(length=120), nullable=False),
+    sa.Column('city', sa.String(length=120), nullable=False),
     sa.Column('state', sa.String(length=120), nullable=False),
     sa.Column('zip_code', sa.Integer(), nullable=False),
-    sa.Column('phone_number', sa.Integer(), nullable=False),
+    sa.Column('phone_number', sa.String(length=120), nullable=False),
     sa.Column('venue_capacity', sa.String(length=120), nullable=False),
     sa.Column('music_type', sa.String(length=120), nullable=False),
     sa.Column('in_out', sa.String(length=120), nullable=False),
-    sa.Column('hiring', sa.Boolean(), nullable=False),
+    sa.Column('hiring', sa.String(length=120), nullable=False),
     sa.Column('pay_rate', sa.String(length=120), nullable=False),
     sa.Column('fees', sa.String(length=120), nullable=False),
-    sa.Column('equipment', sa.String(length=120), nullable=False),
+    sa.Column('equipment', sa.TEXT(), nullable=False),
+    sa.Column('about_info', sa.TEXT(), nullable=True),
     sa.Column('instagram', sa.String(length=120), nullable=True),
     sa.Column('facebook', sa.String(length=120), nullable=True),
     sa.Column('twitter', sa.String(length=120), nullable=True),
     sa.Column('tiktok', sa.String(length=120), nullable=True),
     sa.Column('soundcloud', sa.String(length=120), nullable=True),
     sa.Column('spotify', sa.String(length=120), nullable=True),
+    sa.Column('images', sa.TEXT(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')

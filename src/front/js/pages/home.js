@@ -14,7 +14,7 @@ import ClassicalMusic from "../../img/ClassicalMusic.png";
 export const Home = () => {
 
   
-  useLayoutEffect(() => {
+  useEffect(() => {
     actions.getArtist();
     actions.getVenue();
   }, []);

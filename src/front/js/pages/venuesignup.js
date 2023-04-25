@@ -308,7 +308,7 @@ export function Venuesignup() {
               className="form-control"
               id="aboutInfo"
               placeholder="Tell us more about your venue"
-              value={about}
+              value={about_info}
               onChange={(e) => setAbout(e.target.value)}
             />
           </div>
