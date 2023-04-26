@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 10c1fed97170
+Revision ID: effd42aae3da
 Revises: 
-Create Date: 2023-04-25 20:13:22.829191
+Create Date: 2023-04-26 01:27:58.403344
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '10c1fed97170'
+revision = 'effd42aae3da'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,16 +42,16 @@ def upgrade():
     sa.Column('artist_name', sa.String(length=120), nullable=False),
     sa.Column('genre', sa.String(length=120), nullable=False),
     sa.Column('performance_type', sa.String(length=120), nullable=False),
-    sa.Column('about_info', sa.TEXT(), nullable=True),
+    sa.Column('about_info', sa.String(length=120), nullable=True),
     sa.Column('instagram', sa.String(length=120), nullable=True),
     sa.Column('facebook', sa.String(length=120), nullable=True),
     sa.Column('twitter', sa.String(length=120), nullable=True),
     sa.Column('tiktok', sa.String(length=120), nullable=True),
     sa.Column('soundcloud', sa.String(length=120), nullable=True),
     sa.Column('spotify', sa.String(length=120), nullable=True),
-    sa.Column('images', sa.TEXT(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.Column('images', sa.String(length=120), nullable=True),
+    sa.Column('User', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['User'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('venue',
@@ -68,17 +68,17 @@ def upgrade():
     sa.Column('hiring', sa.String(length=120), nullable=False),
     sa.Column('pay_rate', sa.String(length=120), nullable=False),
     sa.Column('fees', sa.String(length=120), nullable=False),
-    sa.Column('equipment', sa.TEXT(), nullable=False),
-    sa.Column('about_info', sa.TEXT(), nullable=True),
+    sa.Column('equipment', sa.String(length=120), nullable=False),
+    sa.Column('about_info', sa.String(length=120), nullable=True),
     sa.Column('instagram', sa.String(length=120), nullable=True),
     sa.Column('facebook', sa.String(length=120), nullable=True),
     sa.Column('twitter', sa.String(length=120), nullable=True),
     sa.Column('tiktok', sa.String(length=120), nullable=True),
     sa.Column('soundcloud', sa.String(length=120), nullable=True),
     sa.Column('spotify', sa.String(length=120), nullable=True),
-    sa.Column('images', sa.TEXT(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.Column('images', sa.String(length=120), nullable=True),
+    sa.Column('User', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['User'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
