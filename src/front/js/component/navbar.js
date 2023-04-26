@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useLayoutEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import GigHive from "../../img/GigHive.png";
@@ -7,8 +7,18 @@ import "../../styles/navbar.css";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLogOut = (e) => {
+    e.preventDefault();
+    actions.logout();
+    setIsLoggedIn(false);
+  };
 
-  
+  useLayoutEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined) {
+      setIsLoggedIn(true);
+    }
+  }, [store.token, isLoggedIn]);
 
   return (
     <nav className="navbar navbar-light bg-light">
@@ -32,48 +42,40 @@ export const Navbar = () => {
 
           <ul className="dropdown-menu">
             <li>
-              <a>
-                <Link to="/">Home</Link>
-              </a>
+              <Link to="/">Home</Link>
+            </li>
+            {isLoggedIn === true && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/profile">
+                  Profile
+                </Link>
+              </li>
+            )}
+            <li>
+              <Link to="/artists">Artists</Link>
             </li>
             <li>
-              <a>
-                <Link to="/profile">Profile</Link>
-              </a>
+              <Link to="/venues">Venues</Link>
             </li>
             <li>
-              <a>
-                <Link to="/artists">Artists</Link>
-              </a>
+              <Link to="/artists">Browse Works</Link>
             </li>
             <li>
-              <a>
-                <Link to="/venues">Venues</Link>
-              </a>
+              <Link to="/help">Host an event</Link>
             </li>
-            <li>
-              <a>
-                <Link to="/artists">Browse Works</Link>
-              </a>
-            </li>
-            <li>
-              <a>
-                <Link to="/help">Host an event</Link>
-              </a>
-            </li>
-            <li>
-              <Link to="/register">
-                <a>Sign up</a>
-              </Link>
-            </li>
+            {isLoggedIn === false && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  Sign Up
+                </Link>
+              </li>
+            )}
             <li>
               {!store.token ? (
-                <Link to="/login">
-                  <a>Log in</a>
-                </Link>
+                <Link to="/login">Log in</Link>
               ) : (
                 <Link to="/">
-                  <a onClick={() => actions.logout()}>Log out</a>
+                  <span onClick={(e) => handleLogOut(e)}>Log out</span>
                 </Link>
               )}
             </li>

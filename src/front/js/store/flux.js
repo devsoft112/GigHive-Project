@@ -1,4 +1,3 @@
-
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -23,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
           const data = await resp.json();
+          console.log(data)
           setStore({ artists: data });
           return data;
         } catch (error) {
@@ -31,9 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/venues"
-          );
+          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
           const data = await resp.json();
           setStore({ venues: data });
           return data;
@@ -232,6 +230,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           const data = await resp.json();
+          console.log(data);
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
           return true;
@@ -258,6 +257,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+
+
 
       Authorization: () => {
         const store = getStore();
