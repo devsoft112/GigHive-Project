@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       users: [],
+      user: {},
       message: null,
       artists: [],
       venues: [],
@@ -22,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
           const data = await resp.json();
-          console.log(data)
+          console.log(data);
           setStore({ artists: data });
           return data;
         } catch (error) {
@@ -41,6 +42,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading venues", error);
         }
       },
+      getUser: async () => {
+        try {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/users", {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + getStore().token,
+            },
+          });
+          const data = await resp.json();
+          setStore({ user: data });
+          return data;
+        } catch (error) {
+          console.log("Error loading user", error);
+        }
+      },
 
       postArtist: async (
         artist_name,
@@ -57,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
 
         const opts = {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + store.token,
@@ -251,8 +267,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-
-
 
       // Authorization: () => {
       //   const store = getStore();

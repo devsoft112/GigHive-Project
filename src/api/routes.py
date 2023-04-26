@@ -37,14 +37,13 @@ def venue_get():
 
     return jsonify(serialized_venues), 200
 
+#to get the user for userprofile
 @api.route('/users', methods=['GET'])
+@jwt_required()
 def user_get():
-    venues = User.query.all()
-    serialized_venues = []
-    for venue in venues:
-        serialized_venues.append(venue.serialize())
-
-    return jsonify(serialized_venues), 200
+    username=get_jwt_identity()
+    user = User.query.filter_by(username = username).first()
+    return jsonify(user.serialize()), 200
 
 # to sign up users
 @api.route('/register', methods=['POST'])
@@ -92,7 +91,7 @@ def create_token():
     
 
 # to sign up artists
-@api.route('/register/artist', methods=['POST'])
+@api.route('/register/artist', methods=['PUT'])
 @jwt_required()
 def register_artist():
     username = get_jwt_identity()

@@ -38,6 +38,8 @@ export const Home = () => {
   const electronicFilter = () => setArtists(electronicArtists);
   const classicalFilter = () => setArtists(classicalArtists);
 
+  console.log(store.artists, "This is the Homepage trial");
+
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
       actions.getMessage();
@@ -103,7 +105,7 @@ export const Home = () => {
               artist_name={artist.artist_name}
               genre={artist.genre}
               performance_type={artist.performance_type}
-              imgUrl={artist.images.split(", ")[0]}
+              //imgUrl={artist.images.split(", ")[0]}
               link={"/artists/" + index}
               id={index}
               starRating="5.0"
@@ -121,7 +123,7 @@ export const Home = () => {
                 venue_name={venue.venue_name}
                 city={venue.city}
                 state={venue.state}
-                imgUrl={venue.images.split(", ")[0]}
+                //imgUrl={venue.images.split(", ")[0]}
                 link={"/venues/" + index}
                 id={index}
                 starRating="5.0"

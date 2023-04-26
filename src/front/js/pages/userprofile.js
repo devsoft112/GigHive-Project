@@ -6,23 +6,28 @@ export const UserProfile = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
   const users = store.users;
+  const artist = store.artists;
   const history = useNavigate();
-  console.log(users);
+  console.log(id, "this is from userprofile");
 
   // Check if user is authenticated
   useEffect(() => {
     if (!store.isAuthenticated) {
     }
   }, [store.isAuthenticated, history]);
-
-
-  
+  useEffect(() => {
+    if (!store.token) {
+      history("/login");
+    } else {
+      actions.getUser();
+    }
+  }, [store.token]);
 
   return (
     <div className="container">
       <div className="row mx-2 py-auto align-content-center">
         <div className="col-md-1 my-auto p-0">
-          <b>I am a:</b>
+          <b>I am a:{}</b>
         </div>
         <Link to="/register/venue">
           <button type="button">Venue </button>
@@ -31,6 +36,17 @@ export const UserProfile = () => {
           <button type="button">Artist </button>
         </Link>
       </div>
+      {store.users.artists &&
+        store.users.artists.map((artist, id) => {
+          return (
+            <div key={id} className="row mx-2 py-auto align-content-center">
+              <div className="col-md-1 my-auto p-0">
+                <span>{artist.artist_name}</span>
+              </div>
+            </div>
+          );
+        })}
+      ,
     </div>
   );
 };

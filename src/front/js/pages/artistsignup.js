@@ -32,7 +32,7 @@ export function Artistsignup() {
       soundcloud,
       spotify
     );
-    console.log("artist created");
+    console.log("artist created", store.artists);
   };
   // useEffect(() => {
   //   if (!store.token) {
