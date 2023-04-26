@@ -31,7 +31,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/register/venues"
+          );
           const data = await resp.json();
           setStore({ venues: data });
           return data;
@@ -41,14 +43,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       postArtist: async (
-        first_name,
-        last_name,
-        username,
-        email,
-        password,
         artist_name,
         genre,
         performance_type,
+        about_info,
         instagram,
         facebook,
         twitter,
@@ -56,6 +54,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         spotify,
         tiktok
       ) => {
+        const store = getStore();
+
         const opts = {
           method: "POST",
           headers: {
@@ -63,11 +63,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             Authorization: "Bearer " + store.token,
           },
           body: JSON.stringify({
-            first_name: first_name,
-            last_name: last_name,
-            username: username,
-            email: email,
-            password: password,
             artist_name: artist_name,
             genre: genre,
             performance_type: performance_type,
@@ -78,7 +73,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             soundcloud: soundcloud,
             spotify: spotify,
             tiktok: tiktok,
-            // user_id: 1,
           }),
         };
         try {
@@ -120,6 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         spotify,
         tiktok
       ) => {
+        const store = getStore();
         const opts = {
           method: "POST",
           headers: {
@@ -147,7 +142,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             soundcloud: soundcloud,
             spotify: spotify,
             tiktok: tiktok,
-            // user_id: 1,
           }),
         };
         try {
@@ -260,21 +254,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-      Authorization: () => {
-        const store = getStore();
-        const opts = {
-          headers: {
-            Authorization: "Bearer " + store.token,
-          },
-        };
-        // fetching data from the backend
-        fetch(process.env.BACKEND_URL + "/api/private", opts)
-          .then((resp) => resp.json())
-          .then((data) => setStore({ message: data.artists.username }))
-          .catch((error) => console.log(error));
+      // Authorization: () => {
+      //   const store = getStore();
+      //   const opts = {
+      //     headers: {
+      //       Authorization: "Bearer " + store.token,
+      //     },
+      //   };
+      //   // fetching data from the backend
+      //   fetch(process.env.BACKEND_URL + "/api/register/artist", opts)
+      //     .then((resp) => resp.json())
+      //     .then((data) => setStore({ message: data.artists.username }))
+      //     .catch((error) => console.log(error));
 
-        // don't forget to return something, that is how the async resolves
-      },
+      //   // don't forget to return something, that is how the async resolves
+      // },
     },
   };
 };

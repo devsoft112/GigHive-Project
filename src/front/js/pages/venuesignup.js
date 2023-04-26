@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
 
 export function Venuesignup() {
   const { store, actions } = useContext(Context);
-  const navigate = useNavigate();
 
   const [venue_name, setVenue_name] = useState("");
   const [address, setAddress] = useState("");
@@ -13,12 +12,12 @@ export function Venuesignup() {
   const [state, setState] = useState("");
   const [zip_code, setZip_code] = useState("");
   const [phone_number, setPhone_number] = useState("");
-  const [venue_capacity, setVenue_capacity] = useState("N/A");
+  const [venue_capacity, setVenue_capacity] = useState("");
   const [music_type, setMusic_type] = useState("general");
   const [in_out, setIn_out] = useState("indoor");
   const [hiring, setIsHiring] = useState("no");
-  const [pay_rate, setPay_rate] = useState("N/A");
-  const [fees, setFees] = useState("N/A");
+  const [pay_rate, setPay_rate] = useState("");
+  const [fees, setFees] = useState("");
   const [equipment, setEquipment] = useState("yes");
   const [about_info, setAbout_Info] = useState(
     "More info about this venue hasn't been added yet!"
@@ -55,10 +54,13 @@ export function Venuesignup() {
     );
   };
 
-  if (store.token && store.token != "" && store.token != undefined) {
-    navigate("/login");
-  }
-
+  useEffect(() => {
+    if (!store.token) {
+      useNavigate("/login");
+    }
+    if (store.token && store.token != "" && store.token != undefined)
+      actions.getMessage();
+  });
   return (
     <form>
       <div className="row">
@@ -310,6 +312,8 @@ export function Venuesignup() {
               placeholder="Tell us more about your venue"
               value={about_info}
               onChange={(e) => setAbout(e.target.value)}
+              value={about_info}
+              onChange={(e) => setAbout_Info(e.target.value)}
             />
           </div>
         </div>
