@@ -147,7 +147,6 @@ def register_venue():
                   spotify=response_body["spotify"],
                   user_id=user.id
                   )
-    print("this is venue: ", venue)
     db.session.add(venue)
     db.session.commit()
     return jsonify(response_body), 200
