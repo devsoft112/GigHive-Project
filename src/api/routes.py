@@ -39,12 +39,12 @@ def venue_get():
 
 @api.route('/users', methods=['GET'])
 def user_get():
-    venues = User.query.all()
-    serialized_venues = []
-    for venue in venues:
-        serialized_venues.append(venue.serialize())
+    users = User.query.all()
+    serialized_users = []
+    for user in users:
+        serialized_users.append(user.serialize())
 
-    return jsonify(serialized_venues), 200
+    return jsonify(serialized_users), 200
 
 # to sign up users
 @api.route('/register', methods=['POST'])
