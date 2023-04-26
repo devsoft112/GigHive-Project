@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
 import { Venuecard } from "../component/venuecards";
-import { useParams } from "react-router"
+import { useParams } from "react-router";
 
 import rockMusic from "../../img/RockMusic.png";
 import HipHopMusic from "../../img/HipHopMusic.png";
@@ -12,18 +12,14 @@ import ElectronicMusic from "../../img/ElectronicMusic.png";
 import ClassicalMusic from "../../img/ClassicalMusic.png";
 
 export const Home = () => {
-
-  
   useLayoutEffect(() => {
     actions.getArtist();
     actions.getVenue();
   }, []);
   const { store, actions } = useContext(Context);
-  const artists = store.artists
-  const venues = store.venues
+  const artists = store.artists;
+  const venues = store.venues;
   const { id } = useParams();
-
-  
 
   // const [filter, setFilter] = useState(artists)
 
@@ -33,7 +29,7 @@ export const Home = () => {
   // const electronicArtists = artists.filter(artist => artist.genre == "electronic");
   // const classicalArtists = artists.filter(artist => artist.genre == "classical")
 
-  console.log(venues)
+  console.log(venues);
   // console.log(rockArtists)
 
   const rockFilter = () => setArtists(rockArtists);
@@ -44,10 +40,8 @@ export const Home = () => {
 
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
-      actions.Authorization();
+      actions.getMessage();
   }, [store.token]);
-  ;
-
   return (
     <div className="container-fluid">
       {/* EVERYTHING ABOVE THIS LINE FOR HEADER TESTS */}
@@ -104,30 +98,36 @@ export const Home = () => {
       </div>
       <div className="card-row d-flex flex-row flex-wrap justify-content-start">
         {artists.map((artist, index) => {
-    return <Artistcard
-    artist_name={artist.artist_name}
-    genre={artist.genre}
-    performance_type={artist.performance_type}
-    imgUrl={artist.images.split(", ")[0]}
-    link = {"/artists/" + index}
-    id={index}
-    starRating="5.0"
-  />
-  })}
+          return (
+            <Artistcard
+              artist_name={artist.artist_name}
+              genre={artist.genre}
+              performance_type={artist.performance_type}
+              imgUrl={artist.images.split(", ")[0]}
+              link={"/artists/" + index}
+              id={index}
+              starRating="5.0"
+            />
+          );
+        })}
       </div>
 
       <div className="row px-3 mt-3">
         <h1>Venues</h1>
         <div className="card-row d-flex flex-nowrap px-3">
-          {venues.map ((venue, index) => {
-          return <Venuecard 
-          venue_name={venue.venue_name} 
-          city={venue.city} 
-          state={venue.state} 
-          imgUrl={venue.images.split(", ")[0]}
-          link={"/venues/" + index}
-          id={index} 
-          starRating="5.0"/>})}
+          {venues.map((venue, index) => {
+            return (
+              <Venuecard
+                venue_name={venue.venue_name}
+                city={venue.city}
+                state={venue.state}
+                imgUrl={venue.images.split(", ")[0]}
+                link={"/venues/" + index}
+                id={index}
+                starRating="5.0"
+              />
+            );
+          })}
         </div>
       </div>
     </div>
