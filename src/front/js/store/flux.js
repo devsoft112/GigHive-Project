@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       users: [],
-      user: {},
+      user: [],
       message: null,
       artists: [],
       venues: [],
@@ -43,11 +43,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       getUser: async () => {
+        const store = getStore();
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/users", {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + getStore().token,
+              Authorization: "Bearer " + store.token,
             },
           });
           const data = await resp.json();
@@ -210,7 +210,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           console.log("user signed up: " + data[0]);
           sessionStorage.setItem("token", data[1]);
-          setStore({ artists: data[0] });
           setStore({ token: data[1] });
 
           return true;

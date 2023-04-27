@@ -37,8 +37,8 @@ def venue_get():
 
     return jsonify(serialized_venues), 200
 
-#to get the user for userprofile
-@api.route('/users', methods=['GET'])
+#to get the user for 
+@api.route('/user', methods=['GET'])
 @jwt_required()
 def user_get():
     username=get_jwt_identity()
@@ -84,7 +84,7 @@ def create_token():
 
       # create token
       expiration = datetime.timedelta(minutes=120)
-      access_token = create_access_token(identity= user.id, expires_delta= expiration)
+      access_token = create_access_token(identity= username, expires_delta= expiration)
       return jsonify(access_token=access_token)
 
     return jsonify(msg="wrong user")

@@ -27,7 +27,7 @@ export const UserProfile = () => {
     <div className="container">
       <div className="row mx-2 py-auto align-content-center">
         <div className="col-md-1 my-auto p-0">
-          <b>I am a:{}</b>
+          <b>I am a:{users.first_name}</b>
         </div>
         <Link to="/register/venue">
           <button type="button">Venue </button>
@@ -35,18 +35,23 @@ export const UserProfile = () => {
         <Link to="/register/artist">
           <button type="button">Artist </button>
         </Link>
+        <Link to="/myprofile">
+          <button type="button">Edit Your Profile</button>
+        </Link>
       </div>
       {store.users.artists &&
         store.users.artists.map((artist, id) => {
           return (
             <div key={id} className="row mx-2 py-auto align-content-center">
               <div className="col-md-1 my-auto p-0">
-                <span>{artist.artist_name}</span>
+                <span>Artist Name :{artist.artist_name}</span>
+                <span>Genre :{artist.genre}</span>
+                <span>Instagram :{artist.instagram}</span>
+                <span>Performance Type :{artist_name}</span>
               </div>
             </div>
           );
         })}
-      ,
     </div>
   );
 };
