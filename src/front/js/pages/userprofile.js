@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 export const UserProfile = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  const users = store.users;
+  const users = store.user;
   const artist = store.artists;
   const history = useNavigate();
   console.log(id, "this is from userprofile");
@@ -27,7 +27,7 @@ export const UserProfile = () => {
     <div className="container">
       <div className="row mx-2 py-auto align-content-center">
         <div className="col-md-1 my-auto p-0">
-          <b>I am a:{}</b>
+          <b>I am a:{users.first_name}</b>
         </div>
         <Link to="/register/venue">
           <button type="button">Venue </button>
