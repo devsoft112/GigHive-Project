@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getUser: async () => {
         const store = getStore();
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/users", {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/user", {
             headers: {
               Authorization: "Bearer " + store.token,
             },
@@ -210,7 +210,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           console.log("user signed up: " + data[0]);
           sessionStorage.setItem("token", data[1]);
-          setStore({ artists: data[0] });
+          setStore({ users: data[0] });
           setStore({ token: data[1] });
 
           return true;

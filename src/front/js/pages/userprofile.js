@@ -27,7 +27,7 @@ export const UserProfile = () => {
     <div className="container">
       <div className="row mx-2 py-auto align-content-center">
         <div className="col-md-1 my-auto p-0">
-          <b>I am a:{users.first_name}</b>
+          <b>I am {users.first_name} and i would like to Add a</b>
         </div>
         <Link to="/register/venue">
           <button type="button">Venue </button>
