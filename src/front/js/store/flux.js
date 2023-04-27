@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       users: [],
-      user: {},
+      user: [],
       message: null,
       artists: [],
       venues: [],
@@ -47,7 +47,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/users", {
             headers: {
-              "Content-Type": "application/json",
               Authorization: "Bearer " + store.token,
             },
           });
