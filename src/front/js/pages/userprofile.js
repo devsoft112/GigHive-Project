@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 export const UserProfile = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  const users = store.users;
+  const users = store.user;
   const artist = store.artists;
   const history = useNavigate();
   console.log(id, "this is from userprofile");

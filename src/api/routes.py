@@ -109,7 +109,6 @@ def register_artist():
                     spotify=response_body["spotify"],
                     user_id=user.id
                     )
-
     db.session.add(artist)
     db.session.commit()
     return jsonify(response_body), 200
