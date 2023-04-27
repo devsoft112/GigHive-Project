@@ -84,7 +84,7 @@ def create_token():
 
       # create token
       expiration = datetime.timedelta(minutes=120)
-      access_token = create_access_token(identity= user.id, expires_delta= expiration)
+      access_token = create_access_token(identity= username, expires_delta= expiration)
       return jsonify(access_token=access_token)
 
     return jsonify(msg="wrong user")
