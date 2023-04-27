@@ -43,11 +43,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       getUser: async () => {
+        const store = getStore();
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/users", {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + getStore().token,
+              Authorization: "Bearer " + store.token,
             },
           });
           const data = await resp.json();
