@@ -12,7 +12,7 @@ class User(db.Model):
     password = db.Column(db.String(120), unique=False, nullable=False)
     venues = db.relationship('Venue', backref="venuesUser", lazy='subquery') 
     artists = db.relationship('Artist', backref="artistUser", lazy='subquery') 
-
+    favorites = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
     
     def __repr__(self):
         return f'<User {self.username}>'
@@ -25,7 +25,9 @@ class User(db.Model):
             "username": self.username,
             "email": self.email,
             "artists": list(map(lambda x: x.serialize(), self.artists)),
-            "venues": list(map(lambda x: x.serialize(), self.venues))
+            "venues": list(map(lambda x: x.serialize(), self.venues)),
+            "favorites": list(map(lambda x: x.serialize(), self.favorites))
+
             # do not serialize the password, its a security breach
         }
 
@@ -55,7 +57,7 @@ class Venue(db.Model):
     spotify = db.Column(db.String(120), nullable=True)
     images = db.Column(db.String(), nullable=True)
     user_id = db.Column('User', db.Integer, db.ForeignKey('user.id'),nullable=False)
-   
+    favorites_id = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
 
     
     def __repr__(self):
@@ -104,6 +106,7 @@ class Artist(db.Model):
     spotify = db.Column(db.String(120), nullable=True)
     images = db.Column(db.String(), nullable=True)
     user_id = db.Column('User', db.Integer, db.ForeignKey('user.id'),nullable=False)
+    favorites_id = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
 
 
 
@@ -125,6 +128,29 @@ class Artist(db.Model):
         "spotify": self.spotify, 
         "images": self. images
     }
+
+
+class Favorites(db.Model):
+    __tablename__ = "favorites"
+    id = db.Column(db.Integer, primary_key=True)# public
+    user = db.relationship('User', backref="userFavorites", lazy='subquery') 
+    venues = db.relationship('Venue', backref="venueFavorites", lazy='subquery') 
+    artists = db.relationship('Artist', backref="artistFavorites", lazy='subquery') 
+
+    
+    def __repr__(self):
+        return f'<Favorites {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user,
+            "artists": list(map(lambda x: x.serialize(), self.artists)),
+            "venues": list(map(lambda x: x.serialize(), self.venues))
+            # do not serialize the password, its a security breach
+        }
+
+
 
 
 class Messages(db.Model):
