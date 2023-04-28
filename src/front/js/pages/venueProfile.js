@@ -9,11 +9,19 @@ import MapPlaceholder from './MapPlaceholder.png'
 
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
+import { Map } from "../component/Map/Map.jsx";
 
 export function VenueProfile() {
   const { store, actions } = useContext(Context);
   const venues = store.venues
   const { id } = useParams();
+  const location = {
+    address: `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`,
+    lat: venues[id]?.lat,
+    lng: venues[id]?.lng
+
+  }
+ console.log(location)
 
   return (
     <div className="container-fluid">
@@ -98,7 +106,7 @@ export function VenueProfile() {
             </div> */}
             <div className="col-md-6"><img className="calendar" src={CalendarPlaceholder} /><img className="calendar mx-5" src={CalendarPlaceholder} /></div>
           </div>
-          <div className="row rounded"><img src={MapPlaceholder} /></div>
+          <div className="row rounded"><Map location ={location} zoomLevel={17}/></div>
       </div>
            
       </div>
