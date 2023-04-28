@@ -122,7 +122,8 @@ class Artist(db.Model):
         "twitter": self.twitter,
         "tiktok": self.tiktok,
         "soundcloud": self.soundcloud,
-        "spotify": self.spotify
+        "spotify": self.spotify, 
+        "images": self. images
     }
 
 
