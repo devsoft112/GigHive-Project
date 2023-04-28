@@ -1,0 +1,16 @@
+.user-card {
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  color: black;
+  padding-left: 40%;
+}
+
+.user-card-text {
+  color: darkgray;
+  font-size: 10px;
+  padding-left: 40%;
+}

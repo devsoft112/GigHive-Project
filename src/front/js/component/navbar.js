@@ -45,8 +45,8 @@ export const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             {isLoggedIn === true && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/profile">
+              <li>
+                <Link to="/profile">
                   Profile
                 </Link>
               </li>
@@ -64,8 +64,8 @@ export const Navbar = () => {
               <Link to="/help">Host an event</Link>
             </li>
             {isLoggedIn === false && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/register">
+              <li >
+                <Link to="/register">
                   Sign Up
                 </Link>
               </li>
