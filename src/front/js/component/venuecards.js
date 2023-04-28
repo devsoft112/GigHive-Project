@@ -7,10 +7,11 @@ import { useContext } from "react";
 import { Context } from "../store/appContext";
 export const Venuecard = (props) => {
   const { store, actions } = useContext(Context);
-
+  const [activeFav, setActiveFav] = useState(false);
   const handleFavorites = (e) => {
     e.preventDefault();
     actions.VenueFavorite(props.venus_name);
+    setActiveFav(true)
   };
   return (
     <div className="card venue-card mx-2">
@@ -41,7 +42,7 @@ export const Venuecard = (props) => {
             View Profile
           </a>
           <i
-            className="far fa-heart"
+            className={activeFav ? "fas fa-heart" : "far fa-heart"}
             style="color: #d8131d;"
             onClick={(e) => handleFavorites(e)}
           ></i>
