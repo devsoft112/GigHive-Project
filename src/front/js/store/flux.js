@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getVenue: async () => {
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + "/api/register/venues"
+            process.env.BACKEND_URL + "/api/venues"
           );
           const data = await resp.json();
           setStore({ venues: data });
