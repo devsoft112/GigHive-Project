@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 
 
@@ -15,10 +15,31 @@ export function VenueProfile() {
   const { store, actions } = useContext(Context);
   const venues = store.venues
   const { id } = useParams();
+  const [locationData, setLocationData] = useState({})
+  const [lat, setLat] = useState()
+  const [lng, setLng] = useState()
+  let Address=`${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${Address}&key=AIzaSyDecCwDfJgrb7eqAPY9il-YWvcs5RdPmuE`)
+
+.then((responseText) => {
+    return responseText.json();
+})
+.then(jsonData => {
+    setLat(jsonData.results[0].geometry.location.lat);
+    setLng(jsonData.results[0].geometry.location.lng) //111 Wellington St, Ottawa, ON K1A 0A9, Canada
+})
+.catch(error => {
+    console.log(error);
+
+})
+
+console.log(lat)
+console.log(lng)
+  
   const location = {
     address: `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`,
-    lat: venues[id]?.lat,
-    lng: venues[id]?.lng
+    lat: lat,
+    lng: lng,
 
   }
  console.log(location)

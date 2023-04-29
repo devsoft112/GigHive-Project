@@ -1,272 +1,135 @@
+import React, { useContext, useState, useEffect } from "react";
 
-const getState = ({ getStore, getActions, setStore }) => {
-  return {
-    store: {
-      token: null,
-      users: [],
-      message: null,
-      artists: [],
-      venues: [],
-    },
-    actions: {
-      logout: () => {
-        sessionStorage.removeItem("token");
-        console.log("logging out");
-        setStore({ token: null });
-      },
-      syncTokenfromSessionStorage: () => {
-        const token = sessionStorage.getItem("token");
-        if (token && token !== undefined && token !== "")
-          setStore({ token: token });
-      },
-      getArtist: async () => {
-        try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
-          const data = await resp.json();
-          setStore({ artists: data });
-          return data;
-        } catch (error) {
-          console.log("Error loading artists", error);
-        }
-      },
-      getVenue: async () => {
-        try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/venues"
-          );
-          const data = await resp.json();
-          setStore({ venues: data });
-          return data;
-        } catch (error) {
-          console.log("Error loading venues", error);
-        }
-      },
 
-      postArtist: async (
-        artist_name,
-        genre,
-        performance_type,
-        about_info,
-        instagram,
-        facebook,
-        twitter,
-        soundcloud,
-        spotify,
-        tiktok
-      ) => {
-        const store = getStore();
 
-        const opts = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + store.token,
-          },
-          body: JSON.stringify({
-            artist_name: artist_name,
-            genre: genre,
-            performance_type: performance_type,
-            about_info: about_info,
-            instagram: instagram,
-            facebook: facebook,
-            twitter: twitter,
-            soundcloud: soundcloud,
-            spotify: spotify,
-            tiktok: tiktok,
-          }),
-        };
-        try {
-          const response = await fetch(
-            process.env.BACKEND_URL + "/api/register/artist",
-            opts
-          );
-          if (response.status !== 200) {
-            alert("Response was not a code 200.");
-            return false;
-          }
-          const data = await response.json();
-          console.log("artist signed up: " + data);
-          setStore({ artists: data.response_body });
-          return true;
-        } catch (error) {
-          console.error("Error! Description: " + error);
-        }
-      },
-      postVenue: async (
-        venue_name,
-        address,
-        city,
-        state,
-        zip_code,
-        phone_number,
-        venue_capacity,
-        music_type,
-        in_out,
-        hiring,
-        pay_rate,
-        fees,
-        equipment,
-        about_info,
-        instagram,
-        facebook,
-        twitter,
-        soundcloud,
-        spotify,
-        tiktok
-      ) => {
-        const store = getStore();
-        const opts = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + store.token,
-          },
-          body: JSON.stringify({
-            venue_name: venue_name,
-            address: address,
-            city: city,
-            state: state,
-            zip_code: zip_code,
-            phone_number: phone_number,
-            venue_capacity: venue_capacity,
-            music_type: music_type,
-            in_out: in_out,
-            hiring: hiring,
-            pay_rate: pay_rate,
-            fees: fees,
-            equipment: equipment,
-            about_info: about_info,
-            instagram: instagram,
-            facebook: facebook,
-            twitter: twitter,
-            soundcloud: soundcloud,
-            spotify: spotify,
-            tiktok: tiktok,
-          }),
-        };
-        try {
-          const response = await fetch(
-            process.env.BACKEND_URL + "/api/register/venue",
-            opts
-          );
-          if (response.status !== 200) {
-            alert("Response was not a code 200.");
-            return false;
-          }
-          const data = await response.json();
-          console.log("venue signed up: " + data);
-          setStore({ venues: data.response_body });
-          return true;
-        } catch (error) {
-          console.error("Error! Description: " + error);
-        }
-      },
+import "../../styles/venueProfile.css";
 
-      registerUser: async (
-        first_name,
-        last_name,
-        username,
-        email,
-        password
-      ) => {
-        const opts = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            first_name: first_name,
-            last_name: last_name,
-            username: username,
-            email: email,
-            password: password,
-          }),
-        };
-        try {
-          const response = await fetch(
-            process.env.BACKEND_URL + "/api/register",
-            opts
-          );
-          if (response.status !== 200) {
-            alert("Response was not a code 200.");
-            return false;
-          }
-          const data = await response.json();
-          console.log("user signed up: " + data[0]);
-          sessionStorage.setItem("token", data[1]);
-          setStore({ token: data[1] });
+import CalendarPlaceholder from './CalendarPlaceholder.png'
+import MapPlaceholder from './MapPlaceholder.png'
 
-          return true;
-        } catch (error) {
-          console.error("Error! Description: " + error);
-        }
-      },
-      login: async (username, password) => {
-        const opts = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
-        };
-        try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/login",
-            opts
-          );
-          if (resp.status !== 200) {
-            alert("There has been an error");
-            return false;
-          }
+import { Context } from "../store/appContext";
+import { useParams } from "react-router";
+import { Map } from "../component/Map/Map.jsx";
 
-          const data = await resp.json();
-          sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token });
-          return true;
-        } catch (error) {
-          console.error("There has been an error logging in");
-        }
-      },
-      getMessage: async () => {
-        const store = getStore();
-        const opts = {
-          headers: {
-            Authorization: "Bearer " + store.token,
-          },
-        };
+export function VenueProfile() {
+  const { store, actions } = useContext(Context);
+  const venues = store.venues
+  const { id } = useParams();
+  const [locationData, setLocationData] = useState({})
+  const [lat, setLat] = useState()
+  const [lng, setLng] = useState()
+  let Address=`${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${Address}&key=AIzaSyDecCwDfJgrb7eqAPY9il-YWvcs5RdPmuE`)
 
-        try {
-          // fetching data from the backend
-          const resp = await fetch("api/hello", opts);
-          const data = await resp.json();
-          setStore({ message: data.message });
-          // don't forget to return something, that is how the async resolves
-          return data;
-        } catch (error) {
-          console.log("Error loading message from backend", error);
-        }
-      },
+.then((responseText) => {
+    return responseText.json();
+})
+.then(jsonData => {
+    setLat(jsonData.results[0].geometry.location.lat);
+    setLng(jsonData.results[0].geometry.location.lng) //111 Wellington St, Ottawa, ON K1A 0A9, Canada
+})
+.catch(error => {
+    console.log(error);
 
-      // Authorization: () => {
-      //   const store = getStore();
-      //   const opts = {
-      //     headers: {
-      //       Authorization: "Bearer " + store.token,
-      //     },
-      //   };
-      //   // fetching data from the backend
-      //   fetch(process.env.BACKEND_URL + "/api/register/artist", opts)
-      //     .then((resp) => resp.json())
-      //     .then((data) => setStore({ message: data.artists.username }))
-      //     .catch((error) => console.log(error));
+})
 
-      //   // don't forget to return something, that is how the async resolves
-      // },
-    },
-  };
-};
+console.log(lat)
+console.log(lng)
+  
+  const location = {
+    address: `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`,
+    lat: lat,
+    lng: lng,
 
-export default getState;
+  }
+ console.log(location)
+
+  return (
+    <div className="container-fluid">
+      <div className="row mt-3 px-2 gx-3 d-flex mainRow">
+      <img src={venues[id]?.images.split(", ")[0]} className="col-md-5 mt-2 p-0 rounded profile-main-img object-fit-contain">
+          
+          </img>
+        <div className="col-md-7 px-3">
+          <div class="d-flex flex-row mb-0">
+            <div>
+              <h2 className="venueName m-0">{venues[id]?.venue_name}</h2>
+            </div>
+            <div className="mx-2 pt-1">
+              <button className="btn btn-sm btn-primary">Message</button>
+            </div>
+          </div>
+          <div className="row mt-0">
+          <p className="my-0 small"><b>{venues[id]?.address},{venues[id]?.city}, {venues[id]?.state} {venues[id]?.zip_code}</b></p>
+
+          <div className="row mt-0">
+            <div className="star-wrapper">
+              <i className="fa-solid fa-star s1"></i>
+              <i className="fa-solid fa-star s2"></i>
+              <i className="fa-solid fa-star s3"></i>
+              <i className="fa-solid fa-star s4"></i>
+              <i className="fa-solid fa-star s5"></i>
+            </div>
+          </div>
+          </div>
+          <div className="row mt-3">
+            
+
+            <p>{venues[id]?.about_info}</p>
+            <p className="my-0"><b>Capacity: </b>{venues[id]?.capacity}</p>
+            <p className="my-0"><b>Music Type: </b>{venues[id]?.music_type}</p>
+            <p className="my-0"><b>Hiring?: </b>{venues[id]?.hiring}</p>
+            <p className="my-0"><b>Pay Rate: </b>{venues[id]?.pay_rate}</p>
+            <p className="my-0"><b>Fee Rate: </b>{venues[id]?.fees}</p>
+            <p className="my-0"><b>Indoor/Outdoor Staging: </b>{venues[id]?.in_out}</p>
+            <p className="my-0"><b>Equipment Info: </b>{venues[id]?.equipment}</p>
+          </div>
+          <div className="row mt-3 px-2">
+          {venues[id]?.instagram ? <a href={`http://instagram.com/${venues[id]?.instagram}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-instagram fa-xl"></i></a> : null}
+          {venues[id]?.tiktok ?<a href={`http://tiktok.com/@${venues[id]?.tiktok}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-tiktok fa-xl"></i></a> : null}
+          {venues[id]?.facebook ?<a href={`http://facebook.com/${venues[id]?.facebook}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-facebook fa-xl"></i></a> : null}
+          {venues[id]?.twitter ? <a href={`http://twitter.com/${venues[id]?.twitter}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-twitter fa-xl"></i></a> : null}
+          {venues[id]?.soundcloud ? <a href={`http://soundcloud.com/${venues[id]?.soundcloud}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-soundcloud fa-xl"></i></a> : null}
+          {venues[id]?.spotify ? <a href={`http://spotify.com`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-spotify fa-xl"></i></a> : null}
+          </div>
+        </div>
+        <div className="row px-2 d-flex justify-content-between align-items-center secondRow">
+            <div className="col-md-5 mx-1">
+            <div className="row d-flex justify-content-between">
+              {venues[id]?.images.split(", ").map((image)=>{
+                return <img className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
+              })}
+              </div>
+            </div>
+            {/* <div className="col-md-5 mx-1">
+              <div className="row d-flex justify-content-between">
+                <div className="col-md m-2 rounded smImage">
+                  Test
+                </div>
+                <div className="col-md m-2 rounded smImage">
+                  Test
+                </div>
+                <div className="col-md m-2 rounded smImage">
+                  Test
+                </div>
+              </div>
+              <div className="row d-flex justify-content-between">
+                <div className="col-md rounded m-2 smImage">
+                  Test
+                </div>
+                <div className="col-md rounded m-2 smImage">
+                  Test
+                </div>
+                <div className="col-md rounded m-2 smImage">
+                  Test
+                </div>
+              </div>
+            </div> */}
+            <div className="col-md-6"><img className="calendar" src={CalendarPlaceholder} /><img className="calendar mx-5" src={CalendarPlaceholder} /></div>
+          </div>
+          <div className="row rounded"><Map location ={location} zoomLevel={17}/></div>
+      </div>
+           
+      </div>
+  );
+}
