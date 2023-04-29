@@ -2,14 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/userprofile.css";
+import { useRowSelect } from "react-table";
 
 export const UserProfile = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  const users = store.user;
+  const user = store.actions.getUser();
   const artist = store.artists;
   const history = useNavigate();
-  console.log(id, "this is from userprofile");
+  console.log(user, "this is from userprofile");
 
   // Check if user is authenticated
   useEffect(() => {
@@ -21,6 +22,7 @@ export const UserProfile = () => {
       history("/login");
     } else {
       actions.getUser();
+      actions.getArtist();
     }
   }, [store.token]);
 
@@ -34,17 +36,17 @@ export const UserProfile = () => {
           alt=""
         ></img>
         <div className="user-card-body">
-          <h1 classname="user-card-title"> Welcome {users.username}</h1>
+          <h1 classname="user-card-title"> Welcome {user.username}</h1>
           <p className="user-card-text">
             {" "}
-            Your name : {users.first_name} {users.last_name}
+            Your name : {user.first_name} {user.last_name}
           </p>
-          <p className="user-card-text"> Your Email {users.email}</p>
+          <p className="user-card-text"> Your Email {user.email}</p>
         </div>
       </div>
       <div className="Jumbotron">
         <div className="card">
-          <p>I am {users.first_name} and i would like to Add a</p>
+          <p>I am {user.first_name} and i would like to Add a</p>
         </div>
         <Link to="/register/venue">
           <button type="button">Venue </button>
@@ -58,7 +60,7 @@ export const UserProfile = () => {
       </div>
       <div key={id} className="container">
         <div className="card">
-          <p className="card-title">Artist Name :{users.artists}</p>
+          <p className="card-title">Artist Name :{user[(0, 1)]}</p>
           <p className="card-text">Genre :{artist.genre}</p>
           <p className="card-text">Instagram :{artist.instagram}</p>
           <p className="card-text">Performance Type :{}</p>
