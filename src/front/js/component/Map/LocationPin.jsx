@@ -1,10 +1,9 @@
-// import { Icon } from '@iconify/react'
-// import locationIcon from '@iconify/icons-mdi/map-marker'
 import React from "react"
+import '../../../styles/map.css'
 
 export const LocationPin = ({ text }) => (
     <div className="pin">
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-location-dot map-pin"></i>
       <p className="pin-text">{text}</p>
     </div>
   )

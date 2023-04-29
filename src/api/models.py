@@ -37,8 +37,6 @@ class Venue(db.Model):
     address = db.Column(db.String(120), nullable=False)
     city = db.Column (db.String(120), nullable=False) 
     state = db.Column(db.String(120), nullable=False)
-    lat = db.Column(db.VARCHAR(), nullable=True)
-    lng = db.Column(db.VARCHAR(), nullable=True)
     zip_code = db.Column(db.Integer, nullable=False)
     phone_number = db.Column(db.String(120), nullable=False)
     venue_capacity = db.Column(db.String(120), nullable=False)
