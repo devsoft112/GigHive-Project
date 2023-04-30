@@ -19,10 +19,11 @@ export function ArtistProfile(props) {
 
   return (
     <div className="container-fluid">
-      <div className="row px-2 gx-3 mt-3" id="mainRow">
-        <img src={artists[id]?.images.split(", ")[0]} className="col-md-5 mt-2 p-0 rounded profile-main-img object-fit-contain">
-          
-        </img>
+      <div className="row mt-3 px-2 gx-3 d-flex mainRow">
+        <div className="col-md-5 mt-2 p-0">
+          <img src={artists[id]?.images.split(", ")[0]} className="profile-main-img object-fit-contain rounded">
+          </img>
+        </div>
         <div className="col-md-7 px-3" id="info-section">
           <div class="d-flex flex-row mb-0">
             <div>
