@@ -170,7 +170,7 @@ export function VenueProfile() {
               </div>
             </div>
           </div>
-          <div className="row rounded mt-1"><Map location={location} zoomLevel={17} /></div>
+          <div className="row rounded mt-1"><Map location={location} zoomLevel={18} /></div>
       </div>
            
       </div>
