@@ -20,7 +20,7 @@ export function ArtistProfile(props) {
   return (
     <div className="container-fluid">
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
-        <div className="col-md-5 mt-2 p-0">
+        <div className="col-md-5 mt-2 p-0 h-100">
           <img src={artists[id]?.images.split(", ")[0]} className="profile-main-img object-fit-contain rounded">
           </img>
         </div>
