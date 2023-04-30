@@ -71,8 +71,6 @@ class Venue(db.Model):
             "city": self.city,
             "state": self.state,
             "zip_code": self.zip_code,
-            "lat": self.lat,
-            "lng": self.lng,
             "phone_number": self.phone_number,
             "venue_capacity": self.venue_capacity,
             "music_type": self.music_type,
