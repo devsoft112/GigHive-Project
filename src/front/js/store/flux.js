@@ -1,4 +1,3 @@
-
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -7,6 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       message: null,
       artists: [],
       venues: [],
+      favoriteVenues: [],
+      favoriteArtists: [],
     },
     actions: {
       logout: () => {
@@ -55,7 +56,39 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading venues", error);
         }
       },
+      VenueFavorite: (name) => {
+        let favorites = getStore().favoriteVenues;
+        let venues = getStore().venues;
 
+        favorites.forEach((favorite) => {
+          if (favorite.venue_name == name) {
+            favorites.pop(favorite);
+          } else {
+            venues.forEach((venue, index) => {
+              if (venue.venue_name == name) {
+                favorites.push(venue);
+              }
+            });
+          }
+        });
+        setStore({ favorite: favorites });
+      },
+      ArtistFavorite: (name) => {
+        let artists = getStore().favoriteArtists;
+        let favorites = getStore().favorites;
+        favorites.forEach((favorite) => {
+          if (favorite.artist_name == name) {
+            favorites.pop(favorite);
+          } else {
+            artists.forEach((artist, index) => {
+              if (artist.artist_name == name) {
+                favorites.push(artist);
+              }
+            });
+          }
+        });
+        setStore({ favorite: favorites });
+      },
       postArtist: async (
         artist_name,
         genre,
