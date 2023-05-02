@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 
 
 import "../../styles/venueProfile.css";
+import { Map } from "../component/Map/Map.jsx";
 
 import CalendarPlaceholder from './CalendarPlaceholder.png'
 import MapPlaceholder from './MapPlaceholder.png'
@@ -15,12 +16,77 @@ export function VenueProfile() {
   const venues = store.venues
   const { id } = useParams();
 
+  const Address = `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`
+  const [lat, setLat] = useState('')
+  const [lng, setLng] = useState('')
+
+  const [oneStar, setOneStar] = useState ("fa-solid fa-star s1")
+  const [twoStar, setTwoStar] = useState ("fa-solid fa-star s2")
+  const [threeStar, setThreeStar] = useState ("fa-solid fa-star s3")
+  const [fourStar, setFourStar] = useState ("fa-solid fa-star s4")
+  const [fiveStar, setFiveStar] = useState ("fa-solid fa-star s5")
+  
+  let starRating = Math.ceil(Math.random() * 5)
+  console.log(starRating)
+  useEffect(()=>{
+    if (starRating == 5){
+      setOneStar("fa-solid fa-star s1 goldRating")
+      setTwoStar("fa-solid fa-star s2 goldRating")
+      setThreeStar("fa-solid fa-star s3 goldRating")
+      setFourStar("fa-solid fa-star s4 goldRating")
+      setFiveStar("fa-solid fa-star s5 goldRating")
+    }
+    else if (starRating == 4){
+      setTwoStar("fa-solid fa-star s2 goldRating")
+      setThreeStar("fa-solid fa-star s3 goldRating")
+      setFourStar("fa-solid fa-star s4 goldRating")
+      setFiveStar("fa-solid fa-star s5 goldRating")
+    }
+    else if (starRating == 3){
+      setThreeStar("fa-solid fa-star s3 goldRating")
+      setFourStar("fa-solid fa-star s4 goldRating")
+      setFiveStar("fa-solid fa-star s5 goldRating")
+    }
+    else if (starRating == 2){
+      setFourStar("fa-solid fa-star s4 goldRating")
+      setFiveStar("fa-solid fa-star s5 goldRating")
+    }
+    else {
+      setFiveStar("fa-solid fa-star s5 goldRating")
+    }
+  }, [])
+
+  const location = {
+    address: Address,
+    lat: lat,
+    lng: lng,
+    name: venues[id]?.venue_name
+  }
+
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${Address}&key=AIzaSyDecCwDfJgrb7eqAPY9il-YWvcs5RdPmuE`)
+  .then((response) => {
+    return response.json();
+  })
+  .then(jsonData => {
+    setLat(jsonData.results[0].geometry.location.lat);
+    setLng(jsonData.results[0].geometry.location.lng);
+  })
+  .catch(error => {
+    console.log(error);
+  })
+
   return (
     <div className="container-fluid">
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
-      <img src={venues[id]?.images.split(", ")[0]} className="col-md-5 mt-2 p-0 rounded profile-main-img object-fit-contain">
+        <div className="col-md-5 mt-2 p-0 h-100">
+
+
+          
+      <img src={venues[id]?.images.split(", ")[0]} className="profile-main-img object-fit-contain rounded">
           
           </img>
+          
+          </div>
         <div className="col-md-7 px-3">
           <div class="d-flex flex-row mb-0">
             <div>
@@ -35,11 +101,11 @@ export function VenueProfile() {
 
           <div className="row mt-0">
             <div className="star-wrapper">
-              <i className="fa-solid fa-star s1"></i>
-              <i className="fa-solid fa-star s2"></i>
-              <i className="fa-solid fa-star s3"></i>
-              <i className="fa-solid fa-star s4"></i>
-              <i className="fa-solid fa-star s5"></i>
+              <i className={oneStar}></i>
+              <i className={twoStar}></i>
+              <i className={threeStar}></i>
+              <i className={fourStar}></i>
+              <i className={fiveStar}></i>
             </div>
           </div>
           </div>
@@ -64,9 +130,9 @@ export function VenueProfile() {
           {venues[id]?.spotify ? <a href={`http://spotify.com`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-spotify fa-xl"></i></a> : null}
           </div>
         </div>
-        <div className="row px-2 d-flex justify-content-between align-items-center secondRow">
+        <div className="row px-2 d-flex justify-content-between align-items-start">
             <div className="col-md-5 mx-1">
-            <div className="row d-flex justify-content-between">
+            <div className="row flex-row d-flex justify-content-between mt-2">
               {venues[id]?.images.split(", ").map((image)=>{
                 return <img className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
               })}
@@ -96,9 +162,18 @@ export function VenueProfile() {
                 </div>
               </div>
             </div> */}
-            <div className="col-md-6"><img className="calendar" src={CalendarPlaceholder} /><img className="calendar mx-5" src={CalendarPlaceholder} /></div>
+            <div className="col-md-6">
+            <div className="row mt-2">
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="row rounded"><img src={MapPlaceholder} /></div>
+          <div className="row rounded mt-1"><Map location={location} zoomLevel={17} /></div>
       </div>
            
       </div>

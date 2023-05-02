@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
-import { useParams } from "react-router"
+import { useParams } from "react-router";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -17,7 +17,8 @@ import { ArtistProfile } from "./pages/artistProfile";
 import { VenueProfile } from "./pages/venueProfile";
 import { UserProfile } from "./pages/userprofile";
 import { EditUserProfile } from "./pages/editUserProfile";
-
+import { Venues } from "./pages/venues";
+import { Artists } from "./pages/artist";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
