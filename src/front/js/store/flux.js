@@ -20,6 +20,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (token && token !== undefined && token !== "")
           setStore({ token: token });
       },
+      // getCoordinates: async (Address) => {
+      //   fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${Address}&key=AIzaSyDecCwDfJgrb7eqAPY9il-YWvcs5RdPmuE`)
+
+      //   .then((responseText) => {
+      //     return responseText.json();
+      //   })
+      //   .then(jsonData => {
+      //     console.log(jsonData.results[0].geometry.location.lat); //111 Wellington St, Ottawa, ON K1A 0A9, Canada
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+
+      //   })},
+      
       getArtist: async () => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
@@ -32,7 +46,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/venues"
+          );
           const data = await resp.json();
           setStore({ venues: data });
           return data;
@@ -225,7 +241,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           console.log("user signed up: " + data[0]);
           sessionStorage.setItem("token", data[1]);
-          setStore({ artists: data[0] });
           setStore({ token: data[1] });
 
           return true;
