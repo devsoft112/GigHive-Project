@@ -63,13 +63,13 @@ export function VenueProfile() {
     name: venues[id]?.venue_name
   }
 
-  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${Address}&key=` + process.env.MAPS_API_KEY)
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${Address}&key=AIzaSyDecCwDfJgrb7eqAPY9il-YWvcs5RdPmuE`)
   .then((response) => {
     return response.json();
   })
   .then(jsonData => {
     setLat(jsonData.results[0].geometry.location.lat);
-    setLng(jsonData.results[0].geometry.location.lng); // {lat: 45.425152, lng: -75.6998028}
+    setLng(jsonData.results[0].geometry.location.lng);
   })
   .catch(error => {
     console.log(error);
