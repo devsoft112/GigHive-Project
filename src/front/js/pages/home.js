@@ -96,7 +96,7 @@ export const Home = () => {
       <div className="row px-3">
         <h1 className="artistitle">Artists</h1>
       </div>
-      <div className="card-row d-flex flex-row flex-wrap justify-content-start">
+      <div className="card-row px-3 d-flex flex-row flex-wrap justify-content-start">
         {artists.map((artist, index) => {
           return (
             <Artistcard
@@ -111,6 +111,7 @@ export const Home = () => {
           );
         })}
       </div>
+
 
       <div className="row px-3 mt-3">
         <h1>Venues</h1>

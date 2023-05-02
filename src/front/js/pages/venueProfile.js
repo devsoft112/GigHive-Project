@@ -69,7 +69,7 @@ export function VenueProfile() {
   })
   .then(jsonData => {
     setLat(jsonData.results[0].geometry.location.lat);
-    setLng(jsonData.results[0].geometry.location.lng); // {lat: 45.425152, lng: -75.6998028}
+    setLng(jsonData.results[0].geometry.location.lng);
   })
   .catch(error => {
     console.log(error);
@@ -78,7 +78,10 @@ export function VenueProfile() {
   return (
     <div className="container-fluid">
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
-        <div className="col-md-5 mt-2 p-0">
+        <div className="col-md-5 mt-2 p-0 h-100">
+
+
+          
       <img src={venues[id]?.images.split(", ")[0]} className="profile-main-img object-fit-contain rounded">
           
           </img>
@@ -129,7 +132,7 @@ export function VenueProfile() {
         </div>
         <div className="row px-2 d-flex justify-content-between align-items-start">
             <div className="col-md-5 mx-1">
-            <div className="row d-flex justify-content-between mt-2">
+            <div className="row flex-row d-flex justify-content-between mt-2">
               {venues[id]?.images.split(", ").map((image)=>{
                 return <img className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
               })}
@@ -160,7 +163,7 @@ export function VenueProfile() {
               </div>
             </div> */}
             <div className="col-md-6">
-            <div className="row">
+            <div className="row mt-2">
                 <div className="col-md-6">
                   <img className="calendar" src={CalendarPlaceholder} />
                 </div>
