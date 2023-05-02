@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../../styles/venueCard.css";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ export const Venuecard = (props) => {
   const handleFavorites = (e) => {
     e.preventDefault();
     actions.VenueFavorite(props.venus_name);
-    setActiveFav(true)
+    setActiveFav(true);
   };
   return (
     <div className="card venue-card mx-2">
@@ -43,7 +43,7 @@ export const Venuecard = (props) => {
           </a>
           <i
             className={activeFav ? "fas fa-heart" : "far fa-heart"}
-            style="color: #d8131d;"
+            style={{ color: "#d8131d" }}
             onClick={(e) => handleFavorites(e)}
           ></i>
         </div>
