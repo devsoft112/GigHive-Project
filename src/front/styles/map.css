@@ -18,6 +18,12 @@
   text-align: center;
 }
 
+#mapPin {
+  position: absolute;
+  top: -45px;
+  left: -20px;
+}
+
 .pin-icon {
   font-size: 4rem;
   color: var(--maingold)
