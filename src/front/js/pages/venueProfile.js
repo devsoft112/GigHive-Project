@@ -21,13 +21,18 @@ export function VenueProfile() {
   const [lat, setLat] = useState('')
   const [lng, setLng] = useState('')
 
+  // <----variables/functions for images/lightbox--->
   const images=venues[id]?.images.split(", ")
   const [isOpen, setIsOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   function ExpandPhoto() {
     setIsOpen(true)
   }
+  function changeImgIndex(index){
+    setImgIndex(index)
+  }
 
+  // <----randomly sets star rating and highlights correct stars--->
   const [oneStar, setOneStar] = useState ("fa-solid fa-star s1")
   const [twoStar, setTwoStar] = useState ("fa-solid fa-star s2")
   const [threeStar, setThreeStar] = useState ("fa-solid fa-star s3")
@@ -64,6 +69,7 @@ export function VenueProfile() {
     }
   }, [])
 
+// <-----location object & fetch for map data----->
   const location = {
     address: Address,
     lat: lat,
@@ -86,15 +92,16 @@ export function VenueProfile() {
   return (
     <div className="container-fluid">
         
-        {/* <----Code for LightBox----> */}
-        {isOpen && <Lightbox
-  mainSrc={images[imgIndex]}
-  nextSrc={images[(imgIndex + 1) % images.length]}
-  prevSrc={images[(imgIndex + images.length - 1) % images.length]}
-  onCloseRequest={() => setIsOpen(false)}
-  onMovePrevRequest={() => setImgIndex((imgIndex + images.length - 1) % images.length)}
-  onMoveNextRequest={() => setImgIndex((imgIndex + 1) % images.length)}
-/>}
+      {/* <----Code for LightBox----> */}
+      {isOpen && <Lightbox
+      mainSrc={images[imgIndex]}
+      nextSrc={images[(imgIndex + 1) % images.length]}
+      prevSrc={images[(imgIndex + images.length - 1) % images.length]}
+      onCloseRequest={() => setIsOpen(false)}
+      onMovePrevRequest={() => setImgIndex((imgIndex + images.length - 1) % images.length)}
+      onMoveNextRequest={() => setImgIndex((imgIndex + 1) % images.length)}
+    />}
+
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
         <div className="col-md-5 mt-2 p-0 h-100">
 
@@ -151,8 +158,11 @@ export function VenueProfile() {
         <div className="row px-2 d-flex justify-content-between align-items-start">
             <div className="col-md-5 mx-1">
             <div className="row flex-row d-flex justify-content-between mt-2">
-              {venues[id]?.images.split(", ").map((image)=>{
-                return <img onClick={ExpandPhoto} className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
+              {venues[id]?.images.split(", ").map((image, index)=>{
+                return <img onClick={() => {
+                  ExpandPhoto();
+                  changeImgIndex(index);
+                }} className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
               })}
               </div>
             </div>
