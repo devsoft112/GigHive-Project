@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../../styles/venueCard.css";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Context } from "../store/appContext";
 export const Venuecard = (props) => {
   const { store, actions } = useContext(Context);
@@ -22,7 +22,7 @@ export const Venuecard = (props) => {
           alt="Card image cap"
         ></img>
       </div>
-      <span className="fa-regular fa-lg fa-heart card-heart"></span>
+
       <div className="card-body d-flex flex-column">
         <div className="card-info-row row">
           <div className="col-6 card-title pb-0 my-0">{props.venue_name}</div>
@@ -41,11 +41,15 @@ export const Venuecard = (props) => {
           <a className="btn btn-sm btn-primary" href={props.link}>
             View Profile
           </a>
-          {/* <i
-            className={activeFav ? "fas fa-heart" : "far fa-heart"}
+          <i
+            className={
+              activeFav
+                ? "fa-regular fas fa-heart fa-lg card-heart"
+                : " fa-regular far fa-heart fa-lg card-heart"
+            }
             style={{ color: "#d8131d" }}
             onClick={(e) => handleFavorites(e)}
-          ></i> */}
+          ></i>
         </div>
       </div>
     </div>

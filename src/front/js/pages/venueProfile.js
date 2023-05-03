@@ -6,10 +6,10 @@ import React, { useContext, useEffect, useState } from "react";
 import "../../styles/venueProfile.css";
 import { Map } from "../component/Map/Map.jsx";
 
-import CalendarPlaceholder from "./CalendarPlaceholder.png";
-import MapPlaceholder from "./MapPlaceholder.png";
-import CalendarPlaceholder from "./CalendarPlaceholder.png";
-import MapPlaceholder from "./MapPlaceholder.png";
+// import CalendarPlaceholder from "./CalendarPlaceholder.png";
+// import MapPlaceholder from "./MapPlaceholder.png";
+// import CalendarPlaceholder from "./CalendarPlaceholder.png";
+// import MapPlaceholder from "./MapPlaceholder.png";
 
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";

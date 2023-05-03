@@ -20,7 +20,7 @@ export const Artistcard = (props) => {
           alt="Card image cap"
         ></img>
       </div>
-      <span className="fa-regular fa-lg fa-heart card-heart"></span>
+
       <div className="card-body d-flex flex-column">
         <div className="card-info-row row">
           <div className="col-6 card-title pb-0 my-0">{props.artist_name}</div>
@@ -39,11 +39,15 @@ export const Artistcard = (props) => {
           <a className="btn btn-sm btn-primary" href={props.link}>
             View Profile
           </a>
-          {/* <i
-            className={activeFav ? "fas fa-heart" : "far fa-heart"}
+          <i
+            className={
+              activeFav
+                ? "fa-regular fas fa-heart fa-lg card-heart"
+                : " fa-regular far fa-heart fa-lg card-heart"
+            }
             style={{ color: "#d8131d" }}
             onClick={(e) => handleFavorites(e)}
-          ></i> */}
+          ></i>
         </div>
       </div>
     </div>
