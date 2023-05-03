@@ -34,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       //     console.log(error);
 
       //   })},
-      
+
       getArtist: async () => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
@@ -48,9 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/venues"
-          );
+          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
           const data = await resp.json();
           setStore({ venues: data });
           return data;
@@ -67,7 +65,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           });
           const data = await resp.json();
+          console.log(data, "this is from the User");
           setStore({ user: data });
+          setStore({ artists: data });
           return data;
         } catch (error) {
           console.log("Error loading user", error);

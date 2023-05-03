@@ -2,15 +2,14 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/userprofile.css";
-import { useRowSelect } from "react-table";
 
 export const UserProfile = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  const user = store.actions.getUser();
+  const user = store.user;
   const artist = store.artists;
   const history = useNavigate();
-  console.log(user, "this is from userprofile");
+  console.log(user.artist, "userprofile");
 
   // Check if user is authenticated
   useEffect(() => {
@@ -58,28 +57,45 @@ export const UserProfile = () => {
           <button type="button">Edit Your Profile</button>
         </Link>
       </div>
-      <div key={id} className="container">
-        <div className="card">
-          <p className="card-title">Artist Name :{user[(0, 1)]}</p>
-          <p className="card-text">Genre :{artist.genre}</p>
-          <p className="card-text">Instagram :{artist.instagram}</p>
-          <p className="card-text">Performance Type :{}</p>
-        </div>
-      </div>
-
-      {/* {store.users.artists &&
-        store.users.artists.map((artist, id) => {
-          return (
-            <div key={id} className="row mx-2 py-auto align-content-center">
-              <div className="col-md-1 my-auto p-0">
-                <span>Artist Name :{users.artist_name}</span>
-                <span>Genre :{artist.genre}</span>
-                <span>Instagram :{artist.instagram}</span>
-                <span>Performance Type :{artist_name}</span>
+      {/* map users artists and venues on profile */}
+      {
+        user.artists &&
+          user.artists.map((artist) => {
+            return (
+              <div key={artist.id} className="container">
+                <div className="card">
+                  <p className="card-title">
+                    Artist Name :{artist.artist_name}
+                  </p>
+                  <p className="card-text">Genre :{artist.genre}</p>
+                  <p className="card-text">Instagram :{artist.instagram}</p>
+                  <p className="card-text">
+                    Performance Type :{artist.performance_type}
+                  </p>
+                  <p className="card-text">TikTok : {artist.tiktok}</p>
+                  <p className="card-text">Twitter : {artist.twitter}</p>
+                  <p className="card-text">Spotify : {artist.spotify}</p>
+                  <p className="card-text">Sound Cloud : {artist.soundcloud}</p>
+                  <p className="card-text">Facebook: {artist.facebook}</p>
+                  <p className="card-text">About Info : {artist.aboout_info}</p>
+                </div>
               </div>
-            </div>
-          );
-        })} */}
+            );
+          })
+
+        // {users.artists &&
+        //   store.users.artists.map((artist, id) => {
+        //     return (
+        //       <div key={id} className="row mx-2 py-auto align-content-center">
+        //         <div className="col-md-1 my-auto p-0">
+        //           <span>Artist Name :{users.artist_name}</span>
+        //           <span>Genre :{artist.genre}</span>
+        //           <span>Instagram :{artist.instagram}</span>
+        //           <span>Performance Type :{artist_name}</span>
+        //         </div>
+        //       </div>
+        //     );
+      }
     </div>
   );
 };
