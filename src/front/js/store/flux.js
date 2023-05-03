@@ -99,7 +99,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         twitter,
         soundcloud,
         spotify,
-        tiktok
+        tiktok,
+        images
       ) => {
         const store = getStore();
 
@@ -159,7 +160,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         twitter,
         soundcloud,
         spotify,
-        tiktok
+        tiktok,
+        images
       ) => {
         const store = getStore();
         const opts = {

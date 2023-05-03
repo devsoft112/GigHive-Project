@@ -18,6 +18,7 @@ export function Artistsignup() {
   const [spotify, setSpotify] = useState("");
   const [artist_name, setArtistName] = useState("");
   const [performance_type, setPerformance_type] = useState("Other");
+  const [images, setImages] = useState("https://www.stopthebreaks.com/wp-content/uploads/2020/10/iStock-161838634.jpg, https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg, https://media.gq-magazine.co.uk/photos/5ec3ff68db385df92accf28b/16:9/pass/20200519-music-02.jpg")
 
   const handleSubmit = () => {
     actions.postArtist(
@@ -26,11 +27,12 @@ export function Artistsignup() {
       performance_type,
       about_info,
       instagram,
-      tikTok,
       facebook,
       twitter,
       soundcloud,
-      spotify
+      spotify,
+      tikTok,
+      images
     );
     console.log("artist created");
   };
