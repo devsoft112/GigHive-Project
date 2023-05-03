@@ -3,6 +3,7 @@ import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Venuecard } from "../component/venuecards.js";
+import {Link} from "react-router-dom"
 
 //calling the array
 export const Venues = () => {
@@ -49,6 +50,9 @@ export const Venues = () => {
             />
           );
         })}
+      </div>
+      <div>
+        <Link to = "/favorites"><button>Favorites</button></Link>
       </div>
     </div>
   );

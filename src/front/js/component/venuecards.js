@@ -10,7 +10,7 @@ export const Venuecard = (props) => {
   const [activeFav, setActiveFav] = useState(false);
   const handleFavorites = (e) => {
     e.preventDefault();
-    actions.VenueFavorite(props.venus_name);
+    actions.venueFavorite(props.venus_name);
     setActiveFav(true);
   };
   return (

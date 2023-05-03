@@ -18,6 +18,7 @@ import { VenueProfile } from "./pages/venueProfile";
 import { EditUserProfile } from "./pages/editUserProfile";
 import { Venues } from "./pages/venues";
 import { Artists } from "./pages/artist";
+import { Favorites } from "./pages/favorites";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -40,6 +41,7 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<Venues />} path="/venues" />
             <Route element={<Artists />} path="/artists" />
+            <Route element={<Favorites />} path="/favorites" />
             <Route element={<EditUserProfile />} path="/myprofile" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>

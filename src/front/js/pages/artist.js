@@ -2,7 +2,7 @@ import React from "react";
 import { Artistcard } from "../component/artistscards";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-
+import { Link } from "react-router-dom";
 //calling the array
 export const Artists = () => {
   const { store, actions } = useContext(Context);
@@ -11,7 +11,7 @@ export const Artists = () => {
 
   return (
     <div>
-       <div
+      <div
         id="carouselExampleSlidesOnly"
         className="carousel slide"
         data-bs-ride="carousel"
@@ -43,6 +43,11 @@ export const Artists = () => {
             />
           );
         })}
+      </div>
+      <div>
+        <button onClick={() => console.log(store.favoriteArtists)}>
+          Favorites
+        </button>
       </div>
     </div>
   );

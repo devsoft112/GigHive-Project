@@ -2,7 +2,7 @@ import React from "react";
 import { Artistcard } from "../component/artistscards";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Venuecard } from "./component/venuecards.js";
+import { Venuecard } from "../component/venuecards.js";
 
 //calling the array
 export const Favorites = () => {
@@ -13,7 +13,7 @@ export const Favorites = () => {
   return (
     <div>
       <div>
-        {store.FavoriteArtist.map((artist, index) => {
+        {store.favoriteArtists.map((artist, index) => {
           return (
             <Artistcard
               key={index}
@@ -28,8 +28,8 @@ export const Favorites = () => {
           );
         })}
       </div>
-      <div>
-        {store.FavoriteVenue.map((venue, index) => {
+      {/* <div>
+        {store.favoriteVenues.map((venue, index) => {
           return (
             <Venuecard
               key={index}
@@ -43,7 +43,7 @@ export const Favorites = () => {
             />
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 };

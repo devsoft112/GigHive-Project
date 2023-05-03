@@ -33,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       //     console.log(error);
 
       //   })},
-      
+
       getArtist: async () => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
@@ -46,9 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getVenue: async () => {
         try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/venues"
-          );
+          const resp = await fetch(process.env.BACKEND_URL + "/api/venues");
           const data = await resp.json();
           setStore({ venues: data });
           return data;
@@ -56,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading venues", error);
         }
       },
-      VenueFavorite: (name) => {
+      venueFavorite: (name) => {
         let favorites = getStore().favoriteVenues;
         let venues = getStore().venues;
 
@@ -71,23 +69,25 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
           }
         });
-        setStore({ favorite: favorites });
+        setStore({ favoriteVenues: favorites });
       },
-      ArtistFavorite: (name) => {
-        let artists = getStore().favoriteArtists;
-        let favorites = getStore().favorites;
-        favorites.forEach((favorite) => {
-          if (favorite.artist_name == name) {
-            favorites.pop(favorite);
+      artistFavorite: (name) => {
+        let favoriteArtists = getStore().favoriteArtists;
+        let artists = getStore().artists;
+       
+
+        for (let i =0; i<favoriteArtists.length; i++){
+          if (favoriteArtists[i].artist_name == name) {
+            favoriteArtists.pop(favoriteArtists[i]);
           } else {
-            artists.forEach((artist, index) => {
-              if (artist.artist_name == name) {
-                favorites.push(artist);
+            
+            favoriteArtists.push(artists.find(artist=>artist.artist_name==name))
               }
-            });
-          }
-        });
-        setStore({ favorite: favorites });
+        }
+        
+          
+      
+        setStore({ favoriteArtists: favoriteArtists });
       },
       postArtist: async (
         artist_name,
