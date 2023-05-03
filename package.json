@@ -85,6 +85,7 @@
 		"react": "^16.8.4",
 		"react-bootstrap": "^2.7.4",
 		"react-dom": "^16.8.4",
+		"react-image-lightbox": "^5.1.4",
 		"react-polyfills": "0.0.1",
 		"react-redux": "^8.0.5",
 		"react-router": "^6.10.0",
