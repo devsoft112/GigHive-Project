@@ -14,13 +14,19 @@
 .pin {
   display: flex;
   align-items: center;
-  width: 180px;
+  width: auto;
   text-align: center;
+}
+
+#mapPin {
+  position: absolute;
+  top: -45px;
+  left: -20px;
 }
 
 .pin-icon {
   font-size: 4rem;
-  color: var(--maingold)
+  color: var(--maingold);
 }
 
 .pin-text {
@@ -29,7 +35,7 @@
 
 .map-pin {
   font-size: 24px;
-  color: var(--maingold); 
+  color: var(--maingold);
 }
 
 @media screen and (min-width: 799px) {

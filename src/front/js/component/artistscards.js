@@ -39,11 +39,11 @@ export const Artistcard = (props) => {
           <a className="btn btn-sm btn-primary" href={props.link}>
             View Profile
           </a>
-          <i
+          {/* <i
             className={activeFav ? "fas fa-heart" : "far fa-heart"}
             style={{ color: "#d8131d" }}
             onClick={(e) => handleFavorites(e)}
-          ></i>
+          ></i> */}
         </div>
       </div>
     </div>
