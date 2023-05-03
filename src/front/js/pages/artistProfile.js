@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useState} from "react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
-import CalendarPlaceholder from "./CalendarPlaceholder.png"
+import CalendarPlaceholder from "./CalendarPlaceholder.png";
 
 import "../../styles/artistProfile.css";
 
 import { Context } from "../store/appContext";
-import { useParams } from "react-router"
+import { useParams } from "react-router";
 
 export function ArtistProfile() {
   const { store, actions } = useContext(Context);
@@ -18,10 +18,11 @@ export function ArtistProfile() {
   
   // <----variables/functions for images/lightbox--->
   const images = artists[id]?.images.split(", ")
+
   const [isOpen, setIsOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   function ExpandPhoto() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
   function changeImgIndex(index){
     setImgIndex(index)
@@ -77,10 +78,15 @@ export function ArtistProfile() {
         onMoveNextRequest={() => setImgIndex((imgIndex + 1) % images.length)}
       />}
 
+
+
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
         <div className="col-md-5 mt-2 p-0 h-100">
-          <img onClick={ExpandPhoto} src={artists[id]?.images.split(", ")[0]} className="profile-main-img object-fit-contain rounded">
-          </img>
+          <img
+            onClick={ExpandPhoto}
+            src={artists[id]?.images.split(", ")[0]}
+            className="profile-main-img object-fit-contain rounded"
+          ></img>
         </div>
         <div className="col-md-7 px-3" id="info-section">
           <div class="d-flex flex-row mb-0">
@@ -102,16 +108,69 @@ export function ArtistProfile() {
           </div>
           <div className="row mt-3">
             <p>{artists[id]?.about_info}</p>
-            <p className="my-0"><b>Music Type: </b>{artists[id]?.genre}</p>
-            <p><b>Performance Type:</b> {artists[id]?.performance_type}</p>
+            <p className="my-0">
+              <b>Music Type: </b>
+              {artists[id]?.genre}
+            </p>
+            <p>
+              <b>Performance Type:</b> {artists[id]?.performance_type}
+            </p>
           </div>
           <div className="row px-2">
-          {artists[id]?.instagram ? <a href={`http://instagram.com/${artists[id]?.instagram}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-instagram fa-xl"></i></a> : null}
-          {artists[id]?.tiktok ?<a href={`http://tiktok.com/@${artists[id]?.tiktok}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-tiktok fa-xl"></i></a> : null}
-          {artists[id]?.facebook ?<a href={`http://facebook.com/${artists[id]?.facebook}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-facebook fa-xl"></i></a> : null}
-          {artists[id]?.twitter ? <a href={`http://twitter.com/${artists[id]?.twitter}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-twitter fa-xl"></i></a> : null}
-          {artists[id]?.soundcloud ? <a href={`http://soundcloud.com/${artists[id]?.soundcloud}`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-soundcloud fa-xl"></i></a> : null}
-          {artists[id]?.spotify ? <a href={`http://spotify.com`} target="_blank" className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"><i className="fa-brands fa-spotify fa-xl"></i></a> : null}
+            {artists[id]?.instagram ? (
+              <a
+                href={`http://instagram.com/${artists[id]?.instagram}`}
+                target="_blank"
+                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+              >
+                <i className="fa-brands fa-instagram fa-xl"></i>
+              </a>
+            ) : null}
+            {artists[id]?.tiktok ? (
+              <a
+                href={`http://tiktok.com/@${artists[id]?.tiktok}`}
+                target="_blank"
+                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+              >
+                <i className="fa-brands fa-tiktok fa-xl"></i>
+              </a>
+            ) : null}
+            {artists[id]?.facebook ? (
+              <a
+                href={`http://facebook.com/${artists[id]?.facebook}`}
+                target="_blank"
+                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+              >
+                <i className="fa-brands fa-facebook fa-xl"></i>
+              </a>
+            ) : null}
+            {artists[id]?.twitter ? (
+              <a
+                href={`http://twitter.com/${artists[id]?.twitter}`}
+                target="_blank"
+                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+              >
+                <i className="fa-brands fa-twitter fa-xl"></i>
+              </a>
+            ) : null}
+            {artists[id]?.soundcloud ? (
+              <a
+                href={`http://soundcloud.com/${artists[id]?.soundcloud}`}
+                target="_blank"
+                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+              >
+                <i className="fa-brands fa-soundcloud fa-xl"></i>
+              </a>
+            ) : null}
+            {artists[id]?.spotify ? (
+              <a
+                href={`http://spotify.com`}
+                target="_blank"
+                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+              >
+                <i className="fa-brands fa-spotify fa-xl"></i>
+              </a>
+            ) : null}
           </div>
         </div>
         <div className="row px-2 d-flex justify-content-between align-items-center">
@@ -122,10 +181,11 @@ export function ArtistProfile() {
                   ExpandPhoto();
                   changeImgIndex(index);
                 }} className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
+
               })}
-              </div>
             </div>
-            {/* <div className="col-md-5 mx-1">
+          </div>
+          {/* <div className="col-md-5 mx-1">
               <div className="row d-flex justify-content-between">
                 <div className="col-md m-2 rounded smImage">
                   Test
@@ -149,17 +209,17 @@ export function ArtistProfile() {
                 </div>
               </div>
             </div> */}
-            <div className="col-md-6">
-              <div className="row">
-                <div className="col-md-6">
-                  <img className="calendar" src={CalendarPlaceholder} />
-                </div>
-                <div className="col-md-6">
-                  <img className="calendar" src={CalendarPlaceholder} />
-                </div>
+          <div className="col-md-6">
+            <div className="row">
+              <div className="col-md-6">
+                <img className="calendar" src={CalendarPlaceholder} />
+              </div>
+              <div className="col-md-6">
+                <img className="calendar" src={CalendarPlaceholder} />
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   );
