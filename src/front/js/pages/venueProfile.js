@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
-
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 
 import "../../styles/venueProfile.css";
 import { Map } from "../component/Map/Map.jsx";
@@ -19,6 +20,13 @@ export function VenueProfile() {
   const Address = `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`
   const [lat, setLat] = useState('')
   const [lng, setLng] = useState('')
+
+  const images=venues[id]?.images.split(", ")
+  const [isOpen, setIsOpen] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
+  function ExpandPhoto() {
+    setIsOpen(true)
+  }
 
   const [oneStar, setOneStar] = useState ("fa-solid fa-star s1")
   const [twoStar, setTwoStar] = useState ("fa-solid fa-star s2")
@@ -77,12 +85,22 @@ export function VenueProfile() {
 
   return (
     <div className="container-fluid">
+        
+        {/* <----Code for LightBox----> */}
+        {isOpen && <Lightbox
+  mainSrc={images[imgIndex]}
+  nextSrc={images[(imgIndex + 1) % images.length]}
+  prevSrc={images[(imgIndex + images.length - 1) % images.length]}
+  onCloseRequest={() => setIsOpen(false)}
+  onMovePrevRequest={() => setImgIndex((imgIndex + images.length - 1) % images.length)}
+  onMoveNextRequest={() => setImgIndex((imgIndex + 1) % images.length)}
+/>}
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
         <div className="col-md-5 mt-2 p-0 h-100">
 
 
           
-      <img src={venues[id]?.images.split(", ")[0]} className="profile-main-img object-fit-contain rounded">
+      <img onClick={ExpandPhoto} src={venues[id]?.images.split(", ")[0]} className="profile-main-img object-fit-contain rounded">
           
           </img>
           
@@ -134,34 +152,10 @@ export function VenueProfile() {
             <div className="col-md-5 mx-1">
             <div className="row flex-row d-flex justify-content-between mt-2">
               {venues[id]?.images.split(", ").map((image)=>{
-                return <img className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
+                return <img onClick={ExpandPhoto} className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
               })}
               </div>
             </div>
-            {/* <div className="col-md-5 mx-1">
-              <div className="row d-flex justify-content-between">
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-              </div>
-              <div className="row d-flex justify-content-between">
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-              </div>
-            </div> */}
             <div className="col-md-6">
             <div className="row mt-2">
                 <div className="col-md-6">
