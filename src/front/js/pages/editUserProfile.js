@@ -102,11 +102,11 @@ export function EditUserProfile(props) {
             user.artists.map((artist) => {
               return (
                 <>
-                  <div className="artistinfo-card">
-                    <div key={artist.id} className="card">
+                  <div className="row">
+                    <div key={artist.id} className="col-sm-6">
                       <h4 className="info-header">Artist Info</h4>
                     </div>
-                    <div className="row my-0 mx-2">
+                    <div className="card">
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
@@ -194,10 +194,12 @@ export function EditUserProfile(props) {
                         </>
                       )}
                     </div>
-                    <div className="row align-items-start p-2">
-                      <h4 className="info-header">Artist Social Info</h4>
+                    <div className="row">
+                      <h4 className="info-header col-sm-6">
+                        Artist Social Info
+                      </h4>
                     </div>
-                    <div className="row my-0 mx-2">
+                    <div className="card">
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
@@ -317,7 +319,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Venue Name: </b>TEST
+                            <b>Venue Name: </b>
+                            {venue.venue_name}
                           </p>
                         </>
                       ) : (
@@ -333,7 +336,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Phone Number: </b>9999999999
+                            <b>Phone Number: </b>
+                            {venue.phone_number}
                           </p>
                         </>
                       ) : (
@@ -351,7 +355,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Street Address: </b>TEST
+                            <b>Street Address: </b>
+                            {venue.address}
                           </p>
                         </>
                       ) : (
@@ -367,7 +372,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>City: </b>TEST
+                            <b>City: </b>
+                            {venue.city}
                           </p>
                         </>
                       ) : (
@@ -383,7 +389,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>State: </b>TEST
+                            <b>State: </b>
+                            {venue.state}
                           </p>
                         </>
                       ) : (
@@ -451,7 +458,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Zipcode: </b>99999
+                            <b>Zipcode: </b>
+                            {venue.zip_code}
                           </p>
                         </>
                       ) : (
@@ -469,7 +477,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Capacity: </b>999
+                            <b>Capacity: </b>
+                            {venue.venue_capacity}
                           </p>
                         </>
                       ) : (
@@ -489,7 +498,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Music Type: </b>TEST
+                            <b>Music Type: </b>
+                            {venue.music_type}
                           </p>
                         </>
                       ) : (
@@ -514,7 +524,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Indoor/Outdoor Staging: </b>TEST
+                            <b>Indoor/Outdoor Staging: </b>
+                            {venue.in_out}
                           </p>
                         </>
                       ) : (
@@ -537,7 +548,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Hiring: </b>TEST
+                            <b>Hiring: </b>
+                            {venue.hiring}
                           </p>
                         </>
                       ) : (
@@ -557,7 +569,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Pay Rate: </b>99
+                            <b>Pay Rate: </b>
+                            {venue.pay_rate}
                           </p>
                         </>
                       ) : (
@@ -573,7 +586,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Fees: </b>99
+                            <b>Fees: </b>
+                            {venue.fees}
                           </p>
                         </>
                       ) : (
@@ -591,7 +605,8 @@ export function EditUserProfile(props) {
                       {editMode == false ? (
                         <>
                           <p className="mb-0">
-                            <b>Equipment Info: </b>TEST
+                            <b>Equipment Info: </b>
+                            {venue.equipment}
                           </p>
                         </>
                       ) : (
@@ -611,13 +626,14 @@ export function EditUserProfile(props) {
                     {editMode == false ? (
                       <>
                         <p className="mb-0">
-                          <b>Instagram Handle: </b>TEST
+                          <i className="fa-brands fa-instagram"></i> :{" "}
+                          {venue.instagram}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mb-0">
-                          <b>Instagram Handle: </b>
+                          <i className="fa-brands fa-instagram"></i> :{" "}
                           <input type="text" value="TEST"></input>
                         </p>
                       </>
@@ -627,13 +643,14 @@ export function EditUserProfile(props) {
                     {editMode == false ? (
                       <>
                         <p className="mb-0">
-                          <b>Facebook Handle: </b>TEST
+                          <i className="fa-brands fa-facebook"></i> :{" "}
+                          {venue.facebook}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mb-0">
-                          <b>Facebook Handle: </b>
+                          <i className="fa-brands fa-facebook"></i> :{" "}
                           <input type="text" value="TEST"></input>
                         </p>
                       </>
@@ -643,13 +660,14 @@ export function EditUserProfile(props) {
                     {editMode == false ? (
                       <>
                         <p className="mb-0">
-                          <b>Twitter Handle: </b>TEST
+                          <i className="fa-brands fa-twitter"></i> :{" "}
+                          {venue.twitter}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mb-0">
-                          <b>Twitter Handle: </b>
+                          <i className="fa-brands fa-twitter"></i> :{" "}
                           <input type="text" value="TEST"></input>
                         </p>
                       </>
@@ -659,13 +677,14 @@ export function EditUserProfile(props) {
                     {editMode == false ? (
                       <>
                         <p className="mb-0">
-                          <b>TikTok Handle: </b>TEST
+                          <i className="fa-brands fa-tiktok"></i> :{" "}
+                          {venue.tiktok}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mb-0">
-                          <b>TikTok Handle: </b>
+                          <i className="fa-brands fa-tiktok"></i> :{" "}
                           <input type="text" value="TEST"></input>
                         </p>
                       </>
@@ -675,13 +694,14 @@ export function EditUserProfile(props) {
                     {editMode == false ? (
                       <>
                         <p className="mb-0">
-                          <b>Soundcloud Handle: </b>TEST
+                          <i className="fa-brands fa-soundcloud"></i> :{" "}
+                          {venue.soundcloud}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mb-0">
-                          <b>Soundcloud Handle: </b>
+                          <i className="fa-brands fa-soundcloud"></i> :{" "}
                           <input type="text" value="TEST"></input>
                         </p>
                       </>
@@ -691,13 +711,14 @@ export function EditUserProfile(props) {
                     {editMode == false ? (
                       <>
                         <p className="mb-0">
-                          <b>Spotify Handle: </b>TEST
+                          <i className="fa-brands fa-spotify"></i> :{" "}
+                          {venue.spotify}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mb-0">
-                          <b>Spotify Handle: </b>
+                          <i className="fa-brands fa-spotify"></i> :{" "}
                           <input type="text" value="TEST"></input>
                         </p>
                       </>
