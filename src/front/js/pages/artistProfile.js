@@ -17,7 +17,7 @@ export function ArtistProfile() {
   const artists = store.artists;
   
   // <----variables/functions for images/lightbox--->
-  const images = artists[id]?.images.split(", ")
+  const images = artists[id]?.images == null ? ["https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg", "https://www.stopthebreaks.com/wp-content/uploads/2020/10/iStock-161838634.jpg",  "https://musiciansunion.org.uk/MusiciansUnion/media/content/news/bass-player-on-stage.jpg"] : artists[id]?.images.split(", ")
 
   const [isOpen, setIsOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
@@ -66,7 +66,7 @@ export function ArtistProfile() {
   }, [])
 
   return (
-    <div className="container-fluid">
+  <div className="container-fluid">
 
       {/* <----Code for LightBox----> */}
       {isOpen && <Lightbox
@@ -84,7 +84,7 @@ export function ArtistProfile() {
         <div className="col-md-5 mt-2 p-0 h-100">
           <img
             onClick={ExpandPhoto}
-            src={artists[id]?.images.split(", ")[0]}
+            src={images[0]}
             className="profile-main-img object-fit-contain rounded"
           ></img>
         </div>
@@ -99,11 +99,11 @@ export function ArtistProfile() {
           </div>
           <div className="row mt-0">
             <div className="star-wrapper">
-              <i className="fa-solid fa-star s1"></i>
-              <i className="fa-solid fa-star s2"></i>
-              <i className="fa-solid fa-star s3"></i>
-              <i className="fa-solid fa-star s4"></i>
-              <i className="fa-solid fa-star s5"></i>
+              <i className={oneStar}></i>
+              <i className={twoStar}></i>
+              <i className={threeStar}></i>
+              <i className={fourStar}></i>
+              <i className={fiveStar}></i>
             </div>
           </div>
           <div className="row mt-3">
@@ -173,10 +173,10 @@ export function ArtistProfile() {
             ) : null}
           </div>
         </div>
-        <div className="row px-2 d-flex justify-content-between align-items-center">
+        <div className="row px-2 d-flex justify-content-between align-items-start">
             <div className="col-md-5 mx-1">
-              <div className="row d-flex justify-content-between">
-              {artists[id]?.images.split(", ").map((image, index)=>{
+              <div className="row d-flex justify-content-between mt-2">
+              {images.map((image, index)=>{
                 return <img onClick={() => {
                   ExpandPhoto();
                   changeImgIndex(index);
