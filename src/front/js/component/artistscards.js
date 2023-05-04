@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../../styles/artistCard.css";
 import { useContext } from "react";
@@ -6,11 +6,11 @@ import { Context } from "../store/appContext";
 export const Artistcard = (props) => {
   const { store, actions } = useContext(Context);
   const [activeFav, setActiveFav] = useState(false);
-  const handleFavorites = (e) => {
-    e.preventDefault();
-    actions.ArtistFavorite(props.artist_name);
-    setActiveFav(true)
-  };
+  // const handleFavorites = (e) => {
+  //   e.preventDefault();
+  //   actions.ArtistFavorite(props.artist_name);
+  //   setActiveFav(true);
+  // };
   return (
     <div className="card artist-card mx-2">
       <div className="crd-img p-0">
@@ -39,11 +39,11 @@ export const Artistcard = (props) => {
           <a className="btn btn-sm btn-primary" href={props.link}>
             View Profile
           </a>
-          <i
+          {/* <i
             className={activeFav ? "fas fa-heart" : "far fa-heart"}
             style="color: #d8131d;"
             onClick={(e) => handleFavorites(e)}
-          ></i>
+          ></i> */}
         </div>
       </div>
     </div>

@@ -58,44 +58,47 @@ export const UserProfile = () => {
         </Link>
       </div>
       {/* map users artists and venues on profile */}
-      {
-        user.artists &&
-          user.artists.map((artist) => {
-            return (
-              <div key={artist.id} className="container">
-                <div className="card">
-                  <p className="card-title">
-                    Artist Name :{artist.artist_name}
-                  </p>
-                  <p className="card-text">Genre :{artist.genre}</p>
-                  <p className="card-text">Instagram :{artist.instagram}</p>
-                  <p className="card-text">
-                    Performance Type :{artist.performance_type}
-                  </p>
-                  <p className="card-text">TikTok : {artist.tiktok}</p>
-                  <p className="card-text">Twitter : {artist.twitter}</p>
-                  <p className="card-text">Spotify : {artist.spotify}</p>
-                  <p className="card-text">Sound Cloud : {artist.soundcloud}</p>
-                  <p className="card-text">Facebook: {artist.facebook}</p>
-                  <p className="card-text">About Info : {artist.aboout_info}</p>
-                </div>
+      {user.artists &&
+        user.artists.map((artist) => {
+          return (
+            <div key={artist.id} className="artists-container">
+              <div className="card">
+                <p className="card-title">Artist Name :{artist.artist_name}</p>
+                <p className="card-text">Genre :{artist.genre}</p>
+                <p className="card-text">Instagram :{artist.instagram}</p>
+                <p className="card-text">
+                  Performance Type :{artist.performance_type}
+                </p>
+                <p className="card-text">TikTok : {artist.tiktok}</p>
+                <p className="card-text">Twitter : {artist.twitter}</p>
+                <p className="card-text">Spotify : {artist.spotify}</p>
+                <p className="card-text">Sound Cloud : {artist.soundcloud}</p>
+                <p className="card-text">Facebook: {artist.facebook}</p>
+                <p className="card-text">About Info : {artist.about_info}</p>
               </div>
-            );
-          })
-
-        // {users.artists &&
-        //   store.users.artists.map((artist, id) => {
-        //     return (
-        //       <div key={id} className="row mx-2 py-auto align-content-center">
-        //         <div className="col-md-1 my-auto p-0">
-        //           <span>Artist Name :{users.artist_name}</span>
-        //           <span>Genre :{artist.genre}</span>
-        //           <span>Instagram :{artist.instagram}</span>
-        //           <span>Performance Type :{artist_name}</span>
-        //         </div>
-        //       </div>
-        //     );
-      }
+            </div>
+          );
+        })}
+      {user.venues &&
+        user.venues.map((venue) => {
+          return (
+            <div key={venue.id} className="venue-container">
+              <div className="card">
+                <p className="card-title">Venue Name :{venue.venue_name}</p>
+                <p className="card-text">Address :{venue.address}</p>
+                <p className="card-text">City :{venue.city}</p>
+                <p className="card-text">State :{venue.state}</p>
+                <p className="card-text">Zip Code : {venue.zip_code}</p>
+                <p className="card-text">Phone Number : {venue.phone_number}</p>
+                <p className="card-text">Spotify : {venue.spotify}</p>
+                <p className="card-text">Sound Cloud : {venue.soundcloud}</p>
+                <p className="card-text">Facebook: {venue.facebook}</p>
+                <p className="card-text">About Info : {venue.aboout_info}</p>
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 };
+

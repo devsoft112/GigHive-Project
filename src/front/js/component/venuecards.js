@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../../styles/venueCard.css";
 import { Link } from "react-router-dom";
@@ -8,11 +8,11 @@ import { Context } from "../store/appContext";
 export const Venuecard = (props) => {
   const { store, actions } = useContext(Context);
   const [activeFav, setActiveFav] = useState(false);
-  const handleFavorites = (e) => {
-    e.preventDefault();
-    actions.VenueFavorite(props.venus_name);
-    setActiveFav(true)
-  };
+  // const handleFavorites = (e) => {
+  //   e.preventDefault();
+  //   actions.VenueFavorite(props.venus_name);
+  //   setActiveFav(true)
+  // };
   return (
     <div className="card venue-card mx-2">
       <div className="crd-img">
@@ -41,11 +41,11 @@ export const Venuecard = (props) => {
           <a className="btn btn-sm btn-primary" href={props.link}>
             View Profile
           </a>
-          <i
+          {/* <i
             className={activeFav ? "fas fa-heart" : "far fa-heart"}
             style="color: #d8131d;"
             onClick={(e) => handleFavorites(e)}
-          ></i>
+          ></i> */}
         </div>
       </div>
     </div>

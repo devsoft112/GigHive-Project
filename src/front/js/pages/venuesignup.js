@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
 
@@ -311,8 +311,6 @@ export function Venuesignup() {
               id="aboutInfo"
               placeholder="Tell us more about your venue"
               value={about_info}
-              onChange={(e) => setAbout(e.target.value)}
-              value={about_info}
               onChange={(e) => setAbout_Info(e.target.value)}
             />
           </div>
@@ -408,13 +406,15 @@ export function Venuesignup() {
         </div>
       </div>
       <div className="row px-3 justify-content-center">
-        <button
-          type="submit"
-          className="btn btn-primary w-25 mx-auto mt-2 signup-button"
-          onClick={handleClick}
-        >
-          Sign up
-        </button>
+        <Link to="/profile">
+          <button
+            type="submit"
+            className="btn btn-primary w-25 mx-auto mt-2 signup-button"
+            onClick={handleClick}
+          >
+            Sign up
+          </button>
+        </Link>
       </div>
     </form>
   );

@@ -3,7 +3,6 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
 import { Venuecard } from "../component/venuecards";
-import { useParams } from "react-router";
 
 import rockMusic from "../../img/RockMusic.png";
 import HipHopMusic from "../../img/HipHopMusic.png";
@@ -12,6 +11,7 @@ import ElectronicMusic from "../../img/ElectronicMusic.png";
 import ClassicalMusic from "../../img/ClassicalMusic.png";
 
 export const Home = () => {
+
   useEffect(() => {
     actions.getArtist();
     actions.getVenue();
@@ -19,7 +19,6 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const artists = store.artists;
   const venues = store.venues;
-  const { id } = useParams();
 
   // const [filter, setFilter] = useState(artists)
 
@@ -102,6 +101,7 @@ export const Home = () => {
         {artists.map((artist, index) => {
           return (
             <Artistcard
+              key={artist.id}
               artist_name={artist.artist_name}
               genre={artist.genre}
               performance_type={artist.performance_type}
@@ -113,7 +113,6 @@ export const Home = () => {
           );
         })}
       </div>
-
 
       <div className="row px-3 mt-3">
         <h1>Venues</h1>
