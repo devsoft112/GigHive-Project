@@ -66,7 +66,7 @@ export function ArtistProfile() {
   }, [])
 
   return (
-    <div className="container-fluid">
+  <div className="container-fluid">
 
       {/* <----Code for LightBox----> */}
       {isOpen && <Lightbox
@@ -80,7 +80,7 @@ export function ArtistProfile() {
 
 
 
-      <div className="row mt-3 px-2 gx-3 d-flex mainRow h-75">
+      <div className="row mt-3 px-2 gx-3 d-flex mainRow">
         <div className="col-md-5 mt-2 p-0 h-100">
           <img
             onClick={ExpandPhoto}
@@ -106,8 +106,8 @@ export function ArtistProfile() {
               <i className={fiveStar}></i>
             </div>
           </div>
-          <div className="row mt-1">
-          <p>{artists[id]?.about_info == "" || artists[id]?.about_info == null ? "More info about this artist hasn't been added yet!" : artists[id]?.about_info}</p>
+          <div className="row mt-3">
+            <p>{artists[id]?.about_info}</p>
             <p className="my-0">
               <b>Music Type: </b>
               {artists[id]?.genre}
@@ -173,9 +173,9 @@ export function ArtistProfile() {
             ) : null}
           </div>
         </div>
-        <div className="row mt-3 px-2 d-flex justify-content-between align-items-start">
+        <div className="row px-2 d-flex justify-content-between align-items-start">
             <div className="col-md-5 mx-1">
-              <div className="row d-flex justify-content-between">
+              <div className="row d-flex justify-content-between mt-2">
               {images.map((image, index)=>{
                 return <img onClick={() => {
                   ExpandPhoto();
