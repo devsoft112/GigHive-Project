@@ -1,8 +1,16 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
 :root {
   --maingold: rgb(228, 175, 0);
+}
+
+.am {
+  font-family: 'Amaranth', sans-serif;
 }
 
 .account-type-button {

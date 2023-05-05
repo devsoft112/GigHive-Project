@@ -28,6 +28,7 @@ export function Venuesignup() {
   const [twitter, setTwitter] = useState("");
   const [soundcloud, setSoundcloud] = useState("");
   const [spotify, setSpotify] = useState("");
+  const [images, setImages] = useState("https://www.stopthebreaks.com/wp-content/uploads/2020/10/iStock-161838634.jpg, https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg, https://media.gq-magazine.co.uk/photos/5ec3ff68db385df92accf28b/16:9/pass/20200519-music-02.jpg")
 
   const handleClick = () => {
     actions.postVenue(
@@ -46,11 +47,12 @@ export function Venuesignup() {
       equipment,
       about_info,
       instagram,
-      tikTok,
       facebook,
       twitter,
       soundcloud,
-      spotify
+      spotify,
+      tikTok,
+      images
     );
   };
 

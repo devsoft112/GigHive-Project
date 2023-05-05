@@ -1,5 +1,5 @@
 .profile-main-img {
-  height: 500px;
+  height: 100%;
   width: 100%;
   background-color: grey;
   padding: auto;
@@ -11,10 +11,11 @@
 }
 
 .secondRow {
-  height: 450px;
+/* outline: solid 1px red; */
+height: calc(100vh - 575px);
 }
 
-.artistName {
+.venueName {
   display: inline-block;
 }
 
@@ -73,12 +74,14 @@ border: 2px solid var(--maingold);
 
 .smImage {
   background-color: gainsboro;
-    width: 100px;
-    height: 200px;
-    object-fit: cover;
+  width: 100px;
+  height: 200px;
+  object-fit: cover;
 }
 
 
+
 .calendar {
-  width: 300px;
+  height: 300px;
+  object-fit: contain;
 }
