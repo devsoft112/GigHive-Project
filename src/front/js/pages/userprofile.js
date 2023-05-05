@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/userprofile.css";
@@ -35,7 +36,10 @@ export const UserProfile = () => {
           alt=""
         ></img>
         <div className="user-card-body">
-          <h1 classname="user-card-title"> Welcome {user.username}</h1>
+          <h1 classname="user-card-title">
+            {" "}
+            Welcome to your profile {user.username}
+          </h1>
           <p className="user-card-text">
             {" "}
             Your name : {user.first_name} {user.last_name}
@@ -58,42 +62,144 @@ export const UserProfile = () => {
         </Link>
       </div>
       {/* map users artists and venues on profile */}
+      <h1> Your Artist(s) Info </h1>
       {user.artists &&
         user.artists.map((artist) => {
           return (
-            <div key={artist.id} className="artists-container">
-              <div className="card">
-                <p className="card-title">Artist Name :{artist.artist_name}</p>
-                <p className="card-text">Genre :{artist.genre}</p>
-                <p className="card-text">Instagram :{artist.instagram}</p>
-                <p className="card-text">
-                  Performance Type :{artist.performance_type}
-                </p>
-                <p className="card-text">TikTok : {artist.tiktok}</p>
-                <p className="card-text">Twitter : {artist.twitter}</p>
-                <p className="card-text">Spotify : {artist.spotify}</p>
-                <p className="card-text">Sound Cloud : {artist.soundcloud}</p>
-                <p className="card-text">Facebook: {artist.facebook}</p>
-                <p className="card-text">About Info : {artist.about_info}</p>
+            <>
+              <div key={artist.id} className="card hovercard">
+                <div className="cardheader"></div>
+                <div className="avatar">
+                  <img
+                    alt=""
+                    src="https://cdn.vectorstock.com/i/preview-1x/15/40/blank-profile-picture-image-holder-with-a-crown-vector-42411540.webp"
+                  />
+                </div>
+                <div className="info">
+                  <div className="title">
+                    <a target="_blank" href={"artist/" + { artist }}>
+                      {artist.artist_name}
+                    </a>
+                  </div>
+                  <div className="desc">{artist.genre}</div>
+                  <div className="desc">{artist.performance_type}</div>
+                  <div className="desc">About Info : {artist.about_info}</div>
+                </div>
+                <div className="bottom">
+                  <a
+                    className="btn btn-primary btn-twitter btn-sm"
+                    href={artist.twitter}
+                  >
+                    <i className="fa-brands fa-twitter"></i>
+                  </a>
+                  <a
+                    className="btn btn-danger btn-sm"
+                    rel="publisher"
+                    href={artist.soundcloud}
+                  >
+                    <i className="fa-brands fa-soundcloud"></i>
+                  </a>
+                  <a
+                    className="btn btn-primary btn-sm"
+                    rel="publisher"
+                    href={artist.facebook}
+                  >
+                    <i className="fa-brands fa-facebook"></i>
+                  </a>
+                  <a
+                    className="btn btn-dark btn-sm"
+                    rel="publisher"
+                    href={artist.instagram}
+                  >
+                    <i className="fa-brands fa-instagram"></i>
+                  </a>
+                  <a
+                    className="btn btn-success btn-sm"
+                    rel="publisher"
+                    href={artist.spotify}
+                  >
+                    <i className="fa-brands fa-spotify"></i>
+                  </a>
+                  <a
+                    className="btn btn-light btn-sm"
+                    rel="publisher"
+                    href={artist.tiktok}
+                  >
+                    <i className="fa-brands fa-tiktok"></i>
+                  </a>
+                </div>
               </div>
-            </div>
+            </>
           );
         })}
       {user.venues &&
         user.venues.map((venue) => {
           return (
-            <div key={venue.id} className="venue-container">
-              <div className="card">
-                <p className="card-title">Venue Name :{venue.venue_name}</p>
-                <p className="card-text">Address :{venue.address}</p>
-                <p className="card-text">City :{venue.city}</p>
-                <p className="card-text">State :{venue.state}</p>
-                <p className="card-text">Zip Code : {venue.zip_code}</p>
-                <p className="card-text">Phone Number : {venue.phone_number}</p>
-                <p className="card-text">Spotify : {venue.spotify}</p>
-                <p className="card-text">Sound Cloud : {venue.soundcloud}</p>
-                <p className="card-text">Facebook: {venue.facebook}</p>
-                <p className="card-text">About Info : {venue.aboout_info}</p>
+            <div key={venue.id} className="card hovercard">
+              <div className="cardheader">
+                <div className="avatar">
+                  <img
+                    alt=""
+                    src="https://png.pngtree.com/png-vector/20190927/ourmid/pngtree-school-building-icon-png-image_1753757.jpg"
+                  />
+                </div>
+                <div className="info">
+                  <div className="title">
+                    <a target="_blank" href={"venue/" + { venue }}>
+                      {venue.venue_name}
+                    </a>
+                  </div>
+                  <div className="desc">Venue Name :{venue.venue_name}</div>
+                  <div className="desc">{venue.phone_number}</div>
+                  <div className="desc">Address :{venue.address}</div>
+                  <div className="desc">City : {venue.city}</div>
+                  <div className="desc">State: {venue.state}</div>
+                  <div className="desc">Zip Code: {venue.zip_code}</div>
+                  <div className="desc">About Info : {venue.about_info}</div>
+                </div>
+                <div className="bottom">
+                  <a
+                    className="btn btn-primary btn-twitter btn-sm"
+                    href={venue.twitter}
+                  >
+                    <i className="fa-brands fa-twitter"></i>
+                  </a>
+                  <a
+                    className="btn btn-danger btn-sm"
+                    rel="publisher"
+                    href={venue.soundcloud}
+                  >
+                    <i className="fa-brands fa-soundcloud"></i>
+                  </a>
+                  <a
+                    className="btn btn-primary btn-sm"
+                    rel="publisher"
+                    href={venue.facebook}
+                  >
+                    <i className="fa-brands fa-facebook"></i>
+                  </a>
+                  <a
+                    className="btn btn-dark btn-sm"
+                    rel="publisher"
+                    href={venue.instagram}
+                  >
+                    <i className="fa-brands fa-instagram"></i>
+                  </a>
+                  <a
+                    className="btn btn-success btn-sm"
+                    rel="publisher"
+                    href={venue.spotify}
+                  >
+                    <i className="fa-brands fa-spotify"></i>
+                  </a>
+                  <a
+                    className="btn btn-light btn-sm"
+                    rel="publisher"
+                    href={venue.tiktok}
+                  >
+                    <i className="fa-brands fa-tiktok"></i>
+                  </a>
+                </div>
               </div>
             </div>
           );
@@ -101,4 +207,3 @@ export const UserProfile = () => {
     </div>
   );
 };
-

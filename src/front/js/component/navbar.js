@@ -8,6 +8,7 @@ import "../../styles/navbar.css";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const user = store.user;
   const handleLogOut = (e) => {
     e.preventDefault();
     actions.logout();
@@ -30,25 +31,38 @@ export const Navbar = () => {
           </span>
         </Link>
         <div className="dropdown">
-          <a
-            className="btn btn-secondary dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Profile
-          </a>
-
+          {!store.token ? (
+            <button
+              className="btn btn-secondary dropdown"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Welcome
+            </button>
+          ) : (
+            <button
+              className="btn btn-secondary dropdown"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                alt=""
+                src="https://cdn.vectorstock.com/i/preview-1x/15/40/blank-profile-picture-image-holder-with-a-crown-vector-42411540.webp"
+              />
+              Welcome {user.username}
+            </button>
+          )}
           <ul className="dropdown-menu">
             <li>
               <Link to="/">Home</Link>
             </li>
             {isLoggedIn === true && (
               <li>
-                <Link to="/profile">
-                  Profile
-                </Link>
+                <Link to="/profile">Profile</Link>
               </li>
             )}
             <li>
@@ -64,10 +78,8 @@ export const Navbar = () => {
               <Link to="/help">Host an event</Link>
             </li>
             {isLoggedIn === false && (
-              <li >
-                <Link to="/register">
-                  Sign Up
-                </Link>
+              <li>
+                <Link to="/register">Sign Up</Link>
               </li>
             )}
             <li>
