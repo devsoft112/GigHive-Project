@@ -8,7 +8,6 @@ export const UserProfile = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
   const user = store.user;
-  const artist = store.artists;
   const history = useNavigate();
   console.log(user.artist, "userprofile");
 
@@ -23,6 +22,7 @@ export const UserProfile = () => {
     } else {
       actions.getUser();
       actions.getArtist();
+      actions.getVenue();
     }
   }, [store.token]);
 
@@ -42,9 +42,12 @@ export const UserProfile = () => {
           </h1>
           <p className="user-card-text">
             {" "}
-            Your name : {user.first_name} {user.last_name}
+            Your name :{" "}
+            <strong>
+              {user.first_name} {user.last_name}{" "}
+            </strong>
           </p>
-          <p className="user-card-text"> Your Email {user.email}</p>
+          <p className="user-card-text"> Your Email : {user.email}</p>
         </div>
         <div align="center">
           <p>
@@ -69,7 +72,7 @@ export const UserProfile = () => {
       </div>
       {/* map users artists and venues on profile */}
       <h1> Your Artist(s) </h1>
-      <Row lg={3}>
+      <Row lg={3} md={4} sm={6}>
         {user.artists &&
           user.artists.map((artist) => {
             return (
