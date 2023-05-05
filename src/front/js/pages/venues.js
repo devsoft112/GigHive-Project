@@ -12,9 +12,9 @@ export const Venues = () => {
   //these are for add favorites and defavorite one
 
   return (
-    <div className="venues-container">
+    <div className="venues-container container-fluid">
       <h2>Venues</h2>
-      <div>
+      <div className="d-flex ">
         {store.venues.map((venue, index) => {
           return (
             <Venuecard
@@ -30,7 +30,7 @@ export const Venues = () => {
           );
         })}
       </div>
-      <div>
+      <div className="mt-5">
         <Link to="/favorites">
           <button>Favorites</button>
         </Link>

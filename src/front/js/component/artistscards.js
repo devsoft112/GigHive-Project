@@ -1,16 +1,28 @@
 import React from "react";
 
 import "../../styles/artistCard.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { Link, useLocation } from "react-router-dom";
 export const Artistcard = (props) => {
   const { store, actions } = useContext(Context);
+  let location = useLocation();
+  console.log(location.pathname);
   const [activeFav, setActiveFav] = useState(false);
   const handleFavorites = (e) => {
     e.preventDefault();
-    actions.artistFavorite(props.artist_name);
-    setActiveFav(true);
+    if (activeFav) {
+      actions.artistFavoriteRemove(props);
+    } else {
+      actions.artistFavorite(props);
+      setActiveFav(true);
+    }
   };
+  useEffect(() => {
+    if (location.pathname == "/favorites") {
+      setActiveFav(true);
+    }
+  }, []);
   return (
     <div className="card artist-card mx-2">
       <div className="crd-img p-0">

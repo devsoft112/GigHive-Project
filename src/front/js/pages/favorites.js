@@ -7,6 +7,8 @@ import { Venuecard } from "../component/venuecards.js";
 //calling the array
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
+  console.log(store.favoriteVenues);
+  console.log(store.favoriteArtists);
 
   //these are for add favorites and defavorite one
 
@@ -20,7 +22,7 @@ export const Favorites = () => {
               artist_name={artist.artist_name}
               genre={artist.genre}
               performance_type={artist.performance_type}
-              imgUrl={artist.images.split(", ")[0]}
+              imgUrl={artist.imgUrl}
               link={"/artists/" + index}
               id={index}
               starRating="5.0"
@@ -28,7 +30,7 @@ export const Favorites = () => {
           );
         })}
       </div>
-      {/* <div>
+      <div>
         {store.favoriteVenues.map((venue, index) => {
           return (
             <Venuecard
@@ -36,14 +38,14 @@ export const Favorites = () => {
               venue_name={venue.venue_name}
               city={venue.city}
               state={venue.state}
-              imgUrl={venue.images.split(", ")[0]}
+              imgUrl={venue.imgUrl}
               link={"/venues/" + index}
               id={index}
               starRating="5.0"
             />
           );
         })}
-      </div> */}
+      </div>
     </div>
   );
 };

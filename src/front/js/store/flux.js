@@ -54,39 +54,49 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading venues", error);
         }
       },
-      venueFavorite: (name) => {
-        let favorites = getStore().favoriteVenues;
-        let venues = getStore().venues;
+      venueFavorite: (venue) => {
+        let favoriteVenues = getStore().favoriteVenues;
+        favoriteVenues = favoriteVenues.filter(
+          (venue_i) => venue_i.venue_name != venue.venue_name
+        );
+        let venues = [...favoriteVenues, venue];
 
-        favorites.forEach((favorite) => {
-          if (favorite.venue_name == name) {
-            favorites.pop(favorite);
-          } else {
-            venues.forEach((venue, index) => {
-              if (venue.venue_name == name) {
-                favorites.push(venue);
-              }
-            });
-          }
-        });
-        setStore({ favoriteVenues: favorites });
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteVenues: venues });
       },
+      venueFavoriteRemove: (venue) => {
+        let favoriteVenues = getStore().favoriteVenues;
+        favoriteVenues = favoriteVenues.filter(
+          (venue_i) => venue_i.venue_name != venue.venue_name
+        );
+
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteVenues: favoriteVenues });
+      },
+      artistFavoriteRemove: (artist) => {
+        let favoriteArtists = getStore().favoriteArtists;
+        favoriteArtists = favoriteArtists.filter(
+          (artist_i) => artist_i.artist_name != artist.artist_name
+        );
+
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteArtists: favoriteArtists });
+      },
+
       artistFavorite: (name) => {
         let favoriteArtists = getStore().favoriteArtists;
         let artists = getStore().artists;
-       
 
-        for (let i =0; i<favoriteArtists.length; i++){
+        for (let i = 0; i < favoriteArtists.length; i++) {
           if (favoriteArtists[i].artist_name == name) {
             favoriteArtists.pop(favoriteArtists[i]);
           } else {
-            
-            favoriteArtists.push(artists.find(artist=>artist.artist_name==name))
-              }
+            favoriteArtists.push(
+              artists.find((artist) => artist.artist_name == name)
+            );
+          }
         }
-        
-          
-      
+
         setStore({ favoriteArtists: favoriteArtists });
       },
       postArtist: async (

@@ -10,25 +10,9 @@ export const Artists = () => {
   //these are for add favorites and defavorite one
 
   return (
-    <div>
-      <div
-        id="carouselExampleSlidesOnly"
-        className="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src="" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item">
-            <img src="..." className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item">
-            <img src="..." className="d-block w-100" alt="..." />
-          </div>
-        </div>
-      </div>
-      <div>
+    <div className="venues-container container-fluid">
+      <h1>Artists</h1>
+      <div className="d-flex ">
         {store.artists.map((artist, index) => {
           return (
             <Artistcard
@@ -44,10 +28,11 @@ export const Artists = () => {
           );
         })}
       </div>
-      <div>
-        <button onClick={() => console.log(store.favoriteArtists)}>
-          Favorites
-        </button>
+     
+      <div className="mt-5">
+        <Link to="/favorites">
+          <button>Favorites</button>
+        </Link>
       </div>
     </div>
   );

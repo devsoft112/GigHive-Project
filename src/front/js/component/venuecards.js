@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../../styles/venueCard.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
+
 export const Venuecard = (props) => {
   const { store, actions } = useContext(Context);
+  let location = useLocation();
+  console.log(location.pathname);
   const [activeFav, setActiveFav] = useState(false);
   const handleFavorites = (e) => {
     e.preventDefault();
-    actions.venueFavorite(props.venus_name);
-    setActiveFav(true);
+    if (activeFav) {
+      actions.venueFavoriteRemove(props);
+    } else {
+      actions.venueFavorite(props);
+      setActiveFav(true);
+    }
   };
+  useEffect(() => {
+    if (location.pathname == "/favorites") {
+      setActiveFav(true);
+    }
+  }, []);
   return (
     <div className="card venue-card mx-2">
       <div className="crd-img">
@@ -38,7 +50,7 @@ export const Venuecard = (props) => {
         </div>
 
         <div className="buttonDiv">
-          <a className="btn btn-sm btn-primary" href={props.link}>
+          <a className="btn btn-sm btn-primary " href={props.link}>
             View Profile
           </a>
           <i
