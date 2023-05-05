@@ -106,7 +106,7 @@ export function EditUserProfile(props) {
                     <div key={artist.id} className="container d-flex">
                       <div className="flex-fill card">
                         <div className="row">
-                          <h4 className="info-header col-sm-6">Artist Info</h4>
+                          <h4 className="info-header">Artist Info</h4>
                         </div>
                         <div className="card-text">
                           {editMode == false ? (
@@ -201,127 +201,124 @@ export function EditUserProfile(props) {
                               </p>
                             </>
                           )}
-
-                          <div className="card-body">
-                            <h4 className="info-header col-sm-6">
-                              Artist Social Info
-                            </h4>
-                          </div>
-                          <div className="card-text">
-                            {editMode == false ? (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-instagram"></i> :{" "}
-                                  {artist.instagram}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-instagram"></i> :{" "}
-                                  <input type="text" value="TEST"></input>
-                                </p>
-                              </>
-                            )}
-                          </div>
-                          <div className="row">
-                            {editMode == false ? (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-facebook"></i> :{" "}
-                                  {artist.facebook}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-facebook"></i> :{" "}
-                                  <input
-                                    type="text"
-                                    value={artist.facebook}
-                                  ></input>
-                                </p>
-                              </>
-                            )}
-                          </div>
-                          <div className="row">
-                            {editMode == false ? (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-twitter"></i> :{" "}
-                                  {artist.twitter}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-twitter"></i> :{" "}
-                                  <input
-                                    type="text"
-                                    value={artist.twitter}
-                                  ></input>
-                                </p>
-                              </>
-                            )}
-                          </div>
-                          <div className="row">
-                            {editMode == false ? (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-tiktok"></i> :{" "}
-                                  {artist.tiktok}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-tiktok"></i> :{" "}
-                                  <input
-                                    type="text"
-                                    value={artist.tiktok}
-                                  ></input>
-                                </p>
-                              </>
-                            )}
-                          </div>
-                          <div className="row">
-                            {editMode == false ? (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-soundcloud"></i> :{" "}
-                                  {artist.soundcloud}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-soundcloud"></i> :{" "}
-                                  <input
-                                    type="text"
-                                    value={artist.soundcloud}
-                                    // onChange={}
-                                  ></input>
-                                </p>
-                              </>
-                            )}
-                          </div>
-                          <div className="row">
-                            {editMode == false ? (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-spotify"></i> :{" "}
-                                  {artist.spotify}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className="card-text">
-                                  <i className="fa-brands fa-spotify"></i> :{" "}
-                                  <input type="text" value="TEST"></input>
-                                </p>
-                              </>
-                            )}
-                          </div>
+                        </div>
+                        <div className="card-body">
+                          <h4 className="info-header">Artist Social Info</h4>
+                        </div>
+                        <div className="card-text">
+                          {editMode == false ? (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-instagram"></i> :{" "}
+                                {artist.instagram}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-instagram"></i> :{" "}
+                                <input type="text" value="TEST"></input>
+                              </p>
+                            </>
+                          )}
+                        </div>
+                        <div className="card-text">
+                          {editMode == false ? (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-facebook"></i> :{" "}
+                                {artist.facebook}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-facebook"></i> :{" "}
+                                <input
+                                  type="text"
+                                  value={artist.facebook}
+                                ></input>
+                              </p>
+                            </>
+                          )}
+                        </div>
+                        <div className="card-text">
+                          {editMode == false ? (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-twitter"></i> :{" "}
+                                {artist.twitter}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-twitter"></i> :{" "}
+                                <input
+                                  type="text"
+                                  value={artist.twitter}
+                                ></input>
+                              </p>
+                            </>
+                          )}
+                        </div>
+                        <div className="row">
+                          {editMode == false ? (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-tiktok"></i> :{" "}
+                                {artist.tiktok}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-tiktok"></i> :{" "}
+                                <input
+                                  type="text"
+                                  value={artist.tiktok}
+                                ></input>
+                              </p>
+                            </>
+                          )}
+                        </div>
+                        <div className="row">
+                          {editMode == false ? (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-soundcloud"></i> :{" "}
+                                {artist.soundcloud}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-soundcloud"></i> :{" "}
+                                <input
+                                  type="text"
+                                  value={artist.soundcloud}
+                                  // onChange={}
+                                ></input>
+                              </p>
+                            </>
+                          )}
+                        </div>
+                        <div className="row">
+                          {editMode == false ? (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-spotify"></i> :{" "}
+                                {artist.spotify}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="card-text">
+                                <i className="fa-brands fa-spotify"></i> :{" "}
+                                <input type="text" value="TEST"></input>
+                              </p>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
