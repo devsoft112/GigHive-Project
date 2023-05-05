@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
+import Carousel from "better-react-carousel"
+
 import "../../styles/venueProfile.css";
 import { Map } from "../component/Map/Map.jsx";
 
@@ -230,6 +232,19 @@ export function VenueProfile() {
         <div className="row px-2 d-flex justify-content-between align-items-start secondRow">
           <div className="col-md-5 mx-1">
             <div className="row flex-row d-flex justify-content-between mt-2">
+              <Carousel cols={5} rows={1} gap={-10} loop />
+              {images.map((image, index) => {
+                return ( <Carousel.Item><img
+                  onClick={() => {
+                    ExpandPhoto();
+                    changeImgIndex(index);
+                  }}
+                  className="col-md m-2 rounded smImage p-0 object-fit-contain"
+                  src={image}
+                ></img>
+        </Carousel.Item>)})}
+            </div>
+            {/* <div className="row flex-row d-flex justify-content-between mt-2">
               {images.map((image, index) => {
                 return (
                   <img
@@ -242,7 +257,7 @@ export function VenueProfile() {
                   ></img>
                 );
               })}
-            </div>
+            </div> */}
             
           </div>
           <div className="col-md-6">
