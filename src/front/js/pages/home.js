@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
@@ -11,12 +11,8 @@ import ElectronicMusic from "../../img/ElectronicMusic.png";
 import ClassicalMusic from "../../img/ClassicalMusic.png";
 
 export const Home = () => {
-
-  useEffect(() => {
-    actions.getArtist();
-    actions.getVenue();
-  }, []);
   const { store, actions } = useContext(Context);
+  const user = store.user;
   const artists = store.artists;
   const venues = store.venues;
 
@@ -36,12 +32,14 @@ export const Home = () => {
   const jazzFilter = () => setArtists(jazzArtists);
   const electronicFilter = () => setArtists(electronicArtists);
   const classicalFilter = () => setArtists(classicalArtists);
-
   console.log(store.artists, "This is the Homepage trial");
-
   useEffect(() => {
+    actions.getArtist();
+    actions.getVenue();
+  }, []);
+  useLayoutEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
-      actions.getMessage();
+    actions.getMessage();
   }, [store.token]);
   return (
     <div className="container-fluid">
@@ -120,6 +118,7 @@ export const Home = () => {
           {venues.map((venue, index) => {
             return (
               <Venuecard
+                key={venue.id}
                 venue_name={venue.venue_name}
                 city={venue.city}
                 state={venue.state}

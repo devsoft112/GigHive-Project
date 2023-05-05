@@ -199,7 +199,7 @@ export function EditUserProfile(props) {
                         Artist Social Info
                       </h4>
                     </div>
-                    <div className="card">
+                    <div className="mb-0">
                       {editMode == false ? (
                         <>
                           <p className="mb-0">

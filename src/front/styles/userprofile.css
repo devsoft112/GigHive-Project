@@ -2,11 +2,30 @@
   background-color: whitesmoke;
   display: flex;
   align-items: center;
+  margin-top: 20px;
+}
+
+#venuebut {
+  background-color: #427fed;
+  color: white;
+}
+
+#artistbut {
+  background-color: red;
+  color: white;
+}
+
+.user-card img {
+  margin-left: 5px;
 }
 
 h1 {
   color: black;
   padding-left: 40%;
+}
+
+h1 > .container {
+  border: 1px solid black;
 }
 
 .user-card-text {
@@ -256,13 +275,14 @@ h1 {
   margin-bottom: 17px;
 }
 
-.btn-sm {
+.bottom a {
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  line-height: 18px;
+  padding-left: 4px;
+  width: 23px;
+  height: 23px;
+  line-height: 15px;
 }
 
-a {
+.title a {
   color: black;
 }

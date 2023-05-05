@@ -31,7 +31,7 @@ export const Navbar = () => {
           </span>
         </Link>
         <div className="dropdown">
-          {!store.token ? (
+          {isLoggedIn === false && (
             <button
               className="btn btn-secondary dropdown"
               href="#"
@@ -41,7 +41,8 @@ export const Navbar = () => {
             >
               Welcome
             </button>
-          ) : (
+          )}{" "}
+          {isLoggedIn === true && (
             <button
               className="btn btn-secondary dropdown"
               href="#"
