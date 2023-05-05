@@ -28,7 +28,7 @@ export const Artists = () => {
           );
         })}
       </div>
-     
+
       <div className="mt-5">
         <Link to="/favorites">
           <button>Favorites</button>
