@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import GigHive from "../../img/GigHive.png";
 
+
 import "../../styles/navbar.css";
 
 export const Navbar = () => {

@@ -1,9 +1,12 @@
-import React from "react";
-import "../../../styles/map.css";
+import React from "react"
+import '../../../styles/map.css'
+import MapPin from './GigHive_MapPin_v1.png'
+import MapPin2 from './GigHive_MapPin_v2.png'
+
+import mapPin from './GigHive_MapPin_v2.png'
 
 export const LocationPin = ({ text }) => (
-  <div className="pin">
-    <i className="fa-solid fa-location-dot map-pin"></i>
-    <p className="pin-text">{text}</p>
-  </div>
-);
+    <div className="pin">
+      <img id="mapPin"src={mapPin} height={50}></img>
+    </div>
+  )

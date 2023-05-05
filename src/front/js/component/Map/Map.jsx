@@ -5,8 +5,6 @@ import { LocationPin } from "./LocationPin.jsx";
 
 export const Map = ({ location, zoomLevel }) => (
     <><div className="map">
-      <h2 className="map-h2">Where We Are</h2>
-  
       <div className="google-map">
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyDecCwDfJgrb7eqAPY9il-YWvcs5RdPmuE' }}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "../../styles/artistCard.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 export const Artistcard = (props) => {
   const { store, actions } = useContext(Context);
