@@ -120,24 +120,25 @@ export const Home = () => {
       <div className="row px-3 mt-3">
         <h1>Venues</h1>
         <div className="card-row d-flex flex-nowrap px-3">
-          {venues.map((venue, index) => {
-            return (
-              <Venuecard
-                key={venue.id}
-                venue_name={venue.venue_name}
-                city={venue.city}
-                state={venue.state}
-                imgUrl={
-                  venue.images == null
-                    ? "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg"
-                    : venue.images.split(", ")[0]
-                }
-                link={"/venues/" + index}
-                id={index}
-                starRating="5.0"
-              />
-            );
-          })}
+          {Array.isArray(venues) &&
+            venues.map((venue, index) => {
+              return (
+                <Venuecard
+                  key={venue.id}
+                  venue_name={venue.venue_name}
+                  city={venue.city}
+                  state={venue.state}
+                  imgUrl={
+                    venue.images == null
+                      ? "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg"
+                      : venue.images.split(", ")[0]
+                  }
+                  link={"/venues/" + index}
+                  id={index}
+                  starRating="5.0"
+                />
+              );
+            })}
         </div>
       </div>
     </div>
