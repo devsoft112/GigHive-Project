@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 
 import Modal from 'react-bootstrap/Modal';
 
@@ -104,7 +104,23 @@ export function VenueProfile() {
     }
   }, []);
 
-  // <-----location object & fetch for map data----->
+  // <-----location object & fetch for map component----->
+  const map = useRef(null)
+
+  const [scrollTo, setScrollTo] = useState(<h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where we Are  <i class="fa-solid fa-arrow-down"></i></h2>)
+  const scrollToMap = () => {
+    map.current?.scrollIntoView({behavior: 'smooth'});
+    setScrollTo(<h2 onClick={scrollToTop}><i class="fa-solid fa-arrow-up"></i>  Back to Profile  <i class="fa-solid fa-arrow-up"></i></h2>)
+    
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'})
+    setScrollTo(<h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where we Are  <i class="fa-solid fa-arrow-down"></i></h2>)
+  }
+
   const location = {
     address: Address,
     lat: lat,
@@ -127,7 +143,7 @@ export function VenueProfile() {
     });
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid d-block">
       <div className="mainContent">
       {/* <----Code for LightBox----> */}
       {isOpen && (
@@ -164,7 +180,7 @@ export function VenueProfile() {
       </Modal.Footer>
     </Modal>
       
-      <div className="row mt-3 px-2 gx-3 d-flex mainRow h-75">
+      <div className="row mt-3 px-2 gx-3 d-flex">
         <div className="col-md-5 mt-2 p-0 h-100">
           <img
             onClick={ExpandPhoto}
@@ -317,15 +333,16 @@ export function VenueProfile() {
           </div>
          
         </div>
-        <div className="row where-we-are mb-0">
-          <h2 className="map-h2 am"><i class="fa-solid fa-arrow-down"></i>  Where We Are  <i class="fa-solid fa-arrow-down"></i></h2>
+        
+        </div>
+        <div className="row where-we-are mb-0 mt-2">
+          <h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where we Are  <i class="fa-solid fa-arrow-down"></i></h2>
         </div>
         </div>
-       
-        <div className="row rounded mt-1">
+        <div className="row rounded mt-1" ref={map} id="map">
           <Map location={location} zoomLevel={18} />
         </div>
-      </div>
+      
     </div>
   );
 }

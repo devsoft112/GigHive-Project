@@ -6,13 +6,13 @@
     object-fit: cover;
 }
 
-.mainRow {
-    height: 500px;
+.mainContent {
+    height: 5%;
 }
 
 .secondRow {
   /* outline: solid 1px red; */
-  height: calc(100vh - 575px);
+  height: 250px;
 }
 
 .venueName {
@@ -82,7 +82,7 @@
 
 
 .calendar {
-    height: 300px;
+    height: 225px;
     object-fit: contain;
 }
 
