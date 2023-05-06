@@ -28,7 +28,7 @@ export function EditUserProfile(props) {
   const [spotify, setSpotify] = useState("");
   const [artistName, setArtistName] = useState("");
   const [performance_type, setPerformance_type] = useState("Other");
-
+// Set up a modal to notify the user to put the social media handles into social media edits
   const editToggle = () => {
     editMode == true ? setEditMode(false) : setEditMode(true);
     console.log(editMode);
@@ -58,7 +58,7 @@ export function EditUserProfile(props) {
               <>
                 <p className="card-text">
                   <b>First Name: </b>
-                  <input type="text" value="Change your first name"></input>
+                  <input type="text" value={user.first_name}></input>
                 </p>
               </>
             )}
@@ -75,7 +75,7 @@ export function EditUserProfile(props) {
               <>
                 <p className="card-text">
                   <b>Last Name: </b>
-                  <input type="text" value="Change Your last name"></input>
+                  <input type="text" value={user.last_name}></input>
                 </p>
               </>
             )}
@@ -92,7 +92,7 @@ export function EditUserProfile(props) {
               <>
                 <p className="card-text">
                   <b>Email: </b>
-                  <input type="text" value="TEST"></input>
+                  <input type="text" value={user.email}></input>
                 </p>
               </>
             )}
@@ -197,7 +197,10 @@ export function EditUserProfile(props) {
                             <>
                               <p className="card-text">
                                 <b>About Info: </b>
-                                <input type="textarea" value="TEST"></input>
+                                <input
+                                  type="textarea"
+                                  value={artist.about_info}
+                                ></input>
                               </p>
                             </>
                           )}
@@ -217,7 +220,10 @@ export function EditUserProfile(props) {
                             <>
                               <p className="card-text">
                                 <i className="fa-brands fa-instagram"></i> :{" "}
-                                <input type="text" value="TEST"></input>
+                                <input
+                                  type="text"
+                                  value={artist.instagram}
+                                ></input>
                               </p>
                             </>
                           )}
@@ -315,7 +321,10 @@ export function EditUserProfile(props) {
                             <>
                               <p className="card-text">
                                 <i className="fa-brands fa-spotify"></i> :{" "}
-                                <input type="text" value="TEST"></input>
+                                <input
+                                  type="text"
+                                  value={artist.spotify}
+                                ></input>
                               </p>
                             </>
                           )}
@@ -348,7 +357,7 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>Venue Name: </b>
-                            <input type="text" value="TEST"></input>
+                            <input type="text" value={venue.venue_name}></input>
                           </p>
                         </>
                       )}
@@ -365,7 +374,10 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>Phone Number: </b>
-                            <input type="number" value="9999999999"></input>
+                            <input
+                              type="number"
+                              value={venue.phone_number}
+                            ></input>
                           </p>
                         </>
                       )}
@@ -384,7 +396,7 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>Street Address: </b>
-                            <input type="text" value="TEST"></input>
+                            <input type="text" value={venue.address}></input>
                           </p>
                         </>
                       )}
@@ -401,7 +413,7 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>City: </b>
-                            <input type="text" value="TEST"></input>
+                            <input type="text" value={venue.city}></input>
                           </p>
                         </>
                       )}
@@ -487,7 +499,7 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>Zipcode: </b>
-                            <input type="number" value="99999"></input>
+                            <input type="number" value={venue.zip_code}></input>
                           </p>
                         </>
                       )}
@@ -508,7 +520,7 @@ export function EditUserProfile(props) {
                             <b>Capacity: </b>
                             <input
                               type="number"
-                              value="999"
+                              value={venue.venue_capacity}
                               id="venueCapacity"
                             ></input>
                           </p>
@@ -601,7 +613,7 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>Pay Rate: </b>
-                            <input type="number" value="99"></input>
+                            <input type="number" value={venue.pay_rate}></input>
                           </p>
                         </>
                       )}
@@ -618,7 +630,7 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>Fees: </b>
-                            <input type="number" value="99"></input>
+                            <input type="number" value={venue.fees}></input>
                           </p>
                         </>
                       )}
@@ -637,7 +649,7 @@ export function EditUserProfile(props) {
                         <>
                           <p className="card-text">
                             <b>Equipment Info: </b>
-                            <input type="text" value="TEST"></input>
+                            <input type="text" value={venue.equipment}></input>
                           </p>
                         </>
                       )}
@@ -658,7 +670,7 @@ export function EditUserProfile(props) {
                       <>
                         <p className="card-text">
                           <i className="fa-brands fa-instagram"></i> :{" "}
-                          <input type="text" value="TEST"></input>
+                          <input type="text" value={venue.instagram}></input>
                         </p>
                       </>
                     )}
@@ -675,7 +687,7 @@ export function EditUserProfile(props) {
                       <>
                         <p className="card-text">
                           <i className="fa-brands fa-facebook"></i> :{" "}
-                          <input type="text" value="TEST"></input>
+                          <input type="text" value={venue.facebook}></input>
                         </p>
                       </>
                     )}
@@ -692,7 +704,7 @@ export function EditUserProfile(props) {
                       <>
                         <p className="card-text">
                           <i className="fa-brands fa-twitter"></i> :{" "}
-                          <input type="text" value="TEST"></input>
+                          <input type="text" value={venue.twitter}></input>
                         </p>
                       </>
                     )}
@@ -709,7 +721,7 @@ export function EditUserProfile(props) {
                       <>
                         <p className="card-text">
                           <i className="fa-brands fa-tiktok"></i> :{" "}
-                          <input type="text" value="TEST"></input>
+                          <input type="text" value={venue.tiktok}></input>
                         </p>
                       </>
                     )}
@@ -726,7 +738,7 @@ export function EditUserProfile(props) {
                       <>
                         <p className="card-text">
                           <i className="fa-brands fa-soundcloud"></i> :{" "}
-                          <input type="text" value="TEST"></input>
+                          <input type="text" value={venue.soundcloud}></input>
                         </p>
                       </>
                     )}
@@ -743,7 +755,7 @@ export function EditUserProfile(props) {
                       <>
                         <p className="card-text">
                           <i className="fa-brands fa-spotify"></i> :{" "}
-                          <input type="text" value="TEST"></input>
+                          <input type="text" value={venue.spotify}></input>
                         </p>
                       </>
                     )}
