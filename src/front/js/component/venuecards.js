@@ -13,8 +13,9 @@ export const Venuecard = (props) => {
   const [activeFav, setActiveFav] = useState(false);
   const handleFavorites = (e) => {
     e.preventDefault();
-    if (activeFav) {
+    if (activeFav === true) {
       actions.venueFavoriteRemove(props);
+      setActiveFav(false);
     } else {
       actions.venueFavorite(props);
       setActiveFav(true);
@@ -50,7 +51,7 @@ export const Venuecard = (props) => {
         </div>
 
         <div className="buttonDiv">
-          <a className="btn btn-sm btn-primary " href={props.link}>
+          <a className="btn btn-sm purplebutton " href={props.link}>
             View Profile
           </a>
           <i
@@ -59,7 +60,7 @@ export const Venuecard = (props) => {
                 ? "fa-regular fas fa-heart fa-lg card-heart"
                 : " fa-regular far fa-heart fa-lg card-heart"
             }
-            style={{ color: "#d8131d" }}
+            style={{ color: "#8968CD" }}
             onClick={(e) => handleFavorites(e)}
           ></i>
         </div>

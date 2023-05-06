@@ -83,21 +83,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ favoriteArtists: favoriteArtists });
       },
 
-      artistFavorite: (name) => {
+      artistFavorite: (artist) => {
         let favoriteArtists = getStore().favoriteArtists;
-        let artists = getStore().artists;
 
-        for (let i = 0; i < favoriteArtists.length; i++) {
-          if (favoriteArtists[i].artist_name == name) {
-            favoriteArtists.pop(favoriteArtists[i]);
-          } else {
-            favoriteArtists.push(
-              artists.find((artist) => artist.artist_name == name)
-            );
-          }
-        }
+        favoriteArtists = favoriteArtists.filter(
+          (artist_i) => artist_i.artist_name != artist.artist_name
+        );
+        let artists = [...favoriteArtists, artist];
 
-        setStore({ favoriteArtists: favoriteArtists });
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteArtists: artists });
       },
       postArtist: async (
         artist_name,

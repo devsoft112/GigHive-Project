@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState} from "react";
 
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
+// import Lightbox from "react-image-lightbox";
+// import "react-image-lightbox/style.css";
 
 import CalendarPlaceholder from "./CalendarPlaceholder.png";
 

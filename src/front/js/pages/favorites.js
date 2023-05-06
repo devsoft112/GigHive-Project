@@ -13,8 +13,13 @@ export const Favorites = () => {
   //these are for add favorites and defavorite one
 
   return (
-    <div>
+    <div className=" container-fluid mt-5">
+      <h1 className="mb-4">Favorites</h1>
+
       <div>
+        <h3>Artists</h3>
+      </div>
+      <div className="card-row px-3 d-flex flex-row flex-wrap justify-content-start">
         {store.favoriteArtists.map((artist, index) => {
           return (
             <Artistcard
@@ -30,7 +35,11 @@ export const Favorites = () => {
           );
         })}
       </div>
+
       <div>
+        <h3>Venues</h3>
+      </div>
+      <div className="card-row px-3 d-flex flex-row flex-wrap justify-content-start">
         {store.favoriteVenues.map((venue, index) => {
           return (
             <Venuecard

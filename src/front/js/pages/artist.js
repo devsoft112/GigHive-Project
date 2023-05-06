@@ -10,9 +10,14 @@ export const Artists = () => {
   //these are for add favorites and defavorite one
 
   return (
-    <div className="venues-container container-fluid">
-      <h1>Artists</h1>
-      <div className="d-flex ">
+    <div className="venues-container container d-flex flex-column justify-content-md-center">
+      <div className="mt-5 mx-5 d-flex justify-content-between">
+        <h1 className="">Artists</h1>
+        <Link to="/favorites">
+          <button className="purplebutton justify-content-">Favorites</button>
+        </Link>
+      </div>
+      <div className="card-row px-3 d-flex flex-row flex-wrap card-gap mr-5 ">
         {store.artists.map((artist, index) => {
           return (
             <Artistcard
@@ -23,16 +28,11 @@ export const Artists = () => {
               imgUrl={artist.images.split(", ")[0]}
               link={"/artists/" + index}
               id={index}
+              className="artistCard"
               starRating="5.0"
             />
           );
         })}
-      </div>
-
-      <div className="mt-5">
-        <Link to="/favorites">
-          <button>Favorites</button>
-        </Link>
       </div>
     </div>
   );

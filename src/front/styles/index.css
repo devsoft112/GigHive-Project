@@ -2,15 +2,14 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
   --maingold: rgb(228, 175, 0);
 }
 
 .am {
-  font-family: 'Amaranth', sans-serif;
+  font-family: "Amaranth", sans-serif;
 }
 
 .account-type-button {
@@ -31,4 +30,15 @@
 .signup-user-type-select {
   display: inline;
 }
-
+.purplebutton {
+  background-color: #8968cd;
+  color: rgb(255, 205, 39);
+}
+.card-gap {
+  row-gap: 15px;
+}
+.artistCard {
+  box-shadow: 12px 5px 34px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 12px 5px 34px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 12px 5px 34px rgba(0, 0, 0, 0.3);
+}
