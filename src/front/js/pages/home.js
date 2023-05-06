@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
@@ -33,13 +33,13 @@ export const Home = () => {
   const electronicFilter = () => setArtists(electronicArtists);
   const classicalFilter = () => setArtists(classicalArtists);
   console.log(store.artists, "This is the Homepage trial");
-  useEffect(() => {
+  useLayoutEffect(() => {
     actions.getArtist();
     actions.getVenue();
   }, []);
   useLayoutEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)
-    actions.getMessage();
+      actions.getMessage();
   }, [store.token]);
   return (
     <div className="container-fluid">
@@ -96,20 +96,25 @@ export const Home = () => {
         <h1 className="artistitle">Artists</h1>
       </div>
       <div className="card-row px-3 d-flex flex-row flex-wrap justify-content-start">
-        {artists.map((artist, index) => {
-          return (
-            <Artistcard
-              key={artist.id}
-              artist_name={artist.artist_name}
-              genre={artist.genre}
-              performance_type={artist.performance_type}
-              imgUrl={artist.images == null? "https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg" : artist.images.split(", ")[0]}
-              link={"/artists/" + index}
-              id={index}
-              starRating="5.0"
-            />
-          );
-        })}
+        {Array.isArray(artists) &&
+          artists.map((artist, index) => {
+            return (
+              <Artistcard
+                key={artist.id}
+                artist_name={artist.artist_name}
+                genre={artist.genre}
+                performance_type={artist.performance_type}
+                imgUrl={
+                  artist.images == null
+                    ? "https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg"
+                    : artist.images.split(", ")[0]
+                }
+                link={"/artists/" + index}
+                id={index}
+                starRating="5.0"
+              />
+            );
+          })}
       </div>
 
       <div className="row px-3 mt-3">
@@ -122,7 +127,11 @@ export const Home = () => {
                 venue_name={venue.venue_name}
                 city={venue.city}
                 state={venue.state}
-                imgUrl={venue.images == null? "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg" : venue.images.split(", ")[0]}
+                imgUrl={
+                  venue.images == null
+                    ? "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg"
+                    : venue.images.split(", ")[0]
+                }
                 link={"/venues/" + index}
                 id={index}
                 starRating="5.0"

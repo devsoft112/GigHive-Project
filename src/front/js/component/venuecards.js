@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-
 import "../../styles/venueCard.css";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 export const Venuecard = (props) => {
   const { store, actions } = useContext(Context);

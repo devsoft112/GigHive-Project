@@ -9,7 +9,6 @@ export const UserProfile = () => {
   const { id } = useParams();
   const user = store.user;
   const history = useNavigate();
-  console.log(user.artist, "userprofile");
 
   // Check if user is authenticated
   useEffect(() => {
@@ -74,11 +73,11 @@ export const UserProfile = () => {
       <h1> Your Artist(s) </h1>
       <Row lg={3} md={4} sm={6}>
         {user.artists &&
-          user.artists.map((artist) => {
+          user.artists.map((artist, id) => {
             return (
               <>
-                <div className="container d-flex">
-                  <div className="flex-fill card hovercard" key={artist.id}>
+                <div className="container d-flex" key={artist.id}>
+                  <div className="flex-fill card hovercard">
                     <div className="cardheader"></div>
                     <div className="avatar">
                       <img
@@ -88,9 +87,7 @@ export const UserProfile = () => {
                     </div>
                     <div className="info">
                       <div className="title">
-                        <a target="_blank" href={"artist/" + { artist }}>
-                          {artist.artist_name}
-                        </a>
+                        <a href={"/artists/" + id}>{artist.artist_name}</a>
                       </div>
                       <div className="desc">{artist.genre}</div>
                       <div className="desc">{artist.performance_type}</div>
@@ -99,47 +96,59 @@ export const UserProfile = () => {
                       </div>
                     </div>
                     <div className="bottom">
-                      <a
-                        className="btn btn-primary btn-twitter btn-sm"
-                        href={artist.twitter}
-                      >
-                        <i className="fa-brands fa-twitter"></i>
-                      </a>
-                      <a
-                        className="btn btn-danger btn-sm"
-                        rel="publisher"
-                        href={artist.soundcloud}
-                      >
-                        <i className="fa-brands fa-soundcloud"></i>
-                      </a>
-                      <a
-                        className="btn btn-primary btn-sm"
-                        rel="publisher"
-                        href={artist.facebook}
-                      >
-                        <i className="fa-brands fa-facebook"></i>
-                      </a>
-                      <a
-                        className="btn btn-dark btn-sm"
-                        rel="publisher"
-                        href={artist.instagram}
-                      >
-                        <i className="fa-brands fa-instagram"></i>
-                      </a>
-                      <a
-                        className="btn btn-success btn-sm"
-                        rel="publisher"
-                        href={artist.spotify}
-                      >
-                        <i className="fa-brands fa-spotify"></i>
-                      </a>
-                      <a
-                        className="btn btn-light btn-sm"
-                        rel="publisher"
-                        href={artist.tiktok}
-                      >
-                        <i className="fa-brands fa-tiktok"></i>
-                      </a>
+                      {artist?.twitter ? (
+                        <a
+                          className="btn btn-primary btn-twitter btn-sm"
+                          href={`http://twitter.com/${artist?.twitter}`}
+                        >
+                          <i className="fa-brands fa-twitter"></i>
+                        </a>
+                      ) : null}
+                      {artist?.soundcloud ? (
+                        <a
+                          className="btn btn-danger btn-sm"
+                          rel="publisher"
+                          href={`http://soundcloud.com/${artist?.soundcloud}`}
+                        >
+                          <i className="fa-brands fa-soundcloud"></i>
+                        </a>
+                      ) : null}
+                      {artist?.facebook ? (
+                        <a
+                          className="btn btn-primary btn-sm"
+                          rel="publisher"
+                          href={`http://facebook.com/${artist.facebook}`}
+                        >
+                          <i className="fa-brands fa-facebook"></i>
+                        </a>
+                      ) : null}
+                      {artist?.instagram ? (
+                        <a
+                          className="btn btn-dark btn-sm"
+                          rel="publisher"
+                          href={`http://instagram.com/${artist?.instagram}`}
+                        >
+                          <i className="fa-brands fa-instagram"></i>
+                        </a>
+                      ) : null}
+                      {artist?.spotify ? (
+                        <a
+                          className="btn btn-success btn-sm"
+                          rel="publisher"
+                          href={`http://spotify.com/${artist?.spotify}`}
+                        >
+                          <i className="fa-brands fa-spotify"></i>
+                        </a>
+                      ) : null}
+                      {artist?.tiktok ? (
+                        <a
+                          className="btn btn-light btn-sm"
+                          rel="publisher"
+                          href={`http://tiktok.com/@${artist?.tiktok}`}
+                        >
+                          <i className="fa-brands fa-tiktok"></i>
+                        </a>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -150,11 +159,11 @@ export const UserProfile = () => {
       <h1> Your Venue(s) </h1>
       <Row lg={3}>
         {user.venues &&
-          user.venues.map((venue) => {
+          user.venues.map((venue, id) => {
             return (
               <>
-                <div className="container d-flex">
-                  <div className="flex-fill card hovercard" key={venue.id}>
+                <div className="container d-flex" key={venue.id}>
+                  <div className="flex-fill card hovercard">
                     <div className="cardheader"></div>
                     <div className="avatar">
                       <img
@@ -164,12 +173,10 @@ export const UserProfile = () => {
                     </div>
                     <div className="info">
                       <div className="title">
-                        <a target="_blank" href={"venue/" + { venue }}>
-                          {venue.venue_name}
-                        </a>
+                        <a href={"/venues/" + id}>{venue.venue_name}</a>
                       </div>
                       <div className="desc">
-                        <i class="fa-solid fa-phone fa-bounce"></i>
+                        <i className="fa-solid fa-phone fa-bounce"></i>
                         {venue.phone_number}
                       </div>
                       <div className="desc">
@@ -181,47 +188,60 @@ export const UserProfile = () => {
                       </div>
                     </div>
                     <div className="bottom">
-                      <a
-                        className="btn btn-primary btn-twitter btn-sm"
-                        href={venue.twitter}
-                      >
-                        <i className="fa-brands fa-twitter"></i>
-                      </a>
-                      <a
-                        className="btn btn-danger btn-sm"
-                        rel="publisher"
-                        href={venue.soundcloud}
-                      >
-                        <i className="fa-brands fa-soundcloud"></i>
-                      </a>
-                      <a
-                        className="btn btn-primary btn-sm"
-                        rel="publisher"
-                        href={venue.facebook}
-                      >
-                        <i className="fa-brands fa-facebook"></i>
-                      </a>
-                      <a
-                        className="btn btn-dark btn-sm"
-                        rel="publisher"
-                        href={venue.instagram}
-                      >
-                        <i className="fa-brands fa-instagram"></i>
-                      </a>
-                      <a
-                        className="btn btn-success btn-sm"
-                        rel="publisher"
-                        href={venue.spotify}
-                      >
-                        <i className="fa-brands fa-spotify"></i>
-                      </a>
-                      <a
-                        className="btn btn-light btn-sm"
-                        rel="publisher"
-                        href={venue.tiktok}
-                      >
-                        <i className="fa-brands fa-tiktok"></i>
-                      </a>
+                      {venue?.twitter ? (
+                        <a
+                          className="btn btn-primary btn-twitter btn-sm"
+                          href={`http://twitter.com/${venue?.twitter}`}
+                          target="_blank"
+                        >
+                          <i className="fa-brands fa-twitter"></i>
+                        </a>
+                      ) : null}
+                      {venue?.soundcloud ? (
+                        <a
+                          className="btn btn-danger btn-sm"
+                          rel="publisher"
+                          href={`http://soundcloud.com/${venue?.soundcloud}`}
+                        >
+                          <i className="fa-brands fa-soundcloud"></i>
+                        </a>
+                      ) : null}
+                      {venue?.facebook ? (
+                        <a
+                          className="btn btn-primary btn-sm"
+                          rel="publisher"
+                          href={`http://facebook.com/${venue.facebook}`}
+                        >
+                          <i className="fa-brands fa-facebook"></i>
+                        </a>
+                      ) : null}
+                      {venue?.instagram ? (
+                        <a
+                          className="btn btn-dark btn-sm"
+                          rel="publisher"
+                          href={`http://instagram.com/${venue?.instagram}`}
+                        >
+                          <i className="fa-brands fa-instagram"></i>
+                        </a>
+                      ) : null}
+                      {venue?.spotify ? (
+                        <a
+                          className="btn btn-success btn-sm"
+                          rel="publisher"
+                          href={`http://spotify.com/${venue?.spotify}`}
+                        >
+                          <i className="fa-brands fa-spotify"></i>
+                        </a>
+                      ) : null}
+                      {venue?.tiktok ? (
+                        <a
+                          className="btn btn-light btn-sm"
+                          rel="publisher"
+                          href={`http://tiktok.com/@${venue?.tiktok}`}
+                        >
+                          <i className="fa-brands fa-tiktok"></i>
+                        </a>
+                      ) : null}
                     </div>
                   </div>
                 </div>

@@ -73,12 +73,6 @@ export const Navbar = () => {
             <li>
               <Link to="/venues">Venues</Link>
             </li>
-            <li>
-              <Link to="/artists">Browse Works</Link>
-            </li>
-            <li>
-              <Link to="/help">Host an event</Link>
-            </li>
             {isLoggedIn === false && (
               <li>
                 <Link to="/register">Sign Up</Link>

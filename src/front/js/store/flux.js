@@ -65,9 +65,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           });
           const data = await resp.json();
-          console.log(data, "this is from the User");
           setStore({ user: data });
           setStore({ artists: data });
+          setStore({ venues: data });
           return data;
         } catch (error) {
           console.log("Error loading user", error);
