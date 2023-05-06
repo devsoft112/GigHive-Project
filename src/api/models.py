@@ -12,7 +12,6 @@ class User(db.Model):
     password = db.Column(db.String(120), unique=False, nullable=False)
     venues = db.relationship('Venue', backref="venuesUser", lazy='subquery') 
     artists = db.relationship('Artist', backref="artistUser", lazy='subquery') 
-    favorites = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
     
     def __repr__(self):
         return f'<User {self.username}>'
@@ -26,7 +25,6 @@ class User(db.Model):
             "email": self.email,
             "artists": list(map(lambda x: x.serialize(), self.artists)),
             "venues": list(map(lambda x: x.serialize(), self.venues)),
-            "favorites": list(map(lambda x: x.serialize(), self.favorites))
 
             # do not serialize the password, its a security breach
         }
@@ -132,8 +130,7 @@ class Artist(db.Model):
 
 class Favorites(db.Model):
     __tablename__ = "favorites"
-    id = db.Column(db.Integer, primary_key=True)# public
-    user = db.relationship('User', backref="userFavorites", lazy='subquery') 
+    id = db.Column(db.Integer, primary_key=True)# public 
     venues = db.relationship('Venue', backref="venueFavorites", lazy='subquery') 
     artists = db.relationship('Artist', backref="artistFavorites", lazy='subquery') 
 
@@ -144,7 +141,6 @@ class Favorites(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "user": self.user,
             "artists": list(map(lambda x: x.serialize(), self.artists)),
             "venues": list(map(lambda x: x.serialize(), self.venues))
             # do not serialize the password, its a security breach

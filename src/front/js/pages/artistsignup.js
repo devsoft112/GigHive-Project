@@ -8,7 +8,7 @@ export function Artistsignup() {
   const { store, actions } = useContext(Context);
   const [genre, setGenre] = useState("");
   const [about_info, setAbout_Info] = useState(
-    "More info about this venue hasn't been added yet!"
+    "More info about this Artist hasn't been added yet!"
   );
   const [instagram, setInstagram] = useState("");
   const [tikTok, setTikTok] = useState("");
@@ -34,7 +34,7 @@ export function Artistsignup() {
       tikTok,
       images
     );
-    console.log("artist created");
+    console.log("artist created", store.artists);
   };
   // useEffect(() => {
   //   if (!store.token) {

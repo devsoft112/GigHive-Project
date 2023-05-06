@@ -12,6 +12,8 @@ export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useNavigate();
+  console.log(username);
+  console.log(password);
 
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined)

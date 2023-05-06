@@ -15,6 +15,7 @@ import { Artistsignup } from "./pages/artistsignup";
 import { Login } from "./pages/login";
 import { ArtistProfile } from "./pages/artistProfile";
 import { VenueProfile } from "./pages/venueProfile";
+import { UserProfile } from "./pages/userprofile";
 import { EditUserProfile } from "./pages/editUserProfile";
 import { Venues } from "./pages/venues";
 import { Artists } from "./pages/artist";
@@ -30,18 +31,17 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<Demo />} path="/demo" />
-            <Route element={<Venuesignup />} path="/register/venue" />
-            <Route element={<Artistsignup />} path="/register/artist" />
-            <Route element={<ArtistProfile />} path="/artists/:id" />
-            <Route element={<VenueProfile />} path="/venues/:id" />
-            <Route element={<Signup />} path="/register" />
-            <Route element={<Login />} path="/login" />
-            <Route element={<Venues />} path="/venues" />
-            <Route element={<Artists />} path="/artists" />
-            <Route element={<EditUserProfile />} path="/myprofile" />
-            <Route element={<h1>Not found!</h1>} />
+            <Route element = {<Home />} path = "/" />
+            <Route element = {<Demo />} path = "/demo" />
+            <Route element = {<Venuesignup />} path = "/register/venue" />
+            <Route element = {<Artistsignup />} path = "/register/artist" />
+            <Route element = {<ArtistProfile />} path = "/artists/:id" />
+            <Route element = {<UserProfile />} path = "/profile" />
+            <Route element = {<VenueProfile />} path = "/venues/:id" />
+            <Route element = {<Signup />} path = "/register" />
+            <Route element = {<Login />} path = "/login" />
+            <Route element = {<EditUserProfile />} path = "/myprofile" />
+            <Route element = {<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>
         {/* <Footer /> */}
