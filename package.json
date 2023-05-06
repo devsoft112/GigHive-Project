@@ -79,6 +79,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"auth0-js": "^9.20.2",
+		"better-react-carousel": "^1.1.1",
 		"bootstrap": "^5.2.3",
 		"google-map-react": "^2.2.0",
 		"prop-types": "^15.6.1",
