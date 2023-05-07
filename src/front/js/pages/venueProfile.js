@@ -107,18 +107,34 @@ export function VenueProfile() {
   // <-----location object & fetch for map component----->
   const map = useRef(null)
 
-  const [scrollTo, setScrollTo] = useState(<h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where we Are  <i class="fa-solid fa-arrow-down"></i></h2>)
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY < 300) {
+            setScrollCheck(true);
+            setFade(0)
+        } else {
+            setFade(1)
+        }
+        if (window.scrollY >= 700){
+          setScrollCheck(false);
+        }
+    });
+}, []);
+  const [fade, setFade] = useState(0)
+
+  const [scrollCheck, setScrollCheck] = useState(true)
+  const [showMap, setShowMap] = useState("row rounded mt-1")
+
   const scrollToMap = () => {
     map.current?.scrollIntoView({behavior: 'smooth'});
-    setScrollTo(<h2 onClick={scrollToTop}><i class="fa-solid fa-arrow-up"></i>  Back to Profile  <i class="fa-solid fa-arrow-up"></i></h2>)
-    
+    setFade(1)    
   }
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0, 
       behavior: 'smooth'})
-    setScrollTo(<h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where we Are  <i class="fa-solid fa-arrow-down"></i></h2>)
+    setFade(0)
   }
 
   const location = {
@@ -183,7 +199,10 @@ export function VenueProfile() {
       <div className="row mt-3 px-2 gx-3 d-flex">
         <div className="col-md-5 mt-2 p-0 h-100">
           <img
-            onClick={ExpandPhoto}
+            onClick={() => {
+              ExpandPhoto();
+              changeImgIndex(0);
+            }}
             src={images[0]}
             className="profile-main-img object-fit-contain rounded"
           ></img>
@@ -336,10 +355,11 @@ export function VenueProfile() {
         
         </div>
         <div className="row where-we-are mb-0 mt-2">
-          <h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where we Are  <i class="fa-solid fa-arrow-down"></i></h2>
+          {scrollCheck ?   <h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where We Are  <i class="fa-solid fa-arrow-down"></i></h2> : <h2 onClick={scrollToTop}><i class="fa-solid fa-arrow-up"></i>  Back to Profile  <i class="fa-solid fa-arrow-up"></i></h2>
+}
         </div>
         </div>
-        <div className="row rounded mt-1" ref={map} id="map">
+        <div className="row rounded mt-1" ref={map} id="map" fade={fade}>
           <Map location={location} zoomLevel={18} />
         </div>
       

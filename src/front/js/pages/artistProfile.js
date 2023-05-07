@@ -136,7 +136,10 @@ export function ArtistProfile() {
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
         <div className="col-md-5 mt-2 p-0 h-100">
           <img
-            onClick={ExpandPhoto}
+            onClick={() => {
+              ExpandPhoto();
+              changeImgIndex(0);
+            }}
             src={images[0]}
             className="profile-main-img object-fit-contain rounded"
           ></img>
@@ -243,30 +246,6 @@ export function ArtistProfile() {
         )})}</Carousel>
             </div>
           </div>
-          {/* <div className="col-md-5 mx-1">
-              <div className="row d-flex justify-content-between">
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-              </div>
-              <div className="row d-flex justify-content-between">
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-              </div>
-            </div> */}
           <div className="col-md-6">
             <div className="row">
               <div className="col-md-6">
