@@ -1,16 +1,14 @@
-import React from "react";
-
 import "../../styles/artistCard.css";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 export const Artistcard = (props) => {
   const { store, actions } = useContext(Context);
   const [activeFav, setActiveFav] = useState(false);
-  const handleFavorites = (e) => {
-    e.preventDefault();
-    actions.ArtistFavorite(props.artist_name);
-    setActiveFav(true)
-  };
+  // const handleFavorites = (e) => {
+  //   e.preventDefault();
+  //   actions.ArtistFavorite(props.artist_name);
+  //   setActiveFav(true);
+  // };
   return (
     <div className="card artist-card mx-2">
       <div className="crd-img p-0">

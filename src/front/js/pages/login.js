@@ -13,6 +13,8 @@ export function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const history = useNavigate();
+  console.log(username);
+  console.log(password);
 
   function handleClick(e) {
     e.preventDefault();
