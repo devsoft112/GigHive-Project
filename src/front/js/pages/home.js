@@ -104,7 +104,11 @@ export const Home = () => {
               artist_name={artist.artist_name}
               genre={artist.genre}
               performance_type={artist.performance_type}
-              imgUrl={artist.images == null? "https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg" : artist.images.split(", ")[0]}
+              imgUrl={
+                artist.images == null
+                  ? "https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg"
+                  : artist.images.split(", ")[0]
+              }
               link={"/artists/" + index}
               id={index}
               starRating="5.0"
@@ -122,7 +126,11 @@ export const Home = () => {
                 venue_name={venue.venue_name}
                 city={venue.city}
                 state={venue.state}
-                imgUrl={venue.images == null? "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg" : venue.images.split(", ")[0]}
+                imgUrl={
+                  venue.images == null
+                    ? "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg"
+                    : venue.images.split(", ")[0]
+                }
                 link={"/venues/" + index}
                 id={index}
                 starRating="5.0"
@@ -130,8 +138,6 @@ export const Home = () => {
             );
           })}
         </div>
-
-        <Link to="/favorites">View Favorites</Link>
       </div>
     </div>
   );

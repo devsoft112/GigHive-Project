@@ -12,12 +12,9 @@ export const Artists = () => {
   return (
     <div className="venues-container container d-flex flex-column justify-content-md-center">
       <div className="mt-5 mx-5 d-flex justify-content-between">
-        <h1 className="">Artists</h1>
-        <Link to="/favorites">
-          <button className="purplebutton justify-content-">Favorites</button>
-        </Link>
+        <h1 className="mb-5">Artists</h1>
       </div>
-      <div className="card-row px-3 d-flex flex-row flex-wrap card-gap mr-5 ">
+      <div className="mb-5 py-4 card-row mx-auto d-flex flex-row flex-wrap justify-content-start ">
         {store.artists.map((artist, index) => {
           return (
             <Artistcard
