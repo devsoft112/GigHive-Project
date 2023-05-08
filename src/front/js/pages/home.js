@@ -6,6 +6,7 @@ import { Venuecard } from "../component/venuecards";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
+
 import rockMusic from "../../img/RockMusic.png";
 import HipHopMusic from "../../img/HipHopMusic.png";
 import JazzMusic from "../../img/JazzMusic.png";
@@ -17,7 +18,7 @@ export const Home = () => {
   const user = store.user;
   const artists = store.artists;
   const venues = store.venues;
-
+  const { id } = useParams();
   // const [filter, setFilter] = useState(artists)
 
   // const rockArtists = artists.filter(artist => artist.genre == "rock");
@@ -97,7 +98,7 @@ export const Home = () => {
       <div className="row px-3">
         <h1 className="artistitle">Artists</h1>
       </div>
-      <div className="card-row px-3 d-flex flex-row flex-wrap justify-content-start">
+      <div className="card-row px-3 d-flex flex-row flex-wrap justify-content-center">
         {Array.isArray(artists) &&
           artists.map((artist, index) => {
             return (
@@ -112,7 +113,7 @@ export const Home = () => {
                     : artist.images.split(", ")[0]
                 }
                 link={"/artists/" + index}
-                id={index}
+                id = {index}
                 starRating="5.0"
               />
             );
@@ -121,7 +122,7 @@ export const Home = () => {
 
       <div className="row px-3 mt-3">
         <h1>Venues</h1>
-        <div className="card-row d-flex flex-nowrap px-3">
+        <div className="card-row px-3 d-flex flex-row flex-wrap justify-content-center">
           {Array.isArray(venues) &&
             venues.map((venue, index) => {
               return (
