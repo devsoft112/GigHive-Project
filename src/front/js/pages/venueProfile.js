@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 
 import Modal from 'react-bootstrap/Modal';
 
+import CalendarPlaceholder from '../pages/CalendarPlaceholder.png'
+
 import Carousel from "better-react-carousel";
 
 // import Lightbox from "react-image-lightbox";
@@ -225,15 +227,8 @@ export function VenueProfile() {
               <button className="btn btn-sm btn-primary" onClick={handleShow}>Message</button>
             </div>
           </div>
-          <div className="col-md-7 px-3">
-            <div className="d-flex flex-row mb-0">
-              <div>
-                <h2 className="venueName m-0">{venues[id]?.venue_name}</h2>
-              </div>
-              <div className="mx-2 pt-1">
-                <button className="btn btn-sm btn-primary">Message</button>
-              </div>
-            </div>
+          
+            
             <div className="row mt-0 ">
               <p className="my-0 small">
                 <b>
@@ -252,7 +247,7 @@ export function VenueProfile() {
                 </div>
               </div>
             </div>
-          </div>
+          
           <div className="row mt-1">
             <p className="mb-1">{venues[id]?.about_info == "" || venues[id]?.about_info == null ? "More info about this venue hasn't been added yet!" : venues[id]?.about_info}</p>
             <p className="my-0">
@@ -359,24 +354,7 @@ export function VenueProfile() {
 
             </div>
           </div>
-          <div className="row px-2 d-flex justify-content-between align-items-start secondRow">
-            <div className="col-md-5 mx-1">
-              <div className="row flex-row d-flex justify-content-between mt-2">
-                {images.map((image, index) => {
-                  return (
-                    <img
-                      onClick={() => {
-                        ExpandPhoto();
-                        changeImgIndex(index);
-                      }}
-                      className="col-md m-2 rounded smImage p-0 object-fit-contain"
-                      src={image}
-                    ></img>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="col-md-6">
+          <div className="col-md-6">
               <div className="row mt-2">
                 <div className="col-md-6">
                   <img className="calendar" src={CalendarPlaceholder} />
@@ -386,7 +364,6 @@ export function VenueProfile() {
                 </div>
               </div>
             </div>
-          </div>
         </div>
         
         </div>
