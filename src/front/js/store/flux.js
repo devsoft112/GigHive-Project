@@ -74,38 +74,45 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      VenueFavorite: (name) => {
-        let favorites = getStore().favoriteVenues;
-        let venues = getStore().venues;
+      venueFavorite: (venue) => {
+        let favoriteVenues = getStore().favoriteVenues;
+        favoriteVenues = favoriteVenues.filter(
+          (venue_i) => venue_i.venue_name != venue.venue_name
+        );
+        let venues = [...favoriteVenues, venue];
 
-        favorites.forEach((favorite) => {
-          if (favorite.venue_name == name) {
-            favorites.pop(favorite);
-          } else {
-            venues.forEach((venue, index) => {
-              if (venue.venue_name == name) {
-                favorites.push(venue);
-              }
-            });
-          }
-        });
-        setStore({ favorite: favorites });
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteVenues: venues });
       },
-      ArtistFavorite: (name) => {
-        let artists = getStore().favoriteArtists;
-        let favorites = getStore().favorites;
-        favorites.forEach((favorite) => {
-          if (favorite.artist_name == name) {
-            favorites.pop(favorite);
-          } else {
-            artists.forEach((artist, index) => {
-              if (artist.artist_name == name) {
-                favorites.push(artist);
-              }
-            });
-          }
-        });
-        setStore({ favorite: favorites });
+      venueFavoriteRemove: (venue) => {
+        let favoriteVenues = getStore().favoriteVenues;
+        favoriteVenues = favoriteVenues.filter(
+          (venue_i) => venue_i.venue_name != venue.venue_name
+        );
+
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteVenues: favoriteVenues });
+      },
+      artistFavoriteRemove: (artist) => {
+        let favoriteArtists = getStore().favoriteArtists;
+        favoriteArtists = favoriteArtists.filter(
+          (artist_i) => artist_i.artist_name != artist.artist_name
+        );
+
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteArtists: favoriteArtists });
+      },
+
+      artistFavorite: (artist) => {
+        let favoriteArtists = getStore().favoriteArtists;
+
+        favoriteArtists = favoriteArtists.filter(
+          (artist_i) => artist_i.artist_name != artist.artist_name
+        );
+        let artists = [...favoriteArtists, artist];
+
+        //line above does not allow a duplicate favorite
+        setStore({ favoriteArtists: artists });
       },
       postArtist: async (
         artist_name,
