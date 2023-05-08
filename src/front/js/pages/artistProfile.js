@@ -7,6 +7,7 @@ import Carousel from "better-react-carousel";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
+
 import CalendarPlaceholder from "./CalendarPlaceholder.png";
 
 import "../../styles/artistProfile.css";

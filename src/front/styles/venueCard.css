@@ -1,6 +1,7 @@
 .venue-card {
-  width: 400px;
+  width: 350px;
   position: relative;
+  height: 414px;
 }
 
 .card-img-top {
@@ -17,7 +18,6 @@
 .card-heart:hover {
   color: red;
 }
-
 
 .card-info-row {
   height: 70px;

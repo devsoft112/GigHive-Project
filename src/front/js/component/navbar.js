@@ -3,7 +3,6 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import GigHive from "../../img/GigHive.png";
 
-
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
@@ -78,6 +77,9 @@ export const Navbar = () => {
                 <Link to="/register">Sign Up</Link>
               </li>
             )}
+            <li>
+              <Link to="/favorites">Favorites</Link>
+            </li>
             <li>
               {!store.token ? (
                 <Link to="/login">Log in</Link>

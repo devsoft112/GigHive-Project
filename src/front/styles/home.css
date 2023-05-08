@@ -1,8 +1,7 @@
-
 .header-image {
   height: 500px;
   background-color: black;
-  background-image: url('https://howtosingbetter101.com/wp-content/uploads/2019/11/cool-things-to-do-on-stage-while-performing.jpg');
+  background-image: url("https://howtosingbetter101.com/wp-content/uploads/2019/11/cool-things-to-do-on-stage-while-performing.jpg");
   background-size: cover;
   background-position: 40% 55%;
   position: relative;
@@ -13,7 +12,6 @@
   font-size: 60px;
   font-weight: 400;
 }
-
 
 .genre-list {
   display: flex;
@@ -29,10 +27,8 @@
   position: relative;
   background-color: black;
   /* outline: black 2px solid; */
-  box-shadow: 3px 3px 5px rgba(0,0,0,.5);
-
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
-
 
 .genreImage {
   width: 100px;
@@ -40,19 +36,18 @@
   object-fit: cover;
   object-position: 50% 0%;
   z-index: 0;
-  opacity: .5;
-  
+  opacity: 0.5;
 }
 
 .genreImage:hover {
-  opacity: 1.0;
+  opacity: 1;
   cursor: pointer;
 }
 
 .genreText {
   z-index: 0;
   position: absolute;
-  top:30px;
+  top: 30px;
   text-align: center;
   color: white;
   font-weight: 700;
@@ -72,7 +67,7 @@
 }
 
 .card-row {
-  width: 100%;
+  width: 90%;
   white-space: nowrap;
 }
 .card .card-body{

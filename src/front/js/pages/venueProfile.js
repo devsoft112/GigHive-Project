@@ -4,14 +4,16 @@ import Modal from 'react-bootstrap/Modal';
 
 import Carousel from "better-react-carousel";
 
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
+// import Lightbox from "react-image-lightbox";
+// import "react-image-lightbox/style.css";
 
 import "../../styles/venueProfile.css";
 import { Map } from "../component/Map/Map.jsx";
 
-import CalendarPlaceholder from "./CalendarPlaceholder.png";
-import MapPlaceholder from "./MapPlaceholder.png";
+// import CalendarPlaceholder from "./CalendarPlaceholder.png";
+// import MapPlaceholder from "./MapPlaceholder.png";
+// import CalendarPlaceholder from "./CalendarPlaceholder.png";
+// import MapPlaceholder from "./MapPlaceholder.png";
 
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
@@ -60,7 +62,14 @@ export function VenueProfile() {
   }
 
   // <----variables/functions for images/lightbox--->
-  const images= venues[id]?.images == null ? ["https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg", "https://lajolla.com/wp-content/uploads/2019/01/hob.jpg", "https://pyxis.nymag.com/v1/imgs/1a0/d70/15535af3e89c90d627f4c19af4f74f2064-best-concert-venue-music-hall-of-william.rsquare.w700.jpg"] : venues[id]?.images.split(", ")
+  const images =
+    venues[id]?.images == null
+      ? [
+          "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg",
+          "https://lajolla.com/wp-content/uploads/2019/01/hob.jpg",
+          "https://pyxis.nymag.com/v1/imgs/1a0/d70/15535af3e89c90d627f4c19af4f74f2064-best-concert-venue-music-hall-of-william.rsquare.w700.jpg",
+        ]
+      : venues[id]?.images.split(", ");
 
   const [isOpen, setIsOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
@@ -216,21 +225,31 @@ export function VenueProfile() {
               <button className="btn btn-sm btn-primary" onClick={handleShow}>Message</button>
             </div>
           </div>
-          <div className="row mt-0 ">
-            <p className="my-0 small">
-              <b>
-                {venues[id]?.address},{venues[id]?.city}, {venues[id]?.state}{" "}
-                {venues[id]?.zip_code}
-              </b>
-            </p>
+          <div className="col-md-7 px-3">
+            <div className="d-flex flex-row mb-0">
+              <div>
+                <h2 className="venueName m-0">{venues[id]?.venue_name}</h2>
+              </div>
+              <div className="mx-2 pt-1">
+                <button className="btn btn-sm btn-primary">Message</button>
+              </div>
+            </div>
+            <div className="row mt-0 ">
+              <p className="my-0 small">
+                <b>
+                  {venues[id]?.address},{venues[id]?.city}, {venues[id]?.state}{" "}
+                  {venues[id]?.zip_code}
+                </b>
+              </p>
 
-            <div className="row mt-0">
-              <div className="star-wrapper">
-                <i className={oneStar}></i>
-                <i className={twoStar}></i>
-                <i className={threeStar}></i>
-                <i className={fourStar}></i>
-                <i className={fiveStar}></i>
+              <div className="row mt-0">
+                <div className="star-wrapper">
+                  <i className={oneStar}></i>
+                  <i className={twoStar}></i>
+                  <i className={threeStar}></i>
+                  <i className={fourStar}></i>
+                  <i className={fiveStar}></i>
+                </div>
               </div>
             </div>
           </div>
@@ -337,20 +356,37 @@ export function VenueProfile() {
                 ></img></Carousel.Item>
         
         )})}</Carousel>
-            </div>
-            
-          </div>
-          <div className="col-md-6">
-            <div className="row mt-2">
-              <div className="col-md-6">
-                <img className="calendar" src={CalendarPlaceholder} />
-              </div>
-              <div className="col-md-6">
-                <img className="calendar" src={CalendarPlaceholder} />
-              </div>
+
             </div>
           </div>
-         
+          <div className="row px-2 d-flex justify-content-between align-items-start secondRow">
+            <div className="col-md-5 mx-1">
+              <div className="row flex-row d-flex justify-content-between mt-2">
+                {images.map((image, index) => {
+                  return (
+                    <img
+                      onClick={() => {
+                        ExpandPhoto();
+                        changeImgIndex(index);
+                      }}
+                      className="col-md m-2 rounded smImage p-0 object-fit-contain"
+                      src={image}
+                    ></img>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="row mt-2">
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         
         </div>
@@ -360,6 +396,7 @@ export function VenueProfile() {
         </div>
         </div>
         <div className="row rounded mt-1" ref={map} id="map" fade={fade}>
+
           <Map location={location} zoomLevel={18} />
         </div>
       
