@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
+// import Lightbox from "react-image-lightbox";
+// import "react-image-lightbox/style.css";
 
 import "../../styles/venueProfile.css";
 import { Map } from "../component/Map/Map.jsx";
 
-import CalendarPlaceholder from "./CalendarPlaceholder.png";
-import MapPlaceholder from "./MapPlaceholder.png";
+// import CalendarPlaceholder from "./CalendarPlaceholder.png";
+// import MapPlaceholder from "./MapPlaceholder.png";
+// import CalendarPlaceholder from "./CalendarPlaceholder.png";
+// import MapPlaceholder from "./MapPlaceholder.png";
 
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
@@ -22,7 +24,14 @@ export function VenueProfile() {
   const [lng, setLng] = useState("");
 
   // <----variables/functions for images/lightbox--->
-  const images= venues[id]?.images == null ? ["https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg", "https://lajolla.com/wp-content/uploads/2019/01/hob.jpg", "https://pyxis.nymag.com/v1/imgs/1a0/d70/15535af3e89c90d627f4c19af4f74f2064-best-concert-venue-music-hall-of-william.rsquare.w700.jpg"] : venues[id]?.images.split(", ")
+  const images =
+    venues[id]?.images == null
+      ? [
+          "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg",
+          "https://lajolla.com/wp-content/uploads/2019/01/hob.jpg",
+          "https://pyxis.nymag.com/v1/imgs/1a0/d70/15535af3e89c90d627f4c19af4f74f2064-best-concert-venue-music-hall-of-william.rsquare.w700.jpg",
+        ]
+      : venues[id]?.images.split(", ");
 
   const [isOpen, setIsOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
@@ -91,177 +100,184 @@ export function VenueProfile() {
   return (
     <div className="container-fluid">
       <div className="mainContent">
-      {/* <----Code for LightBox----> */}
-      {isOpen && (
-        <Lightbox
-          mainSrc={images[imgIndex]}
-          nextSrc={images[(imgIndex + 1) % images.length]}
-          prevSrc={images[(imgIndex + images.length - 1) % images.length]}
-          onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() =>
-            setImgIndex((imgIndex + images.length - 1) % images.length)
-          }
-          onMoveNextRequest={() => setImgIndex((imgIndex + 1) % images.length)}
-        />
-      )}
-      <div className="row mt-3 px-2 gx-3 d-flex mainRow h-75">
-        <div className="col-md-5 mt-2 p-0 h-100">
-          <img
-            onClick={ExpandPhoto}
-            src={images[0]}
-            className="profile-main-img object-fit-contain rounded"
-          ></img>
-        </div>
-        <div className="col-md-7 px-3">
-          <div class="d-flex flex-row mb-0">
-            <div>
-              <h2 className="venueName m-0">{venues[id]?.venue_name}</h2>
-            </div>
-            <div className="mx-2 pt-1">
-              <button className="btn btn-sm btn-primary">Message</button>
-            </div>
+        {/* <----Code for LightBox----> */}
+        {isOpen && (
+          <Lightbox
+            mainSrc={images[imgIndex]}
+            nextSrc={images[(imgIndex + 1) % images.length]}
+            prevSrc={images[(imgIndex + images.length - 1) % images.length]}
+            onCloseRequest={() => setIsOpen(false)}
+            onMovePrevRequest={() =>
+              setImgIndex((imgIndex + images.length - 1) % images.length)
+            }
+            onMoveNextRequest={() =>
+              setImgIndex((imgIndex + 1) % images.length)
+            }
+          />
+        )}
+        <div className="row mt-3 px-2 gx-3 d-flex mainRow h-75">
+          <div className="col-md-5 mt-2 p-0 h-100">
+            <img
+              onClick={ExpandPhoto}
+              src={images[0]}
+              className="profile-main-img object-fit-contain rounded"
+            ></img>
           </div>
-          <div className="row mt-0 ">
-            <p className="my-0 small">
-              <b>
-                {venues[id]?.address},{venues[id]?.city}, {venues[id]?.state}{" "}
-                {venues[id]?.zip_code}
-              </b>
-            </p>
+          <div className="col-md-7 px-3">
+            <div className="d-flex flex-row mb-0">
+              <div>
+                <h2 className="venueName m-0">{venues[id]?.venue_name}</h2>
+              </div>
+              <div className="mx-2 pt-1">
+                <button className="btn btn-sm btn-primary">Message</button>
+              </div>
+            </div>
+            <div className="row mt-0 ">
+              <p className="my-0 small">
+                <b>
+                  {venues[id]?.address},{venues[id]?.city}, {venues[id]?.state}{" "}
+                  {venues[id]?.zip_code}
+                </b>
+              </p>
 
-            <div className="row mt-0">
-              <div className="star-wrapper">
-                <i className={oneStar}></i>
-                <i className={twoStar}></i>
-                <i className={threeStar}></i>
-                <i className={fourStar}></i>
-                <i className={fiveStar}></i>
+              <div className="row mt-0">
+                <div className="star-wrapper">
+                  <i className={oneStar}></i>
+                  <i className={twoStar}></i>
+                  <i className={threeStar}></i>
+                  <i className={fourStar}></i>
+                  <i className={fiveStar}></i>
+                </div>
+              </div>
+            </div>
+            <div className="row mt-1">
+              <p className="mb-1">
+                {venues[id]?.about_info == "" || venues[id]?.about_info == null
+                  ? "More info about this venue hasn't been added yet!"
+                  : venues[id]?.about_info}
+              </p>
+              <p className="my-0">
+                <b>Capacity: </b>
+                {venues[id]?.capacity}
+              </p>
+              <p className="my-0">
+                <b>Music Type: </b>
+                {venues[id]?.music_type}
+              </p>
+              <p className="my-0">
+                <b>Hiring?: </b>
+                {venues[id]?.hiring}
+              </p>
+              <p className="my-0">
+                <b>Pay Rate: </b>
+                {venues[id]?.pay_rate}
+              </p>
+              <p className="my-0">
+                <b>Fee Rate: </b>
+                {venues[id]?.fees}
+              </p>
+              <p className="my-0">
+                <b>Indoor/Outdoor Staging: </b>
+                {venues[id]?.in_out}
+              </p>
+              <p className="my-0">
+                <b>Equipment Info: </b>
+                {venues[id]?.equipment}
+              </p>
+            </div>
+            <div className="row mt-3 px-2">
+              {venues[id]?.instagram ? (
+                <a
+                  href={`http://instagram.com/${venues[id]?.instagram}`}
+                  target="_blank"
+                  className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+                >
+                  <i className="fa-brands fa-instagram fa-xl"></i>
+                </a>
+              ) : null}
+              {venues[id]?.tiktok ? (
+                <a
+                  href={`http://tiktok.com/@${venues[id]?.tiktok}`}
+                  target="_blank"
+                  className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+                >
+                  <i className="fa-brands fa-tiktok fa-xl"></i>
+                </a>
+              ) : null}
+              {venues[id]?.facebook ? (
+                <a
+                  href={`http://facebook.com/${venues[id]?.facebook}`}
+                  target="_blank"
+                  className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+                >
+                  <i className="fa-brands fa-facebook fa-xl"></i>
+                </a>
+              ) : null}
+              {venues[id]?.twitter ? (
+                <a
+                  href={`http://twitter.com/${venues[id]?.twitter}`}
+                  target="_blank"
+                  className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+                >
+                  <i className="fa-brands fa-twitter fa-xl"></i>
+                </a>
+              ) : null}
+              {venues[id]?.soundcloud ? (
+                <a
+                  href={`http://soundcloud.com/${venues[id]?.soundcloud}`}
+                  target="_blank"
+                  className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+                >
+                  <i className="fa-brands fa-soundcloud fa-xl"></i>
+                </a>
+              ) : null}
+              {venues[id]?.spotify ? (
+                <a
+                  href={`http://spotify.com`}
+                  target="_blank"
+                  className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
+                >
+                  <i className="fa-brands fa-spotify fa-xl"></i>
+                </a>
+              ) : null}
+            </div>
+          </div>
+          <div className="row px-2 d-flex justify-content-between align-items-start secondRow">
+            <div className="col-md-5 mx-1">
+              <div className="row flex-row d-flex justify-content-between mt-2">
+                {images.map((image, index) => {
+                  return (
+                    <img
+                      onClick={() => {
+                        ExpandPhoto();
+                        changeImgIndex(index);
+                      }}
+                      className="col-md m-2 rounded smImage p-0 object-fit-contain"
+                      src={image}
+                    ></img>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="row mt-2">
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
+                <div className="col-md-6">
+                  <img className="calendar" src={CalendarPlaceholder} />
+                </div>
               </div>
             </div>
           </div>
-          <div className="row mt-1">
-            <p className="mb-1">{venues[id]?.about_info == "" || venues[id]?.about_info == null ? "More info about this venue hasn't been added yet!" : venues[id]?.about_info}</p>
-            <p className="my-0">
-              <b>Capacity: </b>
-              {venues[id]?.capacity}
-            </p>
-            <p className="my-0">
-              <b>Music Type: </b>
-              {venues[id]?.music_type}
-            </p>
-            <p className="my-0">
-              <b>Hiring?: </b>
-              {venues[id]?.hiring}
-            </p>
-            <p className="my-0">
-              <b>Pay Rate: </b>
-              {venues[id]?.pay_rate}
-            </p>
-            <p className="my-0">
-              <b>Fee Rate: </b>
-              {venues[id]?.fees}
-            </p>
-            <p className="my-0">
-              <b>Indoor/Outdoor Staging: </b>
-              {venues[id]?.in_out}
-            </p>
-            <p className="my-0">
-              <b>Equipment Info: </b>
-              {venues[id]?.equipment}
-            </p>
-          </div>
-          <div className="row mt-3 px-2">
-            {venues[id]?.instagram ? (
-              <a
-                href={`http://instagram.com/${venues[id]?.instagram}`}
-                target="_blank"
-                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
-              >
-                <i className="fa-brands fa-instagram fa-xl"></i>
-              </a>
-            ) : null}
-            {venues[id]?.tiktok ? (
-              <a
-                href={`http://tiktok.com/@${venues[id]?.tiktok}`}
-                target="_blank"
-                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
-              >
-                <i className="fa-brands fa-tiktok fa-xl"></i>
-              </a>
-            ) : null}
-            {venues[id]?.facebook ? (
-              <a
-                href={`http://facebook.com/${venues[id]?.facebook}`}
-                target="_blank"
-                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
-              >
-                <i className="fa-brands fa-facebook fa-xl"></i>
-              </a>
-            ) : null}
-            {venues[id]?.twitter ? (
-              <a
-                href={`http://twitter.com/${venues[id]?.twitter}`}
-                target="_blank"
-                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
-              >
-                <i className="fa-brands fa-twitter fa-xl"></i>
-              </a>
-            ) : null}
-            {venues[id]?.soundcloud ? (
-              <a
-                href={`http://soundcloud.com/${venues[id]?.soundcloud}`}
-                target="_blank"
-                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
-              >
-                <i className="fa-brands fa-soundcloud fa-xl"></i>
-              </a>
-            ) : null}
-            {venues[id]?.spotify ? (
-              <a
-                href={`http://spotify.com`}
-                target="_blank"
-                className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
-              >
-                <i className="fa-brands fa-spotify fa-xl"></i>
-              </a>
-            ) : null}
+          <div className="row where-we-are mb-0">
+            <h2 className="map-h2 am">
+              <i class="fa-solid fa-arrow-down"></i> Where We Are{" "}
+              <i class="fa-solid fa-arrow-down"></i>
+            </h2>
           </div>
         </div>
-        <div className="row px-2 d-flex justify-content-between align-items-start secondRow">
-          <div className="col-md-5 mx-1">
-            <div className="row flex-row d-flex justify-content-between mt-2">
-              {images.map((image, index) => {
-                return (
-                  <img
-                    onClick={() => {
-                      ExpandPhoto();
-                      changeImgIndex(index);
-                    }}
-                    className="col-md m-2 rounded smImage p-0 object-fit-contain"
-                    src={image}
-                  ></img>
-                );
-              })}
-            </div>
-            
-          </div>
-          <div className="col-md-6">
-            <div className="row mt-2">
-              <div className="col-md-6">
-                <img className="calendar" src={CalendarPlaceholder} />
-              </div>
-              <div className="col-md-6">
-                <img className="calendar" src={CalendarPlaceholder} />
-              </div>
-            </div>
-          </div>
-         
-        </div>
-        <div className="row where-we-are mb-0">
-          <h2 className="map-h2 am"><i class="fa-solid fa-arrow-down"></i>  Where We Are  <i class="fa-solid fa-arrow-down"></i></h2>
-        </div>
-        </div>
-       
+
         <div className="row rounded mt-1">
           <Map location={location} zoomLevel={18} />
         </div>

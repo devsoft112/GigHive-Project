@@ -3,6 +3,8 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Artistcard } from "../component/artistscards";
 import { Venuecard } from "../component/venuecards";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import rockMusic from "../../img/RockMusic.png";
 import HipHopMusic from "../../img/HipHopMusic.png";

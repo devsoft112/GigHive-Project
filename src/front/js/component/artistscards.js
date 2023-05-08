@@ -1,14 +1,29 @@
 import "../../styles/artistCard.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { Link, useLocation } from "react-router-dom";
+
 export const Artistcard = (props) => {
   const { store, actions } = useContext(Context);
+  let location = useLocation();
+  console.log(location.pathname);
+
   const [activeFav, setActiveFav] = useState(false);
-  // const handleFavorites = (e) => {
-  //   e.preventDefault();
-  //   actions.ArtistFavorite(props.artist_name);
-  //   setActiveFav(true);
-  // };
+  const handleFavorites = (e) => {
+    e.preventDefault();
+    if (activeFav === true) {
+      actions.artistFavoriteRemove(props);
+      setActiveFav(false);
+    } else {
+      actions.artistFavorite(props);
+      setActiveFav(true);
+    }
+  };
+  useEffect(() => {
+    if (location.pathname == "/favorites") {
+      setActiveFav(true);
+    }
+  }, []);
   return (
     <div className="card artist-card mx-2">
       <div className="crd-img p-0">
@@ -18,7 +33,7 @@ export const Artistcard = (props) => {
           alt="Card image cap"
         ></img>
       </div>
-      <span className="fa-regular fa-lg fa-heart card-heart"></span>
+
       <div className="card-body d-flex flex-column">
         <div className="card-info-row row">
           <div className="col-6 card-title pb-0 my-0">{props.artist_name}</div>
@@ -34,14 +49,18 @@ export const Artistcard = (props) => {
         </div>
 
         <div className="buttonDiv">
-          <a className="btn btn-sm btn-primary" href={props.link}>
+          <a className="btn btn-sm purplebutton" href={props.link}>
             View Profile
           </a>
-          {/* <i
-            className={activeFav ? "fas fa-heart" : "far fa-heart"}
-            style="color: #d8131d;"
+          <i
+            className={
+              activeFav
+                ? "fa-regular fas fa-heart fa-lg card-heart"
+                : " fa-regular far fa-heart fa-lg card-heart"
+            }
+            style={{ color: "#8968CD" }}
             onClick={(e) => handleFavorites(e)}
-          ></i> */}
+          ></i>
         </div>
       </div>
     </div>
