@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useState} from "react";
 
-// import Lightbox from "react-image-lightbox";
-// import "react-image-lightbox/style.css";
+import Modal from 'react-bootstrap/Modal';
+
+import Carousel from "better-react-carousel";
+
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
+
 
 import CalendarPlaceholder from "./CalendarPlaceholder.png";
 
@@ -15,6 +20,36 @@ export function ArtistProfile() {
   const { id } = useParams();
 
   const artists = store.artists;
+
+  // <---variables/functions for mesaging modal--->
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [messageBody, setMessageBody] = useState("")
+  const [messageSubject, setMessageSubject] = useState("")
+
+  const testSenderID = 123
+  const testReceiverID = 456
+
+  useEffect(() => {
+    // actions.getUser();
+    console.log(store.user)
+  }, []);
+
+  const sendMessage = () => {
+    const date= new Date()
+    const formattedDate = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`
+    
+    actions.sendMessage ( 
+      messageSubject,
+      messageBody,
+      testSenderID,
+      testReceiverID,
+      formattedDate
+    )
+
+    handleClose()
+  }
   
   // <----variables/functions for images/lightbox--->
   const images = artists[id]?.images == null ? ["https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg", "https://www.stopthebreaks.com/wp-content/uploads/2020/10/iStock-161838634.jpg",  "https://musiciansunion.org.uk/MusiciansUnion/media/content/news/bass-player-on-stage.jpg"] : artists[id]?.images.split(", ")
@@ -78,12 +113,34 @@ export function ArtistProfile() {
         onMoveNextRequest={() => setImgIndex((imgIndex + 1) % images.length)}
       />}
 
-
+{/* <-----------------Code for Messaging Modal---------------------> */}
+<Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Send {artists[id]?.artist_name} a message</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div class="form-group">
+          <input type="text" class="form-control mb-2" id="messageSubject" placeholder="Message Subject" onChange={(e) => setMessageSubject(e.target.value)}/>
+          <textarea class="form-control" id="messageBody" rows="3" placeholder="Write your message here" onChange={(e) => setMessageBody(e.target.value)}></textarea>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <button className="btn btn-danger" variant="secondary" onClick={handleClose}>
+          Close
+        </button>
+        <button className="btn btn-primary" onClick={sendMessage}>
+          Send
+        </button>
+      </Modal.Footer>
+    </Modal>
 
       <div className="row mt-3 px-2 gx-3 d-flex mainRow">
         <div className="col-md-5 mt-2 p-0 h-100">
           <img
-            onClick={ExpandPhoto}
+            onClick={() => {
+              ExpandPhoto();
+              changeImgIndex(0);
+            }}
             src={images[0]}
             className="profile-main-img object-fit-contain rounded"
           ></img>
@@ -94,7 +151,7 @@ export function ArtistProfile() {
               <h2 className="artistName m-0">{artists[id]?.artist_name}</h2>
             </div>
             <div className="mx-2 pt-1">
-              <button className="btn btn-sm btn-primary">Message</button>
+              <button className="btn btn-sm btn-primary" onClick={handleShow}>Message</button>
             </div>
           </div>
           <div className="row mt-0">
@@ -175,40 +232,21 @@ export function ArtistProfile() {
         </div>
         <div className="row px-2 d-flex justify-content-between align-items-start">
             <div className="col-md-5 mx-1">
-              <div className="row d-flex justify-content-between mt-2">
-              {images.map((image, index)=>{
-                return <img onClick={() => {
-                  ExpandPhoto();
-                  changeImgIndex(index);
-                }} className="col-md m-2 rounded smImage p-0 object-fit-contain" src={image}></img>
-
-              })}
+            <div className="row mt-2">
+              <Carousel cols={3} rows={1} gap={35} loop>
+              {images.map((image, index) => {
+                return ( <Carousel.Item><img
+                  onClick={() => {
+                    ExpandPhoto();
+                    changeImgIndex(index);
+                  }}
+                  className="col-md m-2 rounded smImage object-fit-cover"
+                  src={image}
+                ></img></Carousel.Item>
+        
+        )})}</Carousel>
             </div>
           </div>
-          {/* <div className="col-md-5 mx-1">
-              <div className="row d-flex justify-content-between">
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-                <div className="col-md m-2 rounded smImage">
-                  Test
-                </div>
-              </div>
-              <div className="row d-flex justify-content-between">
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-                <div className="col-md rounded m-2 smImage">
-                  Test
-                </div>
-              </div>
-            </div> */}
           <div className="col-md-6">
             <div className="row">
               <div className="col-md-6">

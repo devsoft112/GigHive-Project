@@ -11,15 +11,15 @@
 }
 
 .secondRow {
-/* outline: solid 1px red; */
-height: calc(100vh - 575px);
+  /* outline: solid 1px red; */
+  height: 300px
 }
 
 .venueName {
   display: inline-block;
 }
 
-.star-wrapper{
+.star-wrapper {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
@@ -27,28 +27,28 @@ height: calc(100vh - 575px);
 }
 
 .star-wrapper i:hover {
-    color: gold
-  }
+  color: gold;
+}
 
-  .s1:hover ~ i {
-    color: gold;
-  }
-  .s2:hover ~ i {
-    color: gold;
-  }
-  .s3:hover ~ i {
-    color: gold;
-  }
-  .s4:hover ~ i {
-    color: gold;
-  }
-  .s5:hover ~ i {
-    color: gold;
-  }
+.s1:hover ~ i {
+  color: gold;
+}
+.s2:hover ~ i {
+  color: gold;
+}
+.s3:hover ~ i {
+  color: gold;
+}
+.s4:hover ~ i {
+  color: gold;
+}
+.s5:hover ~ i {
+  color: gold;
+}
 
-  .goldRating {
-    color: gold;
-  }
+.goldRating {
+  color: gold;
+}
 
 /* .star-rating-row {
   position: relative;
@@ -68,8 +68,8 @@ height: calc(100vh - 575px);
 }
 
 .social-link:hover {
-color: var(--maingold);
-border: 2px solid var(--maingold);
+  color: var(--maingold);
+  border: 2px solid var(--maingold);
 }
 
 .smImage {
@@ -78,8 +78,6 @@ border: 2px solid var(--maingold);
   height: 200px;
   object-fit: cover;
 }
-
-
 
 .calendar {
   height: 300px;

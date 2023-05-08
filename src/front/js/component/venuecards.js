@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import "../../styles/venueCard.css";
 import { Link, useLocation } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
 export const Venuecard = (props) => {
