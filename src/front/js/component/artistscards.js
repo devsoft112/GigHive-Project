@@ -1,7 +1,5 @@
-import React from "react";
-
 import "../../styles/artistCard.css";
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useLocation } from "react-router-dom";
 

@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       users: [],
+      user: [],
       message: null,
       artists: [],
       venues: [],
@@ -38,6 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
           const data = await resp.json();
+          console.log(data);
           setStore({ artists: data });
           return data;
         } catch (error) {
@@ -54,6 +56,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading venues", error);
         }
       },
+      getUser: async () => {
+        const store = getStore();
+        try {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/user", {
+            headers: {
+              Authorization: "Bearer " + store.token,
+            },
+          });
+          const data = await resp.json();
+          setStore({ user: data });
+          setStore({ artists: data });
+          setStore({ venues: data });
+          return data;
+        } catch (error) {
+          console.log("Error loading user", error);
+        }
+      },
+
       venueFavorite: (venue) => {
         let favoriteVenues = getStore().favoriteVenues;
         favoriteVenues = favoriteVenues.filter(
@@ -110,7 +130,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
 
         const opts = {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + store.token,
@@ -248,6 +268,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           console.log("user signed up: " + data[0]);
           sessionStorage.setItem("token", data[1]);
+          setStore({ users: data[0] });
           setStore({ token: data[1] });
 
           return true;
@@ -277,6 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           const data = await resp.json();
+          console.log(data);
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
           return true;
