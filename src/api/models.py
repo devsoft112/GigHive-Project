@@ -12,6 +12,7 @@ class User(db.Model):
     password = db.Column(db.String(120), unique=False, nullable=False)
     venues = db.relationship('Venue', backref="venuesUser", lazy='subquery') 
     artists = db.relationship('Artist', backref="artistUser", lazy='subquery') 
+    favorites = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
     
     def __repr__(self):
         return f'<User {self.username}>'
@@ -25,6 +26,7 @@ class User(db.Model):
             "email": self.email,
             "artists": list(map(lambda x: x.serialize(), self.artists)),
             "venues": list(map(lambda x: x.serialize(), self.venues)),
+            "favorites": list(map(lambda x: x.serialize(), self.favorites))
 
             # do not serialize the password, its a security breach
         }
@@ -84,7 +86,8 @@ class Venue(db.Model):
             "tiktok": self.tiktok,
             "soundcloud": self.soundcloud,
             "spotify": self.spotify,
-            "images": self.images
+            "images": self.images,
+            "user_id": self.user_id
            
         }
         
@@ -130,7 +133,8 @@ class Artist(db.Model):
 
 class Favorites(db.Model):
     __tablename__ = "favorites"
-    id = db.Column(db.Integer, primary_key=True)# public 
+    id = db.Column(db.Integer, primary_key=True)# public
+    user = db.relationship('User', backref="userFavorites", lazy='subquery') 
     venues = db.relationship('Venue', backref="venueFavorites", lazy='subquery') 
     artists = db.relationship('Artist', backref="artistFavorites", lazy='subquery') 
 
@@ -141,6 +145,7 @@ class Favorites(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "user": self.user,
             "artists": list(map(lambda x: x.serialize(), self.artists)),
             "venues": list(map(lambda x: x.serialize(), self.venues))
             # do not serialize the password, its a security breach
@@ -150,14 +155,16 @@ class Favorites(db.Model):
 
 
 class Messages(db.Model):
+    __tablename__ = "messages"
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(120), nullable=False)
+    subject = db.Column(db.String(120), nullable=False)
+    content = db.Column(db.String(), nullable=False)
     id_sender = db.Column(db.Integer, nullable=False)
     id_receiver = db.Column(db.Integer, nullable=False)
-    sent_date = db.Column(db.Integer, nullable=False)
+    sent_date = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
-        return f'<Messages {self.name}>'
+        return f'<Messages {self.id}>'
     
     def serialize(self):
         return {
@@ -167,4 +174,3 @@ class Messages(db.Model):
             "id_receiver": self.id_receiver,
             "sent_date": self.sent_date
         }
-

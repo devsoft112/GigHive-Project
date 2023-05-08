@@ -6,6 +6,9 @@
     object-fit: cover;
 }
 
+.mainRow {
+  height: 450px;
+}
 .mainContent {
     height: 5%;
 }

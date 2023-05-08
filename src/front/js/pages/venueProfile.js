@@ -204,7 +204,7 @@ export function VenueProfile() {
               changeImgIndex(0);
             }}
             src={images[0]}
-            className="profile-main-img object-fit-contain rounded"
+            className="profile-main-img object-fit-contain rounded h-100"
           ></img>
         </div>
         <div className="col-md-7 px-3">

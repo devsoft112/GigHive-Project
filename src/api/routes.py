@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint, make_response
-from api.models import db, User, Artist, Venue
+from api.models import db, User, Artist, Venue, Messages
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -149,3 +149,18 @@ def register_venue():
     db.session.commit()
     return jsonify(response_body), 200
 
+# For getting/sending messages
+@api.route("/messages", methods=["POST"])
+def send_message():
+    # username = get_jwt_identity()
+    # user=User.query.filter_by(username=username).first()
+    message= Message(
+        subject=response_body["subject"],
+        content=response_body["content"],
+        id_sender= 1,
+        id_receiver= response_body["id_receiver"],
+        sent_date= response_body["sent_date"]
+    )
+    db.session.add(message)
+    db.session.commit()
+    return jsonify(response_body), 200

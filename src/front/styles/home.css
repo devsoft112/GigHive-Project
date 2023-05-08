@@ -75,6 +75,11 @@
   width: 100%;
   white-space: nowrap;
 }
-.card {
+.card .card-body{
   display: flex;
+  padding: 10px 20px !important;
+  margin-top: 0 !important;
+}
+.card {
+  padding-top: 0px !important;
 }

@@ -1,16 +1,18 @@
+import React from "react";
+
 import "../../styles/venueCard.css";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 export const Venuecard = (props) => {
   const { store, actions } = useContext(Context);
   const [activeFav, setActiveFav] = useState(false);
-  // const handleFavorites = (e) => {
-  //   e.preventDefault();
-  //   actions.VenueFavorite(props.venus_name);
-  //   setActiveFav(true)
-  // };
+  const handleFavorites = (e) => {
+    e.preventDefault();
+    actions.VenueFavorite(props.venus_name);
+    setActiveFav(true)
+  };
   return (
     <div className="card venue-card mx-2">
       <div className="crd-img">

@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       users: [],
       user: [],
-      message: null,
+      messages: [],
       artists: [],
       venues: [],
       favoriteVenues: [],
@@ -65,9 +65,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           });
           const data = await resp.json();
+          console.log(data, "this is from the User");
           setStore({ user: data });
-          setStore({ artists: data });
-          setStore({ venues: data });
           return data;
         } catch (error) {
           console.log("Error loading user", error);
@@ -117,8 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         twitter,
         soundcloud,
         spotify,
-        tiktok,
-        images
+        tiktok
       ) => {
         const store = getStore();
 
@@ -178,8 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         twitter,
         soundcloud,
         spotify,
-        tiktok,
-        images
+        tiktok
       ) => {
         const store = getStore();
         const opts = {
@@ -299,6 +296,48 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("There has been an error logging in");
         }
       },
+
+      sendMessage: async (
+        subject,
+        content,
+        id_sender,
+        id_receiver,
+        sent_date
+      ) => {
+        const store = getStore();
+
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + store.token,
+          },
+          body: JSON.stringify({
+            subject: subject,
+            content: content,
+            id_sender: id_sender,
+            id_receiver: id_receiver,
+            sent_date: sent_date
+          }),
+        };
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/messages",
+            opts
+          );
+          if (response.status !== 200) {
+            alert("Response was not a code 200.");
+            return false;
+          }
+          const data = await response.json();
+          console.log("Message Sent:" + data);
+          setStore({ messages: data.response_body });
+          return true;
+        } catch (error) {
+          console.error("Error! Description: " + error);
+        }
+      },
+
       getMessage: async () => {
         const store = getStore();
         const opts = {
