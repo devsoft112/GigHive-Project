@@ -29,7 +29,7 @@ export const Navbar = () => {
       <div className="container">
         <Link to="/">
           <span className="navbar-brand mb-0 h1">
-            <img src={GigHivePurple2} alt="" height={50} />
+            <img src={GigHive} alt="" height={50} />
           </span>
         </Link>
         <div className="dropdown">

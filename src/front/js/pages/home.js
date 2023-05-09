@@ -5,6 +5,7 @@ import { Artistcard } from "../component/artistscards";
 import { Venuecard } from "../component/venuecards";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { Footer } from "../component/footer"
 
 
 import rockMusic from "../../img/RockMusic.png";
@@ -144,6 +145,8 @@ export const Home = () => {
             })}
         </div>
       </div>
+      <Footer />
     </div>
+    
   );
 };

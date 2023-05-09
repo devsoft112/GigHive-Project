@@ -6,16 +6,11 @@ import CalendarPlaceholder from '../pages/CalendarPlaceholder.png'
 
 import Carousel from "better-react-carousel";
 
-// import Lightbox from "react-image-lightbox";
-// import "react-image-lightbox/style.css";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 
 import "../../styles/venueProfile.css";
 import { Map } from "../component/Map/Map.jsx";
-
-// import CalendarPlaceholder from "./CalendarPlaceholder.png";
-// import MapPlaceholder from "./MapPlaceholder.png";
-// import CalendarPlaceholder from "./CalendarPlaceholder.png";
-// import MapPlaceholder from "./MapPlaceholder.png";
 
 import { Context } from "../store/appContext";
 import { useParams } from "react-router";
@@ -25,11 +20,6 @@ export function VenueProfile() {
   const venues = store.venues;
   const { id } = useParams();
 
-  // console.log(venues[id])
-
-  const Address = `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`;
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
 
   
 
@@ -116,6 +106,10 @@ export function VenueProfile() {
   }, []);
 
   // <-----location object & fetch for map component----->
+  const Address = `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`;
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+  
   const map = useRef(null)
 
   useEffect(() => {
@@ -134,7 +128,6 @@ export function VenueProfile() {
   const [fade, setFade] = useState(0)
 
   const [scrollCheck, setScrollCheck] = useState(true)
-  const [showMap, setShowMap] = useState("row rounded mt-1")
 
   const scrollToMap = () => {
     map.current?.scrollIntoView({behavior: 'smooth'});
