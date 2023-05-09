@@ -14,56 +14,52 @@ export function EditUserProfile(props) {
   const venue = store.venue;
   const user = store.user;
 
-
   //  Artist info change events
-  const [artistGenre, setArtistGenre] = useState(user.artist.genre);
-  const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
-  const [artistTikTok, setArtistTikTok] = useState(user.artist.tiktok);
-  const [artistFacebook, setArtistFacebook] = useState("");
-  const [artistTwitter, setArtistTwitter] = useState("");
-  const [artistSoundcloud, setArtistSoundcloud] = useState("");
-  const [artistSpotify, setArtistSpotify] = useState("");
-  const [artist_name, setArtistName] = useState("");
-  const [artistPerformance_type, setPerformance_type] = useState("Other");
+  // const [artistGenre, setArtistGenre] = useState(user.artist.genre);
+  // const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
+  // const [artistTikTok, setArtistTikTok] = useState(user.artist.tiktok);
+  // const [artistFacebook, setArtistFacebook] = useState("");
+  // const [artistTwitter, setArtistTwitter] = useState("");
+  // const [artistSoundcloud, setArtistSoundcloud] = useState("");
+  // const [artistSpotify, setArtistSpotify] = useState("");
+  // const [artist_name, setArtistName] = useState("");
+  // const [artistPerformance_type, setPerformance_type] = useState("Other");
 
-  const [artistAbout_info, setArtistAbout_Info] = useState(
-    "More info about this Artist hasn't been added yet!"
-  );
+  // const [artistAbout_info, setArtistAbout_Info] = useState(
+  //   "More info about this Artist hasn't been added yet!"
+  // );
 
-  // Venue info change events
-  const [venue_name, setVenue_name] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip_code, setZip_code] = useState("");
-  const [phone_number, setPhone_number] = useState("");
-  const [venue_capacity, setVenue_capacity] = useState("");
-  const [music_type, setMusic_type] = useState("general");
-  const [in_out, setIn_out] = useState("indoor");
-  const [hiring, setIsHiring] = useState("no");
-  const [pay_rate, setPay_rate] = useState("");
-  const [fees, setFees] = useState("");
-  const [equipment, setEquipment] = useState("");
-  const [about_info, setAbout_Info] = useState(
-    "More info about this venue hasn't been added yet!"
-  );
-  const [instagram, setInstagram] = useState("");
-  const [tikTok, setTikTok] = useState("");
-  const [facebook, setFacebook] = useState("");
-  const [twitter, setTwitter] = useState("");
-  const [soundcloud, setSoundcloud] = useState("");
-  const [spotify, setSpotify] = useState("");
+  // // Venue info change events
+  // const [venue_name, setVenue_name] = useState("");
+  // const [address, setAddress] = useState("");
+  // const [city, setCity] = useState("");
+  // const [state, setState] = useState("");
+  // const [zip_code, setZip_code] = useState("");
+  // const [phone_number, setPhone_number] = useState("");
+  // const [venue_capacity, setVenue_capacity] = useState("");
+  // const [music_type, setMusic_type] = useState("general");
+  // const [in_out, setIn_out] = useState("indoor");
+  // const [hiring, setIsHiring] = useState("no");
+  // const [pay_rate, setPay_rate] = useState("");
+  // const [fees, setFees] = useState("");
+  // const [equipment, setEquipment] = useState("");
+  // const [about_info, setAbout_Info] = useState(
+  //   "More info about this venue hasn't been added yet!"
+  // );
+  // const [instagram, setInstagram] = useState("");
+  // const [tikTok, setTikTok] = useState("");
+  // const [facebook, setFacebook] = useState("");
+  // const [twitter, setTwitter] = useState("");
+  // const [soundcloud, setSoundcloud] = useState("");
+  // const [spotify, setSpotify] = useState("");
 
-  
   useEffect(() => {
     actions.getUser();
     actions.getVenue();
     actions.getArtist();
   }, [store.token]);
 
-
-
-// Set up a modal to notify the user to put the social media handles into social media edits
+  // Set up a modal to notify the user to put the social media handles into social media edits
   const editToggle = () => {
     editMode == true ? setEditMode(false) : setEditMode(true);
     console.log(editMode);
@@ -81,7 +77,7 @@ export function EditUserProfile(props) {
           <div className="row align-items-start p-2">
             <h4 className="info-header">Your Basic Info</h4>
           </div>
-          <div className="row mx-2 d-flex">
+          <div className="row">
             {editMode == false ? (
               <>
                 <p className="card-text">

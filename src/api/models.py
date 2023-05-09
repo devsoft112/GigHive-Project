@@ -2,6 +2,20 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
+favorite_venue = db.Table(
+    "favorite_venue",
+    db.Column("user_id", db.ForeignKey("user.id")),
+    db.Column("venue_id",  db.ForeignKey("venue.id")),
+)
+
+favorite_artist = db.Table(
+    "favorite_artist",
+    db.Column("user_id",  db.ForeignKey("user.id")),
+    db.Column("artist_id",  db.ForeignKey("artist.id")),
+)
+
+
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)# public
@@ -11,8 +25,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
     venues = db.relationship('Venue', backref="venuesUser", lazy='subquery') 
-    artists = db.relationship('Artist', backref="artistUser", lazy='subquery') 
-    favorites = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
+    artists = db.relationship('Artist', backref="artistUser", lazy='subquery')
+    favorite_venues = db.relationship('Venue', secondary=favorite_venue,  lazy='subquery')  
+    favorite_artists = db.relationship('Artist', secondary=favorite_artist,  lazy='subquery') 
+   
     
     def __repr__(self):
         return f'<User {self.username}>'
@@ -26,7 +42,8 @@ class User(db.Model):
             "email": self.email,
             "artists": list(map(lambda x: x.serialize(), self.artists)),
             "venues": list(map(lambda x: x.serialize(), self.venues)),
-            "favorites": list(map(lambda x: x.serialize(), self.favorites))
+            "favorite_artists": list(map(lambda x: x.serialize(), self.favorite_artists)),
+            "favorite_venues": list(map(lambda x: x.serialize(), self.favorite_venues)),
 
             # do not serialize the password, its a security breach
         }
@@ -57,7 +74,7 @@ class Venue(db.Model):
     spotify = db.Column(db.String(120), nullable=True)
     images = db.Column(db.String(), nullable=True)
     user_id = db.Column('User', db.Integer, db.ForeignKey('user.id'),nullable=False)
-    favorites_id = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
+    
 
     
     def __repr__(self):
@@ -107,7 +124,7 @@ class Artist(db.Model):
     spotify = db.Column(db.String(120), nullable=True)
     images = db.Column(db.String(), nullable=True)
     user_id = db.Column('User', db.Integer, db.ForeignKey('user.id'),nullable=False)
-    favorites_id = db.Column('Favorites', db.Integer, db.ForeignKey('favorites.id'))
+    
 
 
 
@@ -129,28 +146,6 @@ class Artist(db.Model):
         "spotify": self.spotify, 
         "images": self. images
     }
-
-
-class Favorites(db.Model):
-    __tablename__ = "favorites"
-    id = db.Column(db.Integer, primary_key=True)# public
-    user = db.relationship('User', backref="userFavorites", lazy='subquery') 
-    venues = db.relationship('Venue', backref="venueFavorites", lazy='subquery') 
-    artists = db.relationship('Artist', backref="artistFavorites", lazy='subquery') 
-
-    
-    def __repr__(self):
-        return f'<Favorites {self.id}>'
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "user": self.user,
-            "artists": list(map(lambda x: x.serialize(), self.artists)),
-            "venues": list(map(lambda x: x.serialize(), self.venues))
-            # do not serialize the password, its a security breach
-        }
-
 
 
 

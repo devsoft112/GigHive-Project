@@ -89,8 +89,9 @@ export const UserProfile = () => {
                       <div className="title">
                         <a href={"/artists/" + id}>{artist.artist_name}</a>
                       </div>
-                      <div className="desc">{artist.genre}</div>
-                      <div className="desc">{artist.performance_type}</div>
+                      <div className="desc">
+                        {artist.genre} {artist.performance_type}
+                      </div>
                       <div className="desc">
                         About Info : {artist.about_info}
                       </div>
