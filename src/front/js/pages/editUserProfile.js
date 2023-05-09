@@ -9,25 +9,60 @@ import { useRowSelect } from "react-table";
 export function EditUserProfile(props) {
   const { store, actions } = useContext(Context);
   const [editMode, setEditMode] = useState(false);
+  const [tempArtist, setTempArtist] = useState("");
   const artists = store.artist;
   const venue = store.venue;
   const user = store.user;
+
+
+  //  Artist info change events
+  const [artistGenre, setArtistGenre] = useState(user.artist.genre);
+  const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
+  const [artistTikTok, setArtistTikTok] = useState(user.artist.tiktok);
+  const [artistFacebook, setArtistFacebook] = useState("");
+  const [artistTwitter, setArtistTwitter] = useState("");
+  const [artistSoundcloud, setArtistSoundcloud] = useState("");
+  const [artistSpotify, setArtistSpotify] = useState("");
+  const [artist_name, setArtistName] = useState("");
+  const [artistPerformance_type, setPerformance_type] = useState("Other");
+
+  const [artistAbout_info, setArtistAbout_Info] = useState(
+    "More info about this Artist hasn't been added yet!"
+  );
+
+  // Venue info change events
+  const [venue_name, setVenue_name] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip_code, setZip_code] = useState("");
+  const [phone_number, setPhone_number] = useState("");
+  const [venue_capacity, setVenue_capacity] = useState("");
+  const [music_type, setMusic_type] = useState("general");
+  const [in_out, setIn_out] = useState("indoor");
+  const [hiring, setIsHiring] = useState("no");
+  const [pay_rate, setPay_rate] = useState("");
+  const [fees, setFees] = useState("");
+  const [equipment, setEquipment] = useState("");
+  const [about_info, setAbout_Info] = useState(
+    "More info about this venue hasn't been added yet!"
+  );
+  const [instagram, setInstagram] = useState("");
+  const [tikTok, setTikTok] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [soundcloud, setSoundcloud] = useState("");
+  const [spotify, setSpotify] = useState("");
+
+  
   useEffect(() => {
     actions.getUser();
     actions.getVenue();
     actions.getArtist();
   }, [store.token]);
 
-  //----useState Hooks for Artist Info---
-  // const [artistGenre, setArtistGenre] = useState(user.artist.genre);
-  // const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
-  // const [tikTok, setTikTok] = useState(user.artist.tiktok);
-  const [facebook, setFacebook] = useState("");
-  const [twitter, setTwitter] = useState("");
-  const [soundcloud, setSoundcloud] = useState("");
-  const [spotify, setSpotify] = useState("");
-  const [artistName, setArtistName] = useState("");
-  const [performance_type, setPerformance_type] = useState("Other");
+
+
 // Set up a modal to notify the user to put the social media handles into social media edits
   const editToggle = () => {
     editMode == true ? setEditMode(false) : setEditMode(true);

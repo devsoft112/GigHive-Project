@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<<< HEAD:migrations/versions/049c6c82bb52_.py
-Revision ID: 049c6c82bb52
+Revision ID: a5809bd9ab5b
 Revises: 
-Create Date: 2023-05-06 09:58:24.023997
-========
-Revision ID: a6db216bf77d
-Revises: 
-Create Date: 2023-05-03 21:03:49.266671
->>>>>>>> main:migrations/versions/a6db216bf77d_.py
+Create Date: 2023-05-09 07:43:03.173530
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:migrations/versions/049c6c82bb52_.py
-revision = '049c6c82bb52'
-========
-revision = 'a6db216bf77d'
->>>>>>>> main:migrations/versions/a6db216bf77d_.py
+revision = 'a5809bd9ab5b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,10 +24,11 @@ def upgrade():
     )
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('content', sa.String(length=120), nullable=False),
+    sa.Column('subject', sa.String(length=120), nullable=False),
+    sa.Column('content', sa.String(), nullable=False),
     sa.Column('id_sender', sa.Integer(), nullable=False),
     sa.Column('id_receiver', sa.Integer(), nullable=False),
-    sa.Column('sent_date', sa.Integer(), nullable=False),
+    sa.Column('sent_date', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
@@ -47,6 +38,8 @@ def upgrade():
     sa.Column('username', sa.String(length=120), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=120), nullable=False),
+    sa.Column('Favorites', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['Favorites'], ['favorites.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
