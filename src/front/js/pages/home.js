@@ -37,6 +37,14 @@ export const Home = () => {
   const electronicFilter = () => setArtists(electronicArtists);
   const classicalFilter = () => setArtists(classicalArtists);
   console.log(store.artists, "This is the Homepage trial");
+   
+  // <------random num function for star ratings on cards--->
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Number((Math.random() * (max - min + 1) + min).toPrecision(2))
+  }
+
   useLayoutEffect(() => {
     actions.getArtist();
     actions.getVenue();
@@ -56,7 +64,7 @@ export const Home = () => {
       <div className="row text-center mt-2">
         <h1>Bringing Musicians and Venues Together!</h1>
       </div>
-      <div className="row text-center">
+      {/* <div className="row text-center">
         <h4>Genres</h4>
       </div>
       <div className="genre-list row d-flex justify-content-center px-3">
@@ -95,7 +103,7 @@ export const Home = () => {
         <div className="genre other d-flex rounded-circle justify-content-center mx-1">
           <p className="genreText other-Text">Other</p>
         </div>
-      </div>
+      </div> */}
       <div className="row px-3">
         <h1 className="artistitle">Artists</h1>
       </div>
@@ -115,7 +123,7 @@ export const Home = () => {
                 }
                 link={"/artists/" + index}
                 id = {index}
-                starRating="5.0"
+                starRating={getRandomIntInclusive(3,4)}
               />
             );
           })}
@@ -139,7 +147,7 @@ export const Home = () => {
                   }
                   link={"/venues/" + index}
                   id={index}
-                  starRating="5.0"
+                  starRating={getRandomIntInclusive(3,4)}
                 />
               );
             })}
