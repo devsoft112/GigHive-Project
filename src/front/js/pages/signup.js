@@ -55,18 +55,18 @@ export const Signup = () => {
           <h2>Sign Up</h2>
         </div>
         <div className="form-group col-md-4">
-          <label htmlFor="name">username</label>
+          <label htmlFor="name">Username</label>
           <input
             type="text"
             className="form-control"
-            placeholder="username"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
         <div className="form-group col-md-4">
-          <label htmlFor="name">email</label>
+          <label htmlFor="name">Email</label>
           <input
             type="text"
             className="form-control"
@@ -77,7 +77,7 @@ export const Signup = () => {
           />
         </div>
         <div className="form-group col-md-4">
-          <label htmlFor="name">password</label>
+          <label htmlFor="name">Password</label>
           <input
             type="password"
             className="form-control"
