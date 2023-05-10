@@ -32,17 +32,17 @@ export function Login() {
           <Col md={8} lg={6} xs={12}>
             <div className="border border-0 border-primary"></div>
             <Card className="shadow">
-              <Card.Body>
-                <div className="mb-3 mt-md-4">
-                  <h2 className="fw-bold mb-2 text-uppercase">
-                    <img src={GigHive} alt="" height={50} />
+              <Card.Body className="card-body-login">
+                <div className="mb-3 mt-md-4 justify-content-center">
+                  <h2 className="fw-bold mb-2 text-uppercase text-center">
+                    <img src={GigHive} alt="" height={55} />
                   </h2>
 
-                  <p className=" mb-5">Please enter your login and password!</p>
-                  <div className="mb-3">
+                  <p className=" mb-5 login-white-text">Please enter your username and password</p>
+                  <div className="mb-3 justify-content-center">
                     <Form>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label className="text-center">
+                        <Form.Label className="text-center login-gold-text">
                           Username
                         </Form.Label>
                         <Form.Control
@@ -57,7 +57,7 @@ export function Login() {
                         className="mb-3"
                         controlId="formBasicPassword"
                       >
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label className="login-gold-text">Password</Form.Label>
                         <Form.Control
                           type="password"
                           placeholder="Password"
@@ -69,15 +69,15 @@ export function Login() {
                         className="mb-3"
                         controlId="formBasicCheckbox"
                       >
-                        <p className="small">
-                          <a className="text-primary" href="#!">
+                        <p className="small  text-center">
+                          <a className="login-gold-text login-link" href="#!">
                             Forgot password?
                           </a>
                         </p>
                       </Form.Group>
                       <div className="d-grid">
                         <Button
-                          variant="primary"
+                          className="gold-btn"
                           type="submit"
                           onClick={handleClick}
                         >
@@ -86,10 +86,10 @@ export function Login() {
                       </div>
                     </Form>
                     <div className="mt-3">
-                      <p className="mb-0  text-center">
+                      <p className="mb-0  text-center  login-white-text">
                         Don't have an account?{" "}
-                        <Link to="/register">
-                          <a>Sign up</a>
+                        <Link to="/register" className=" login-gold-text">
+                          <a className="login-link">Sign up</a>
                         </Link>
                       </p>
                     </div>

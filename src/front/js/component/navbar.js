@@ -35,7 +35,7 @@ export const Navbar = () => {
         <div className="dropdown">
           {isLoggedIn === false && (
             <button
-              className="btn btn-purple dropdown"
+              className="btn btn-gold dropdown"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -46,7 +46,7 @@ export const Navbar = () => {
           )}{" "}
           {isLoggedIn === true && (
             <button
-              className="btn btn-purple dropdown"
+              className="btn btn-gold dropdown"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
