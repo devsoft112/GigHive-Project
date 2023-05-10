@@ -15,7 +15,7 @@ export function EditUserProfile(props) {
   const user = store.user;
 
   ///Artist info change events
-  const [artistGenre, setArtistGenre] = useState("");
+  const [genre, setGenre] = useState("");
   const [artistInstagram, setArtistInstagram] = useState("");
   const [artistTikTok, setArtistTikTok] = useState("");
   const [artistFacebook, setArtistFacebook] = useState("");
@@ -64,6 +64,24 @@ export function EditUserProfile(props) {
     editMode == true ? setEditMode(false) : setEditMode(true);
     console.log(editMode);
   };
+
+  function updateUser(id) {
+    let item = user.artist;
+    fetch(process.env.BACKEND_URL`/api/user/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + store.token,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(item),
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.log(resp);
+        actions.getUser();
+      });
+    });
+  }
 
   return (
     <div className="container-fluid">
@@ -131,7 +149,7 @@ export function EditUserProfile(props) {
           </div>
           {/* -----Artist Info----- */}
           {user.artists &&
-            user.artists.map((artist) => {
+            user.artists.map((artist, index) => {
               return (
                 <>
                   <Row>
@@ -145,7 +163,7 @@ export function EditUserProfile(props) {
                             <>
                               <p className="card-text">
                                 <b>Artist Name: </b>
-                                {artist_name}
+                                {artist.artist_name}
                               </p>
                             </>
                           ) : (
@@ -366,6 +384,12 @@ export function EditUserProfile(props) {
                           )}
                         </div>
                       </div>
+                      <button
+                        className="btn btn-success"
+                        onClick={() => updateUser(artist.id)}
+                      >
+                        EDIT?
+                      </button>
                     </div>
                   </Row>
                 </>
@@ -377,425 +401,442 @@ export function EditUserProfile(props) {
             user.venues.map((venue) => {
               return (
                 <>
-                  <div className="row align-items-start p-2">
-                    <h4 className="info-header">Venue Info</h4>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-3">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>Venue Name: </b>
-                            {venue.venue_name}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>Venue Name: </b>
-                            <input type="text" value={venue.venue_name}></input>
-                          </p>
-                        </>
-                      )}
+                  <Row>
+                    <div className="row align-items-start p-2">
+                      <h4 className="info-header">Venue Info</h4>
                     </div>
-                    <div className="col-md-3">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>Phone Number: </b>
-                            {venue.phone_number}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>Phone Number: </b>
-                            <input
-                              type="number"
-                              value={venue.phone_number}
-                            ></input>
-                          </p>
-                        </>
-                      )}
+                    <div className="row">
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Venue Name: </b>
+                              {venue.venue_name}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Venue Name: </b>
+                              <input
+                                type="text"
+                                value={venue.venue_name}
+                              ></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Phone Number: </b>
+                              {venue.phone_number}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Phone Number: </b>
+                              <input
+                                type="number"
+                                value={venue.phone_number}
+                              ></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-3">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>Street Address: </b>
-                            {venue.address}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>Street Address: </b>
-                            <input type="text" value={venue.address}></input>
-                          </p>
-                        </>
-                      )}
+                    <div className="row">
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Street Address: </b>
+                              {venue.address}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Street Address: </b>
+                              <input type="text" value={venue.address}></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>City: </b>
+                              {venue.city}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>City: </b>
+                              <input type="text" value={venue.city}></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>State: </b>
+                              {venue.state}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>State: </b>
+                              <select className="form-control" id="state">
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                              </select>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Zipcode: </b>
+                              {venue.zip_code}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Zipcode: </b>
+                              <input
+                                type="number"
+                                value={venue.zip_code}
+                              ></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
                     </div>
-                    <div className="col-md-3">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>City: </b>
-                            {venue.city}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>City: </b>
-                            <input type="text" value={venue.city}></input>
-                          </p>
-                        </>
-                      )}
-                    </div>
-                    <div className="col-md-3">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>State: </b>
-                            {venue.state}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>State: </b>
-                            <select className="form-control" id="state">
-                              <option value="AL">Alabama</option>
-                              <option value="AK">Alaska</option>
-                              <option value="AZ">Arizona</option>
-                              <option value="AR">Arkansas</option>
-                              <option value="CA">California</option>
-                              <option value="CO">Colorado</option>
-                              <option value="CT">Connecticut</option>
-                              <option value="DE">Delaware</option>
-                              <option value="DC">District Of Columbia</option>
-                              <option value="FL">Florida</option>
-                              <option value="GA">Georgia</option>
-                              <option value="HI">Hawaii</option>
-                              <option value="ID">Idaho</option>
-                              <option value="IL">Illinois</option>
-                              <option value="IN">Indiana</option>
-                              <option value="IA">Iowa</option>
-                              <option value="KS">Kansas</option>
-                              <option value="KY">Kentucky</option>
-                              <option value="LA">Louisiana</option>
-                              <option value="ME">Maine</option>
-                              <option value="MD">Maryland</option>
-                              <option value="MA">Massachusetts</option>
-                              <option value="MI">Michigan</option>
-                              <option value="MN">Minnesota</option>
-                              <option value="MS">Mississippi</option>
-                              <option value="MO">Missouri</option>
-                              <option value="MT">Montana</option>
-                              <option value="NE">Nebraska</option>
-                              <option value="NV">Nevada</option>
-                              <option value="NH">New Hampshire</option>
-                              <option value="NJ">New Jersey</option>
-                              <option value="NM">New Mexico</option>
-                              <option value="NY">New York</option>
-                              <option value="NC">North Carolina</option>
-                              <option value="ND">North Dakota</option>
-                              <option value="OH">Ohio</option>
-                              <option value="OK">Oklahoma</option>
-                              <option value="OR">Oregon</option>
-                              <option value="PA">Pennsylvania</option>
-                              <option value="RI">Rhode Island</option>
-                              <option value="SC">South Carolina</option>
-                              <option value="SD">South Dakota</option>
-                              <option value="TN">Tennessee</option>
-                              <option value="TX">Texas</option>
-                              <option value="UT">Utah</option>
-                              <option value="VT">Vermont</option>
-                              <option value="VA">Virginia</option>
-                              <option value="WA">Washington</option>
-                              <option value="WV">West Virginia</option>
-                              <option value="WI">Wisconsin</option>
-                              <option value="WY">Wyoming</option>
-                            </select>
-                          </p>
-                        </>
-                      )}
-                    </div>
-                    <div className="col-md-3">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>Zipcode: </b>
-                            {venue.zip_code}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>Zipcode: </b>
-                            <input type="number" value={venue.zip_code}></input>
-                          </p>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  <div className="row d-flex">
-                    <div className="col-md-3 d-flex">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>Capacity: </b>
-                            {venue.venue_capacity}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>Capacity: </b>
-                            <input
-                              type="number"
-                              value={venue.venue_capacity}
-                              id="venueCapacity"
-                            ></input>
-                          </p>
-                        </>
-                      )}
-                    </div>
-                    <div className="col-md-3">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>Music Type: </b>
-                            {venue.music_type}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <label
-                            htmlFor="VenueMusicGenre"
-                            className="card-text"
-                          >
-                            <b>Music Type: </b>
-                          </label>
-                          <select className="form-control" id="VenueMusicGenre">
-                            <option defaultValue>Choose...</option>
-                            <option value="general">General</option>
-                            <option value="rock">Rock</option>
-                            <option value="hip hop">Hip Hop</option>
-                            <option value="jazz">Jazz</option>
-                            <option value="electronic">Electronic</option>
-                            <option value="classical">Classical</option>
-                            <option value="other">Other</option>
-                          </select>
-                        </>
-                      )}
-                    </div>
-                    <div className="col-md-3 select-inline">
-                      {editMode == false ? (
-                        <>
-                          <p className="card-text">
-                            <b>Indoor/Outdoor Staging: </b>
-                            {venue.in_out}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="card-text">
-                            <b>Indoor/Outdoor Staging: </b>
-                            <select className="form-control" id="staging">
+                    <div className="row d-flex">
+                      <div className="col-md-3 d-flex">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Capacity: </b>
+                              {venue.venue_capacity}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Capacity: </b>
+                              <input
+                                type="number"
+                                value={venue.venue_capacity}
+                                id="venueCapacity"
+                              ></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Music Type: </b>
+                              {venue.music_type}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <label
+                              htmlFor="VenueMusicGenre"
+                              className="card-text"
+                            >
+                              <b>Music Type: </b>
+                            </label>
+                            <select
+                              className="form-control"
+                              id="VenueMusicGenre"
+                            >
                               <option defaultValue>Choose...</option>
-                              <option value="indoor">Indoor</option>
-                              <option value="outdoor">Outdoor</option>
-                              <option value="both">Both</option>
+                              <option value="general">General</option>
+                              <option value="rock">Rock</option>
+                              <option value="hip hop">Hip Hop</option>
+                              <option value="jazz">Jazz</option>
+                              <option value="electronic">Electronic</option>
+                              <option value="classical">Classical</option>
+                              <option value="other">Other</option>
                             </select>
-                          </p>
-                        </>
-                      )}
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3 select-inline">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Indoor/Outdoor Staging: </b>
+                              {venue.in_out}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Indoor/Outdoor Staging: </b>
+                              <select className="form-control" id="staging">
+                                <option defaultValue>Choose...</option>
+                                <option value="indoor">Indoor</option>
+                                <option value="outdoor">Outdoor</option>
+                                <option value="both">Both</option>
+                              </select>
+                            </p>
+                          </>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-3">
+                    <div className="row">
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Hiring: </b>
+                              {venue.hiring}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Hiring: </b>
+                              <select className="form-control" id="isHiring">
+                                <option defaultValue>Choose...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                              </select>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Pay Rate: </b>
+                              {venue.pay_rate}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Pay Rate: </b>
+                              <input
+                                type="number"
+                                value={venue.pay_rate}
+                              ></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Fees: </b>
+                              {venue.fees}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Fees: </b>
+                              <input type="number" value={venue.fees}></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-3">
+                        {editMode == false ? (
+                          <>
+                            <p className="card-text">
+                              <b>Equipment Info: </b>
+                              {venue.equipment}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className="card-text">
+                              <b>Equipment Info: </b>
+                              <input
+                                type="text"
+                                value={venue.equipment}
+                              ></input>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <div className="row align-items-start p-2">
+                      <h4 className="info-header">Venue Social Info</h4>
+                    </div>
+                    <div className="row">
                       {editMode == false ? (
                         <>
                           <p className="card-text">
-                            <b>Hiring: </b>
-                            {venue.hiring}
+                            <i className="fa-brands fa-instagram"></i> :{" "}
+                            {venue.instagram}
                           </p>
                         </>
                       ) : (
                         <>
                           <p className="card-text">
-                            <b>Hiring: </b>
-                            <select className="form-control" id="isHiring">
-                              <option defaultValue>Choose...</option>
-                              <option value="yes">Yes</option>
-                              <option value="no">No</option>
-                            </select>
+                            <i className="fa-brands fa-instagram"></i> :{" "}
+                            <input type="text" value={venue.instagram}></input>
                           </p>
                         </>
                       )}
                     </div>
-                    <div className="col-md-3">
+                    <div className="row">
                       {editMode == false ? (
                         <>
                           <p className="card-text">
-                            <b>Pay Rate: </b>
-                            {venue.pay_rate}
+                            <i className="fa-brands fa-facebook"></i> :{" "}
+                            {venue.facebook}
                           </p>
                         </>
                       ) : (
                         <>
                           <p className="card-text">
-                            <b>Pay Rate: </b>
-                            <input type="number" value={venue.pay_rate}></input>
+                            <i className="fa-brands fa-facebook"></i> :{" "}
+                            <input type="text" value={venue.facebook}></input>
                           </p>
                         </>
                       )}
                     </div>
-                    <div className="col-md-3">
+                    <div className="row">
                       {editMode == false ? (
                         <>
                           <p className="card-text">
-                            <b>Fees: </b>
-                            {venue.fees}
+                            <i className="fa-brands fa-twitter"></i> :{" "}
+                            {venue.twitter}
                           </p>
                         </>
                       ) : (
                         <>
                           <p className="card-text">
-                            <b>Fees: </b>
-                            <input type="number" value={venue.fees}></input>
+                            <i className="fa-brands fa-twitter"></i> :{" "}
+                            <input type="text" value={venue.twitter}></input>
                           </p>
                         </>
                       )}
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-3">
+                    <div className="row">
                       {editMode == false ? (
                         <>
                           <p className="card-text">
-                            <b>Equipment Info: </b>
-                            {venue.equipment}
+                            <i className="fa-brands fa-tiktok"></i> :{" "}
+                            {venue.tiktok}
                           </p>
                         </>
                       ) : (
                         <>
                           <p className="card-text">
-                            <b>Equipment Info: </b>
-                            <input type="text" value={venue.equipment}></input>
+                            <i className="fa-brands fa-tiktok"></i> :{" "}
+                            <input type="text" value={venue.tiktok}></input>
                           </p>
                         </>
                       )}
                     </div>
-                  </div>
-                  <div className="row align-items-start p-2">
-                    <h4 className="info-header">Venue Social Info</h4>
-                  </div>
-                  <div className="row">
-                    {editMode == false ? (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-instagram"></i> :{" "}
-                          {venue.instagram}
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-instagram"></i> :{" "}
-                          <input type="text" value={venue.instagram}></input>
-                        </p>
-                      </>
-                    )}
-                  </div>
-                  <div className="row">
-                    {editMode == false ? (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-facebook"></i> :{" "}
-                          {venue.facebook}
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-facebook"></i> :{" "}
-                          <input type="text" value={venue.facebook}></input>
-                        </p>
-                      </>
-                    )}
-                  </div>
-                  <div className="row">
-                    {editMode == false ? (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-twitter"></i> :{" "}
-                          {venue.twitter}
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-twitter"></i> :{" "}
-                          <input type="text" value={venue.twitter}></input>
-                        </p>
-                      </>
-                    )}
-                  </div>
-                  <div className="row">
-                    {editMode == false ? (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-tiktok"></i> :{" "}
-                          {venue.tiktok}
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-tiktok"></i> :{" "}
-                          <input type="text" value={venue.tiktok}></input>
-                        </p>
-                      </>
-                    )}
-                  </div>
-                  <div className="row">
-                    {editMode == false ? (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-soundcloud"></i> :{" "}
-                          {venue.soundcloud}
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-soundcloud"></i> :{" "}
-                          <input type="text" value={venue.soundcloud}></input>
-                        </p>
-                      </>
-                    )}
-                  </div>
-                  <div className="row">
-                    {editMode == false ? (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-spotify"></i> :{" "}
-                          {venue.spotify}
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="card-text">
-                          <i className="fa-brands fa-spotify"></i> :{" "}
-                          <input type="text" value={venue.spotify}></input>
-                        </p>
-                      </>
-                    )}
-                  </div>
+                    <div className="row">
+                      {editMode == false ? (
+                        <>
+                          <p className="card-text">
+                            <i className="fa-brands fa-soundcloud"></i> :{" "}
+                            {venue.soundcloud}
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="card-text">
+                            <i className="fa-brands fa-soundcloud"></i> :{" "}
+                            <input type="text" value={venue.soundcloud}></input>
+                          </p>
+                        </>
+                      )}
+                    </div>
+                    <div className="row">
+                      {editMode == false ? (
+                        <>
+                          <p className="card-text">
+                            <i className="fa-brands fa-spotify"></i> :{" "}
+                            {venue.spotify}
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="card-text">
+                            <i className="fa-brands fa-spotify"></i> :{" "}
+                            <input type="text" value={venue.spotify}></input>
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </Row>
                 </>
               );
             })}
