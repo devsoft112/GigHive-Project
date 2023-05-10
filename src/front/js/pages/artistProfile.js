@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState, useLayoutEffect} from "react";
 
 import Modal from 'react-bootstrap/Modal';
 
@@ -22,6 +22,17 @@ export function ArtistProfile() {
   const artists = store.artists;
 
   // <---variables/functions for mesaging modal--->
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [enableMessage, setEnableMessage] = useState("btn btn-sm purplebutton disabled")
+
+  useLayoutEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined) {
+      setIsLoggedIn(true);
+      setEnableMessage("btn btn-sm purplebutton");
+    }
+  }, [store.token, isLoggedIn]);
+
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -151,7 +162,7 @@ export function ArtistProfile() {
               <h2 className="artistName m-0">{artists[id]?.artist_name}</h2>
             </div>
             <div className="mx-2 pt-1">
-              <button className="btn btn-sm btn-primary" onClick={handleShow}>Message</button>
+              <button className={enableMessage} onClick={handleShow}>Message</button>
             </div>
           </div>
           <div className="row mt-0">
