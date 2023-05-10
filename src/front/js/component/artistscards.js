@@ -26,7 +26,7 @@ export const Artistcard = (props) => {
   }, []);
   return (
     <div className="card artist-card mx-2">
-      <div className="crd-img p-0">
+      <div className="card-img p-0">
         <img
           className="card-img-top"
           src={props.imgUrl}
@@ -48,7 +48,7 @@ export const Artistcard = (props) => {
           </p>
         </div>
 
-        <div className="buttonDiv">
+        <div className="buttonDiv mb-1">
           <a className="btn btn-sm purplebutton" href={props.link}>
             View Profile
           </a>

@@ -5,7 +5,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
-  --maingold: rgb(228, 175, 0);
+  --maingold: rgb(238,186,73);
+  --purple: rgb(137,104,205);
+  --maingold-darker: hsl(41,83%,41%);
+  --purple-darker: hsl(260,50%,40%);
 }
 
 .am {
@@ -31,8 +34,13 @@
   display: inline;
 }
 .purplebutton {
-  background-color: #8968cd;
-  color: rgb(255, 205, 39);
+  background-color: var(--purple);
+  color: var(--maingold);
+}
+
+.purplebutton:hover {
+  background-color: var(--purple-darker);
+  color: var(--maingold-darker);
 }
 .card-gap {
   row-gap: 15px;

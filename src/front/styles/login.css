@@ -12,5 +12,39 @@
   );
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to bottom, rgb(210, 133, 255), var(--purple-darker));
+}
+
+.card-body-login {
+  justify-content: center;
+}
+
+.login-white-text {
+  color: white;
+  font-weight: 500;
+}
+
+.login-gold-text {
+  color: var(--maingold);
+  font-weight: 500;
+}
+
+.gold-btn {
+  background-color: var(--maingold);
+  color: white;
+  outline: none;
+  border: none;
+}
+
+.gold-btn:hover {
+  background-color: var(--maingold-darker);
+  color: hsl(100%, 100%, 80%)
+}
+
+.login-link {
+  color: var(--maingold);
+}
+
+.login-link:hover {
+  color: var(--maingold-darker) !important;
 }

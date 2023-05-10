@@ -49,7 +49,7 @@ export const Venuecard = (props) => {
           </p>
         </div>
 
-        <div className="buttonDiv">
+        <div className="buttonDiv mb-1">
           <a className="btn btn-sm purplebutton " href={props.link}>
             View Profile
           </a>
