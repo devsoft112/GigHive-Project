@@ -14,44 +14,44 @@ export function EditUserProfile(props) {
   const venue = store.venue;
   const user = store.user;
 
-  //  Artist info change events
-  // const [artistGenre, setArtistGenre] = useState(user.artist.genre);
-  // const [artistInstagram, setArtistInstagram] = useState(user.artist.instagram);
-  // const [artistTikTok, setArtistTikTok] = useState(user.artist.tiktok);
-  // const [artistFacebook, setArtistFacebook] = useState("");
-  // const [artistTwitter, setArtistTwitter] = useState("");
-  // const [artistSoundcloud, setArtistSoundcloud] = useState("");
-  // const [artistSpotify, setArtistSpotify] = useState("");
-  // const [artist_name, setArtistName] = useState("");
-  // const [artistPerformance_type, setPerformance_type] = useState("Other");
+  ///Artist info change events
+  const [artistGenre, setArtistGenre] = useState("");
+  const [artistInstagram, setArtistInstagram] = useState("");
+  const [artistTikTok, setArtistTikTok] = useState("");
+  const [artistFacebook, setArtistFacebook] = useState("");
+  const [artistTwitter, setArtistTwitter] = useState("");
+  const [artistSoundcloud, setArtistSoundcloud] = useState("");
+  const [artistSpotify, setArtistSpotify] = useState("");
+  const [artist_name, setArtistName] = useState("");
+  const [artistPerformance_type, setPerformance_type] = useState("Other");
 
-  // const [artistAbout_info, setArtistAbout_Info] = useState(
-  //   "More info about this Artist hasn't been added yet!"
-  // );
+  const [artistAbout_info, setArtistAbout_Info] = useState(
+    "More info about this Artist hasn't been added yet!"
+  );
 
   // // Venue info change events
-  // const [venue_name, setVenue_name] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [city, setCity] = useState("");
-  // const [state, setState] = useState("");
-  // const [zip_code, setZip_code] = useState("");
-  // const [phone_number, setPhone_number] = useState("");
-  // const [venue_capacity, setVenue_capacity] = useState("");
-  // const [music_type, setMusic_type] = useState("general");
-  // const [in_out, setIn_out] = useState("indoor");
-  // const [hiring, setIsHiring] = useState("no");
-  // const [pay_rate, setPay_rate] = useState("");
-  // const [fees, setFees] = useState("");
-  // const [equipment, setEquipment] = useState("");
-  // const [about_info, setAbout_Info] = useState(
-  //   "More info about this venue hasn't been added yet!"
-  // );
-  // const [instagram, setInstagram] = useState("");
-  // const [tikTok, setTikTok] = useState("");
-  // const [facebook, setFacebook] = useState("");
-  // const [twitter, setTwitter] = useState("");
-  // const [soundcloud, setSoundcloud] = useState("");
-  // const [spotify, setSpotify] = useState("");
+  const [venue_name, setVenue_name] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip_code, setZip_code] = useState("");
+  const [phone_number, setPhone_number] = useState("");
+  const [venue_capacity, setVenue_capacity] = useState("");
+  const [music_type, setMusic_type] = useState("general");
+  const [in_out, setIn_out] = useState("indoor");
+  const [hiring, setIsHiring] = useState("no");
+  const [pay_rate, setPay_rate] = useState("");
+  const [fees, setFees] = useState("");
+  const [equipment, setEquipment] = useState("");
+  const [about_info, setAbout_Info] = useState(
+    "More info about this venue hasn't been added yet!"
+  );
+  const [instagram, setInstagram] = useState("");
+  const [tikTok, setTikTok] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [soundcloud, setSoundcloud] = useState("");
+  const [spotify, setSpotify] = useState("");
 
   useEffect(() => {
     actions.getUser();
@@ -64,6 +64,7 @@ export function EditUserProfile(props) {
     editMode == true ? setEditMode(false) : setEditMode(true);
     console.log(editMode);
   };
+
   return (
     <div className="container-fluid">
       <div className="row text-center mt-2">
@@ -144,7 +145,7 @@ export function EditUserProfile(props) {
                             <>
                               <p className="card-text">
                                 <b>Artist Name: </b>
-                                {artist.artist_name}
+                                {artist_name}
                               </p>
                             </>
                           ) : (
@@ -153,7 +154,11 @@ export function EditUserProfile(props) {
                                 <b>Artist Name: </b>
                                 <input
                                   type="text"
-                                  value={artist.artist_name}
+                                  placeholder={artist.artist_name}
+                                  value={artist_name}
+                                  onChange={(e) =>
+                                    setArtistName(e.target.value)
+                                  }
                                 ></input>
                               </p>
                             </>
