@@ -81,7 +81,12 @@ export function ArtistProfile() {
   const [fourStar, setFourStar] = useState ("fa-solid fa-star s4")
   const [fiveStar, setFiveStar] = useState ("fa-solid fa-star s5")
 
-  let starRating = Math.ceil(Math.random() * 5)
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+  let starRating = getRandomIntInclusive(3,5)
   console.log(starRating)
   useEffect(()=>{
     if (starRating == 5){
