@@ -1,18 +1,32 @@
 .account-type-button {
-    width: 100px;
-    background-color: chocolate;
-    border: none;
-  }
-  .signup-header {
-    display: flex;
-    flex-direction: row;
-  }
-  .signup-header:after {
-    content: "";
-    flex: 1 1;
-    border-bottom: 3px solid black;
-    margin: 10px 3px;
-  }
-  .signup-user-type-select {
-    display: inline;
-  }
+  width: 100px;
+  background-color: chocolate;
+  border: none;
+}
+.signup-header {
+  display: flex;
+  flex-direction: row;
+}
+.signup-header:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 3px solid black;
+  margin: 10px 3px;
+}
+.signup-user-type-select {
+  display: inline;
+}
+
+.form-control {
+  width: 85%;
+}
+
+.card .card-body-signpage {
+  display: block !important;
+}
+
+.signup-white-text {
+  position: relative;
+  float: inline-end;
+  color: white;
+}
