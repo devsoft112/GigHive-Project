@@ -1,8 +1,25 @@
 .user-card {
-  background-color: whitesmoke;
   display: flex;
   align-items: center;
   margin-top: 20px;
+  /* fallback for old browsers */
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    #ee7724,
+    #d8363a,
+    #dd3675,
+    #b44593
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to bottom,
+    rgb(210, 133, 255),
+    var(--purple-darker)
+  );
 }
 
 #venuebut {
@@ -10,26 +27,49 @@
   color: white;
 }
 
+#venuebut:hover {
+  background-color: var(--blue-darker);
+  color: var(--red-darker);
+}
+
 #artistbut {
   background-color: red;
   color: white;
+}
+
+#artistbut:hover {
+  background-color: var(--red-darker);
+  color: var(--blue-darker);
 }
 
 .user-card img {
   margin-left: 5px;
 }
 
+#special {
+  color: gold;
+}
+
 h1 {
-  color: black;
-  padding-left: 40%;
+  padding-left: 10%;
+  float: inline-start;
+}
+
+h2 {
+  display: flex;
+  justify-content: center !important;
 }
 
 h1 > .container {
   border: 1px solid black;
 }
 
+#addi {
+  color: white;
+}
+
 .user-card-text {
-  color: darkgray;
+  color: whitesmoke;
   font-size: 10px;
   padding-left: 40%;
 }
@@ -225,7 +265,7 @@ h1 > .container {
   overflow: hidden;
   text-align: center;
   background: center
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgba(235, 169, 55, .3)' viewBox='0 0 100 169.5'%3E%3Cpolygon points='50,34.75 93.5,59.75 93.5,109.75 50,134.75 6.5,109.75 6.5,59.75'%3E%3C/polygon%3E%3Cpolygon points='0,-50 43.5,-25 43.5,25 0,50 -43.5,25 -43.5,-25'%3E%3C/polygon%3E%3Cpolygon points='100,-50 143.5,-25 143.5,25 100,50 56.5,25 56.5,-25'%3E%3C/polygon%3E%3Cpolygon points='0,119.5 43.5,144.5 43.5,194.5 0,219.5 -43.5,194.5 -43.5,144.5'%3E%3C/polygon%3E%3Cpolygon points='100,119.5 143.5,144.5 143.5,194.5 100,219.5 56.5,194.5 56.5,144.5'%3E%3C/polygon%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgba(172, 20, 204, .3)' viewBox='0 0 100 169.5'%3E%3Cpolygon points='50,34.75 93.5,59.75 93.5,109.75 50,134.75 6.5,109.75 6.5,59.75'%3E%3C/polygon%3E%3Cpolygon points='0,-50 43.5,-25 43.5,25 0,50 -43.5,25 -43.5,-25'%3E%3C/polygon%3E%3Cpolygon points='100,-50 143.5,-25 143.5,25 100,50 56.5,25 56.5,-25'%3E%3C/polygon%3E%3Cpolygon points='0,119.5 43.5,144.5 43.5,194.5 0,219.5 -43.5,194.5 -43.5,144.5'%3E%3C/polygon%3E%3Cpolygon points='100,119.5 143.5,144.5 143.5,194.5 100,219.5 56.5,194.5 56.5,144.5'%3E%3C/polygon%3E%3C/svg%3E");
 }
 
 .card.hovercard .cardheader {
@@ -258,7 +298,7 @@ h1 > .container {
   margin-bottom: 4px;
   font-size: 24px;
   line-height: 1;
-  color: #262626;
+  color: gold !important;
   vertical-align: middle;
 }
 
@@ -266,7 +306,7 @@ h1 > .container {
   overflow: hidden;
   font-size: 12px;
   line-height: 20px;
-  color: #737373;
+  color: black;
   text-overflow: ellipsis;
 }
 

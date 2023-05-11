@@ -26,7 +26,7 @@
 }
 
 .signup-white-text {
-  position: relative;
-  float: inline-end;
+  display: flex;
+  justify-content: center;
   color: white;
 }

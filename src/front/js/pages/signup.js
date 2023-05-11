@@ -49,7 +49,7 @@ export const Signup = () => {
                             First Name
                           </Form.Label>
                           <Form.Control
-                            type="email"
+                            type="text"
                             placeholder="Your First Name"
                             id="firstName"
                             value={first_name}
@@ -62,11 +62,11 @@ export const Signup = () => {
                             Last Name
                           </Form.Label>
                           <Form.Control
-                            type="email"
+                            type="text"
                             placeholder="Your Last Name"
-                            id="firstName"
-                            value={first_name}
-                            onChange={(e) => setFirst_name(e.target.value)}
+                            id="lastName"
+                            value={last_name}
+                            onChange={(e) => setLast_name(e.target.value)}
                             required
                           />
                         </Form.Group>
@@ -75,11 +75,10 @@ export const Signup = () => {
                             Username
                           </Form.Label>
                           <Form.Control
-                            type="email"
-                            placeholder="Your Username"
-                            id="firstName"
-                            value={first_name}
-                            onChange={(e) => setFirst_name(e.target.value)}
+                            type="text"
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                             required
                           />
                         </Form.Group>
@@ -90,9 +89,8 @@ export const Signup = () => {
                           <Form.Control
                             type="email"
                             placeholder="Email"
-                            id="firstName"
-                            value={first_name}
-                            onChange={(e) => setFirst_name(e.target.value)}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                           />
                         </Form.Group>
@@ -109,9 +107,10 @@ export const Signup = () => {
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                           />
                         </Form.Group>
-                        <div className="white-text-grid justify-content-center align-items-center">
+                        <div className="signup-white-text justify-content-center align-items-center">
                           <Button
                             className="gold-btn"
                             type="submit"
@@ -137,82 +136,6 @@ export const Signup = () => {
           </Row>
         </Container>
       </div>
-      <form>
-        <div className="container-fluid">
-          <div className="form-group col-md-4">
-            <label htmlFor="name">First Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="firstName"
-              placeholder="First name"
-              value={first_name}
-              onChange={(e) => setFirst_name(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="name">Last Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="lastName"
-              placeholder="Last name"
-              value={last_name}
-              onChange={(e) => setLast_name(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="row text-center my-2">
-            <h2>Sign Up</h2>
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="name">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="name">Email</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="name">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="row justify-content-center">
-            <Link to="/">
-              <button
-                type="submit"
-                className="btn btn-primary w-25 mx-auto mt-2 signup-button"
-                onClick={(e) => handleSubmit(e)}
-              >
-                Sign up
-              </button>
-            </Link>
-          </div>
-        </div>
-      </form>
     </>
   );
 };
