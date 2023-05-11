@@ -55,6 +55,7 @@ export const Home = () => {
   }, [store.token]);
   return (
     <div className="container-fluid">
+    <div className="background-image"></div>
       {/* EVERYTHING ABOVE THIS LINE FOR HEADER TESTS */}
       <div className="row header-image p-3 align-items-center">
         <h1 className="header-text text-center">
