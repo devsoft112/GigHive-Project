@@ -35,23 +35,23 @@ export const UserProfile = () => {
           alt=""
         ></img>
         <div className="user-card-body">
-          <h1 classname="user-card-title">
+          <h1 classname="user-card-title" id="special">
             {" "}
-            Welcome to your profile {user.username}
+            {user.username}'s Profile Page
           </h1>
           <p className="user-card-text">
             {" "}
             Your name :{" "}
-            <strong>
+            <strong id="special">
               {user.first_name} {user.last_name}{" "}
             </strong>
           </p>
           <p className="user-card-text"> Your Email : {user.email}</p>
         </div>
         <div align="center">
-          <p>
-            Hello <strong>{user.first_name}</strong> what would you like to add
-            to your profile
+          <p id="addi">
+            Hello <strong id="special">{user.first_name}</strong> would you like
+            to add a
           </p>
           <Link to="/register/venue">
             <button id="venuebut" type="button">
@@ -63,14 +63,16 @@ export const UserProfile = () => {
               Artist{" "}
             </button>
           </Link>
-          <p>Or would you like to</p>
+          <p id="addi">Or</p>
           <Link to="/myprofile">
-            <button type="button">Edit Your Profile</button>
+            <button type="button" className="purplebutton">
+              Edit Your Profile
+            </button>
           </Link>{" "}
         </div>
       </div>
       {/* map users artists and venues on profile */}
-      <h1> Your Artist(s) </h1>
+      <h2> Your Artist(s) </h2>
       <Row lg={3} md={4} sm={6}>
         {user.artists &&
           user.artists.map((artist, id) => {
@@ -82,7 +84,7 @@ export const UserProfile = () => {
                     <div className="avatar">
                       <img
                         alt=""
-                        src="https://cdn.vectorstock.com/i/preview-1x/15/40/blank-profile-picture-image-holder-with-a-crown-vector-42411540.webp"
+                        src="https://www.stopthebreaks.com/wp-content/uploads/2020/10/iStock-161838634.jpg"
                       />
                     </div>
                     <div className="info">
@@ -157,8 +159,8 @@ export const UserProfile = () => {
             );
           })}
       </Row>
-      <h1> Your Venue(s) </h1>
-      <Row lg={3}>
+      <h2> Your Venue(s) </h2>
+      <Row id="arti" lg={3}>
         {user.venues &&
           user.venues.map((venue, id) => {
             return (
@@ -169,14 +171,14 @@ export const UserProfile = () => {
                     <div className="avatar">
                       <img
                         alt=""
-                        src="https://cdn.vectorstock.com/i/preview-1x/15/40/blank-profile-picture-image-holder-with-a-crown-vector-42411540.webp"
+                        src="https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg"
                       />
                     </div>
                     <div className="info">
                       <div className="title">
                         <a href={"/venues/" + id}>{venue.venue_name}</a>
                       </div>
-                      <div className="desc">
+                      <div className="desc" >
                         <i className="fa-solid fa-phone fa-bounce"></i>
                         {venue.phone_number}
                       </div>

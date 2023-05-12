@@ -12,7 +12,11 @@
   );
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to bottom, rgb(210, 133, 255), var(--purple-darker));
+  background: linear-gradient(
+    to bottom,
+    rgb(210, 133, 255),
+    var(--purple-darker)
+  );
 }
 
 .card-body-login {
@@ -38,7 +42,7 @@
 
 .gold-btn:hover {
   background-color: var(--maingold-darker);
-  color: hsl(100%, 100%, 80%)
+  color: hsl(100%, 100%, 80%);
 }
 
 .login-link {
