@@ -44,7 +44,7 @@ export const Signup = () => {
                     </span>
                     <div className="mb-3 justify-content-center">
                       <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3 formsi" controlId="formBasicEmail">
                           <Form.Label className="text-center login-gold-text">
                             First Name
                           </Form.Label>
@@ -58,7 +58,7 @@ export const Signup = () => {
                             required
                           />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3 formsi" controlId="formBasicEmail">
                           <Form.Label className="text-center login-gold-text">
                             Last Name
                           </Form.Label>
@@ -72,7 +72,7 @@ export const Signup = () => {
                             required
                           />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3 formsi " controlId="formBasicEmail">
                           <Form.Label className="text-center login-gold-text">
                             Username
                           </Form.Label>
@@ -85,7 +85,7 @@ export const Signup = () => {
                             required
                           />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3 formsi" controlId="formBasicEmail">
                           <Form.Label className="text-center login-gold-text">
                             Email
                           </Form.Label>
@@ -100,7 +100,7 @@ export const Signup = () => {
                         </Form.Group>
 
                         <Form.Group
-                          className="mb-3"
+                          className="mb-3 formsi"
                           controlId="formBasicPassword"
                         >
                           <Form.Label className="login-gold-text">
