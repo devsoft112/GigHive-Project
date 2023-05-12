@@ -22,7 +22,11 @@ export const Artists = () => {
               artist_name={artist.artist_name}
               genre={artist.genre}
               performance_type={artist.performance_type}
-              imgUrl={artist.images.split(", ")[0]}
+              imgUrl={
+                artist.images == null
+                  ? "https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg"
+                  : artist.images.split(", ")[0]
+              }
               link={"/artists/" + index}
               id={index}
               className="artistCard"

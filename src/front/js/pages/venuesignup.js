@@ -122,7 +122,6 @@ export function Venuesignup() {
             name="city"
             id="city"
             placeholder="City"
-            maxLength="11"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
