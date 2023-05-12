@@ -68,6 +68,7 @@
 .other:hover {
   cursor: pointer;
 }
+
 .other-Text {
   color: black;
 }
@@ -84,3 +85,4 @@
 .card {
   padding-top: 0px !important;
 }
+

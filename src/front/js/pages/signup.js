@@ -34,7 +34,7 @@ export const Signup = () => {
               <div className="border border-0 border-primary"></div>
               <Card className="shadow">
                 <Card.Body className="card-body-signpage">
-                  <div className="">
+                  <div className="mt-3">
                     <h2 className="fw-bold mb-2 text-uppercase text-center">
                       <img src={GigHive} alt="" height={55} />
                     </h2>

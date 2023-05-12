@@ -50,7 +50,7 @@ export function Artistsignup() {
         "you're not logged in"
       ) : (
         <>
-          <h4 className="mt-2 signup-header"> Artist Info</h4>
+          <h4 className="mt-2 signup-header mx-2"> Artist Info</h4>
           <div className="row px-3 justify-content-start my-2">
             <div className="form-group col-md-3">
               <label htmlFor="artistName">Stage/Artist Name</label>
@@ -118,7 +118,7 @@ export function Artistsignup() {
             </div>
           </div>
 
-          <h4 className="mt-2 signup-header"> Social Handles</h4>
+          <h4 className="mt-2 signup-header mx-2"> Social Handles</h4>
           <div className="row px-3 justify-content-start">
             <div className="form-group col-md-4">
               <label htmlFor="instaHandle">

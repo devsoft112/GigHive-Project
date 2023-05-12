@@ -104,6 +104,14 @@
   cursor: pointer;
 }
 
+.fa-arrow-down {
+  margin: 5px 8px;
+}
+
+.fa-arrow-up {
+  margin: 5px 8px;
+}
+
 #map {
   opacity: 0;
 }
