@@ -38,14 +38,17 @@ export function Login() {
                     <img src={GigHive} alt="" height={55} />
                   </h2>
 
-                  <p className=" mb-5 login-white-text">Please enter your username and password</p>
+                  <p className=" mb-5 login-white-text">
+                    Please enter your username and password
+                  </p>
                   <div className="mb-3 justify-content-center">
                     <Form>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Group className="mb-3" controlId="formBasicEmail ">
                         <Form.Label className="text-center login-gold-text">
                           Username
                         </Form.Label>
                         <Form.Control
+                          id="logose"
                           type="email"
                           placeholder="Enter username"
                           value={username}
@@ -56,8 +59,11 @@ export function Login() {
                       <Form.Group
                         className="mb-3"
                         controlId="formBasicPassword"
+                        id="logose"
                       >
-                        <Form.Label className="login-gold-text">Password</Form.Label>
+                        <Form.Label className="login-gold-text">
+                          Password
+                        </Form.Label>
                         <Form.Control
                           type="password"
                           placeholder="Password"

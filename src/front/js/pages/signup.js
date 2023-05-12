@@ -40,7 +40,7 @@ export const Signup = () => {
                     </h2>
 
                     <span className=" signup-white-text text-center">
-                      Please Enter your Info
+                      <strong>Please Enter your Info</strong>
                     </span>
                     <div className="mb-3 justify-content-center">
                       <Form>

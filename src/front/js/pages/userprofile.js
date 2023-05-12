@@ -171,14 +171,14 @@ export const UserProfile = () => {
                     <div className="avatar">
                       <img
                         alt=""
-                        src="https://cdn.vectorstock.com/i/preview-1x/15/40/blank-profile-picture-image-holder-with-a-crown-vector-42411540.webp"
+                        src="https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg"
                       />
                     </div>
                     <div className="info">
                       <div className="title">
                         <a href={"/venues/" + id}>{venue.venue_name}</a>
                       </div>
-                      <div className="desc">
+                      <div className="desc" >
                         <i className="fa-solid fa-phone fa-bounce"></i>
                         {venue.phone_number}
                       </div>
