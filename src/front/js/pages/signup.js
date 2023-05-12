@@ -49,6 +49,7 @@ export const Signup = () => {
                             First Name
                           </Form.Label>
                           <Form.Control
+                            className="forms"
                             type="text"
                             placeholder="Your First Name"
                             id="firstName"
@@ -62,6 +63,7 @@ export const Signup = () => {
                             Last Name
                           </Form.Label>
                           <Form.Control
+                            className="forms"
                             type="text"
                             placeholder="Your Last Name"
                             id="lastName"
@@ -75,6 +77,7 @@ export const Signup = () => {
                             Username
                           </Form.Label>
                           <Form.Control
+                            className="forms"
                             type="text"
                             placeholder="Username"
                             value={username}
@@ -87,6 +90,7 @@ export const Signup = () => {
                             Email
                           </Form.Label>
                           <Form.Control
+                            className="forms"
                             type="email"
                             placeholder="Email"
                             value={email}
@@ -103,6 +107,7 @@ export const Signup = () => {
                             Password
                           </Form.Label>
                           <Form.Control
+                            className="forms"
                             type="password"
                             placeholder="Password"
                             value={password}
@@ -112,7 +117,7 @@ export const Signup = () => {
                         </Form.Group>
                         <div className="signup-white-text justify-content-center align-items-center">
                           <Button
-                            className="gold-btn"
+                            className="gold-btn signs"
                             type="submit"
                             onClick={(e) => handleSubmit(e)}
                           >

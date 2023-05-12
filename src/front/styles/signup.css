@@ -18,7 +18,7 @@
 }
 
 .signs {
-  width: 85%;
+  width: 40%;
 }
 
 .card .card-body-signpage {
@@ -29,4 +29,13 @@
   display: flex;
   justify-content: center;
   color: white;
+}
+
+.forms {
+  width: 85%;
+}
+
+.mb-3 {
+  padding-left: 8%;
+  padding-right: 1%;
 }
