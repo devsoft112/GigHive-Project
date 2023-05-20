@@ -20,6 +20,8 @@ export function ArtistProfile() {
   const { id } = useParams();
 
   const artists = store.artists;
+  const artist = artists.filter(artist => artist.id == id)[0]
+
 
   // <---variables/functions for mesaging modal--->
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -132,7 +134,7 @@ export function ArtistProfile() {
 {/* <-----------------Code for Messaging Modal---------------------> */}
 <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Send {artists[id]?.artist_name} a message</Modal.Title>
+        <Modal.Title>Send {artist?.artist_name} a message</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div class="form-group">
@@ -164,7 +166,7 @@ export function ArtistProfile() {
         <div className="col-md-7 px-3" id="info-section">
           <div class="d-flex flex-row mb-0">
             <div>
-              <h2 className="artistName m-0">{artists[id]?.artist_name}</h2>
+              <h2 className="artistName m-0">{artist?.artist_name}</h2>
             </div>
             <div className="mx-2 pt-1">
               <button className={enableMessage} onClick={handleShow}>Message</button>

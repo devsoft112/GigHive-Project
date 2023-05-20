@@ -122,8 +122,8 @@ export const Home = () => {
                     ? "https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg"
                     : artist.images.split(", ")[0]
                 }
-                link={"/artists/" + index}
-                id = {index}
+                link={"/artists/" + artist.id}
+                id = {artist.id}
                 starRating={getRandomIntInclusive(3,4)}
               />
             );
