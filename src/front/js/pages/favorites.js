@@ -7,6 +7,7 @@ import { Venuecard } from "../component/venuecards.js";
 //calling the array
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
+
   console.log(store.favoriteVenues);
   console.log(store.favoriteArtists);
 
@@ -28,8 +29,8 @@ export const Favorites = () => {
               genre={artist.genre}
               performance_type={artist.performance_type}
               imgUrl={artist.imgUrl}
-              link={"/artists/" + index}
-              id={index}
+              link={"/artists/" + artist.id}
+              id={artist.id}
               starRating="5.0"
             />
           );
@@ -48,7 +49,7 @@ export const Favorites = () => {
               city={venue.city}
               state={venue.state}
               imgUrl={venue.imgUrl}
-              link={"/venues/" + index}
+              link={"/venues/" + venue.id}
               id={index}
               starRating="5.0"
             />

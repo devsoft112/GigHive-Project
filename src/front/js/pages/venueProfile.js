@@ -17,10 +17,13 @@ import { useParams } from "react-router";
 
 export function VenueProfile() {
   const { store, actions } = useContext(Context);
-  const venues = store.venues;
   const { id } = useParams();
+  const venues = store.venues;
+  const venue = venues.filter(venue => venue.id == id)[0]
+  
+  
 
-
+  console.log(venue)
   
 
   // <---variables/functions for mesaging modal--->
@@ -65,13 +68,13 @@ export function VenueProfile() {
 
   // <----variables/functions for images/lightbox--->
   const images =
-    venues[id]?.images == null
+    venue?.images == null
       ? [
           "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg",
           "https://lajolla.com/wp-content/uploads/2019/01/hob.jpg",
           "https://pyxis.nymag.com/v1/imgs/1a0/d70/15535af3e89c90d627f4c19af4f74f2064-best-concert-venue-music-hall-of-william.rsquare.w700.jpg",
         ]
-      : venues[id]?.images.split(", ");
+      : venue?.images.split(", ");
 
   const [isOpen, setIsOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
@@ -116,7 +119,7 @@ export function VenueProfile() {
   }, []);
 
   // <-----location object & fetch for map component----->
-  const Address = `${venues[id]?.address}, ${venues[id]?.city}, ${venues[id]?.state}`;
+  const Address = `${venue?.address}, ${venue?.city}, ${venue?.state}`;
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   
@@ -155,7 +158,7 @@ export function VenueProfile() {
     address: Address,
     lat: lat,
     lng: lng,
-    name: venues[id]?.venue_name,
+    name: venue?.venue_name,
   };
 
   fetch(
@@ -192,7 +195,7 @@ export function VenueProfile() {
 {/* <-----------------Code for Messaging Modal---------------------> */}
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Send {venues[id]?.venue_name} a message</Modal.Title>
+        <Modal.Title>Send {venue?.venue_name} a message</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div class="form-group">
@@ -224,7 +227,7 @@ export function VenueProfile() {
         <div className="col-md-7 px-3">
           <div class="d-flex flex-row mb-0">
             <div>
-              <h2 className="venueName m-0">{venues[id]?.venue_name}</h2>
+              <h2 className="venueName m-0">{venue?.venue_name}</h2>
             </div>
             <div className="mx-2 pt-1">
               <button className={enableMessage} onClick={handleShow}>Message</button>
@@ -235,8 +238,8 @@ export function VenueProfile() {
             <div className="row mt-0 ">
               <p className="my-0 small">
                 <b>
-                  {venues[id]?.address},{venues[id]?.city}, {venues[id]?.state}{" "}
-                  {venues[id]?.zip_code}
+                  {venue?.address},{venue?.city}, {venue?.state}{" "}
+                  {venue?.zip_code}
                 </b>
               </p>
 
@@ -252,83 +255,83 @@ export function VenueProfile() {
             </div>
           
           <div className="row mt-1">
-            <p className="mb-1">{venues[id]?.about_info == "" || venues[id]?.about_info == null ? "More info about this venue hasn't been added yet!" : venues[id]?.about_info}</p>
+            <p className="mb-1">{venue?.about_info == "" || venue?.about_info == null ? "More info about this venue hasn't been added yet!" : venue?.about_info}</p>
             <p className="my-0">
               <b>Capacity: </b>
-              {venues[id]?.capacity}
+              {venue?.capacity}
             </p>
             <p className="my-0">
               <b>Music Type: </b>
-              {venues[id]?.music_type}
+              {venue?.music_type}
             </p>
             <p className="my-0">
               <b>Hiring?: </b>
-              {venues[id]?.hiring}
+              {venue?.hiring}
             </p>
             <p className="my-0">
               <b>Pay Rate: </b>
-              {venues[id]?.pay_rate}
+              {venue?.pay_rate}
             </p>
             <p className="my-0">
               <b>Fee Rate: </b>
-              {venues[id]?.fees}
+              {venue?.fees}
             </p>
             <p className="my-0">
               <b>Indoor/Outdoor Staging: </b>
-              {venues[id]?.in_out}
+              {venue?.in_out}
             </p>
             <p className="my-0">
               <b>Equipment Info: </b>
-              {venues[id]?.equipment}
+              {venue?.equipment}
             </p>
           </div>
           <div className="row mt-3 px-2">
-            {venues[id]?.instagram ? (
+            {venue?.instagram ? (
               <a
-                href={`http://instagram.com/${venues[id]?.instagram}`}
+                href={`http://instagram.com/${venue?.instagram}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-instagram fa-xl"></i>
               </a>
             ) : null}
-            {venues[id]?.tiktok ? (
+            {venue?.tiktok ? (
               <a
-                href={`http://tiktok.com/@${venues[id]?.tiktok}`}
+                href={`http://tiktok.com/@${venue?.tiktok}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-tiktok fa-xl"></i>
               </a>
             ) : null}
-            {venues[id]?.facebook ? (
+            {venue?.facebook ? (
               <a
-                href={`http://facebook.com/${venues[id]?.facebook}`}
+                href={`http://facebook.com/${venue?.facebook}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-facebook fa-xl"></i>
               </a>
             ) : null}
-            {venues[id]?.twitter ? (
+            {venue?.twitter ? (
               <a
-                href={`http://twitter.com/${venues[id]?.twitter}`}
+                href={`http://twitter.com/${venue?.twitter}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-twitter fa-xl"></i>
               </a>
             ) : null}
-            {venues[id]?.soundcloud ? (
+            {venue?.soundcloud ? (
               <a
-                href={`http://soundcloud.com/${venues[id]?.soundcloud}`}
+                href={`http://soundcloud.com/${venue?.soundcloud}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-soundcloud fa-xl"></i>
               </a>
             ) : null}
-            {venues[id]?.spotify ? (
+            {venue?.spotify ? (
               <a
                 href={`http://spotify.com`}
                 target="_blank"

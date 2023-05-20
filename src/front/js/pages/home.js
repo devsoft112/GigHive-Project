@@ -122,8 +122,8 @@ export const Home = () => {
                     ? "https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg"
                     : artist.images.split(", ")[0]
                 }
-                link={"/artists/" + index}
-                id = {index}
+                link={"/artists/" + artist.id}
+                id = {artist.id}
                 starRating={getRandomIntInclusive(3,4)}
               />
             );
@@ -146,8 +146,8 @@ export const Home = () => {
                       ? "https://saltplatecity.com/wp-content/uploads/2019/10/vivint-smart-home-concert-venue-salt-lake-city.jpg"
                       : venue.images.split(", ")[0]
                   }
-                  link={"/venues/" + index}
-                  id={index}
+                  link={"/venues/" + venue.id}
+                  id={venue.id}
                   starRating={getRandomIntInclusive(3,4)}
                 />
               );
