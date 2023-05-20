@@ -65,7 +65,7 @@ export function ArtistProfile() {
   }
   
   // <----variables/functions for images/lightbox--->
-  const images = artists[id]?.images == null ? ["https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg", "https://www.stopthebreaks.com/wp-content/uploads/2020/10/iStock-161838634.jpg",  "https://musiciansunion.org.uk/MusiciansUnion/media/content/news/bass-player-on-stage.jpg"] : artists[id]?.images.split(", ")
+  const images = artist?.images == null ? ["https://cdn.musichouseschool.com/BandPlayingOnStage_1.jpg", "https://www.stopthebreaks.com/wp-content/uploads/2020/10/iStock-161838634.jpg",  "https://musiciansunion.org.uk/MusiciansUnion/media/content/news/bass-player-on-stage.jpg"] : artist?.images.split(", ")
 
   const [isOpen, setIsOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
@@ -182,62 +182,62 @@ export function ArtistProfile() {
             </div>
           </div>
           <div className="row mt-3">
-            <p>{artists[id]?.about_info}</p>
+            <p>{artist?.about_info}</p>
             <p className="my-0">
               <b>Music Type: </b>
-              {artists[id]?.genre}
+              {artist?.genre}
             </p>
             <p>
-              <b>Performance Type:</b> {artists[id]?.performance_type}
+              <b>Performance Type:</b> {artist?.performance_type}
             </p>
           </div>
           <div className="row px-2">
-            {artists[id]?.instagram ? (
+            {artist?.instagram ? (
               <a
-                href={`http://instagram.com/${artists[id]?.instagram}`}
+                href={`http://instagram.com/${artist?.instagram}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-instagram fa-xl"></i>
               </a>
             ) : null}
-            {artists[id]?.tiktok ? (
+            {artist?.tiktok ? (
               <a
-                href={`http://tiktok.com/@${artists[id]?.tiktok}`}
+                href={`http://tiktok.com/@${artist?.tiktok}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-tiktok fa-xl"></i>
               </a>
             ) : null}
-            {artists[id]?.facebook ? (
+            {artist?.facebook ? (
               <a
-                href={`http://facebook.com/${artists[id]?.facebook}`}
+                href={`http://facebook.com/${artist?.facebook}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-facebook fa-xl"></i>
               </a>
             ) : null}
-            {artists[id]?.twitter ? (
+            {artist?.twitter ? (
               <a
-                href={`http://twitter.com/${artists[id]?.twitter}`}
+                href={`http://twitter.com/${artist?.twitter}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-twitter fa-xl"></i>
               </a>
             ) : null}
-            {artists[id]?.soundcloud ? (
+            {artist?.soundcloud ? (
               <a
-                href={`http://soundcloud.com/${artists[id]?.soundcloud}`}
+                href={`http://soundcloud.com/${artist?.soundcloud}`}
                 target="_blank"
                 className="social-link rounded-circle mx-2 d-flex justify-content-center align-items-center"
               >
                 <i className="fa-brands fa-soundcloud fa-xl"></i>
               </a>
             ) : null}
-            {artists[id]?.spotify ? (
+            {artist?.spotify ? (
               <a
                 href={`http://spotify.com`}
                 target="_blank"
