@@ -39,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/artists");
           const data = await resp.json();
-          console.log(data);
+          // console.log(data);
           setStore({ artists: data });
           return data;
         } catch (error) {

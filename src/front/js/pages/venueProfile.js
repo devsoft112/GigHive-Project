@@ -19,12 +19,7 @@ export function VenueProfile() {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
   const venues = store.venues;
-  const venue = venues.filter(venue => venue.id == id)[0]
-  
-  
-
-  console.log(venue)
-  
+  const venue = venues.filter(venue => venue.id == id)[0]  
 
   // <---variables/functions for mesaging modal--->
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -48,7 +43,7 @@ export function VenueProfile() {
 
   useEffect(() => {
     // actions.getUser();
-    console.log(store.user)
+    // console.log(store.user)
   }, []);
 
   const sendMessage = () => {
@@ -172,7 +167,7 @@ export function VenueProfile() {
       setLng(jsonData.results[0].geometry.location.lng);
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
     });
 
   return (
@@ -198,9 +193,9 @@ export function VenueProfile() {
         <Modal.Title>Send {venue?.venue_name} a message</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div class="form-group">
-          <input type="text" class="form-control mb-2" id="messageSubject" placeholder="Message Subject" onChange={(e) => setMessageSubject(e.target.value)}/>
-          <textarea class="form-control" id="messageBody" rows="3" placeholder="Write your message here" onChange={(e) => setMessageBody(e.target.value)}></textarea>
+        <div className="form-group">
+          <input type="text" className="form-control mb-2" id="messageSubject" placeholder="Message Subject" onChange={(e) => setMessageSubject(e.target.value)}/>
+          <textarea className="form-control" id="messageBody" rows="3" placeholder="Write your message here" onChange={(e) => setMessageBody(e.target.value)}></textarea>
         </div>
       </Modal.Body>
       <Modal.Footer>
@@ -225,7 +220,7 @@ export function VenueProfile() {
           ></img>
         </div>
         <div className="col-md-7 px-3">
-          <div class="d-flex flex-row mb-0">
+          <div className="d-flex flex-row mb-0">
             <div>
               <h2 className="venueName m-0">{venue?.venue_name}</h2>
             </div>
@@ -374,7 +369,7 @@ export function VenueProfile() {
         
         </div>
         <div className="row where-we-are mb-0 mt-2">
-          {scrollCheck ?   <h2 onClick={scrollToMap}><i class="fa-solid fa-arrow-down"></i>  Where We Are  <i class="fa-solid fa-arrow-down"></i></h2> : <h2 onClick={scrollToTop}><i class="fa-solid fa-arrow-up"></i>  Back to Profile  <i class="fa-solid fa-arrow-up"></i></h2>
+          {scrollCheck ?   <h2 onClick={scrollToMap}><i className="fa-solid fa-arrow-down"></i>  Where We Are  <i className="fa-solid fa-arrow-down"></i></h2> : <h2 onClick={scrollToTop}><i className="fa-solid fa-arrow-up"></i>  Back to Profile  <i className="fa-solid fa-arrow-up"></i></h2>
 }
         </div>
         </div>

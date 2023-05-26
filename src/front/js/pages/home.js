@@ -65,7 +65,7 @@ export const Home = () => {
       <div className="row text-center mt-2">
         <h1>Bringing Musicians and Venues Together!</h1>
       </div>
-      <div className="row text-center">
+      {/* <div className="row text-center">
         <h4>Genres</h4>
       </div>
       <div className="genre-list row d-flex justify-content-center px-3">
@@ -104,7 +104,7 @@ export const Home = () => {
         <div className="genre other d-flex rounded-circle justify-content-center mx-1">
           <p className="genreText other-Text">Other</p>
         </div>
-      </div>
+      </div> */}
       <div className="row px-3">
         <h1 className="artistitle">Artists</h1>
       </div>
