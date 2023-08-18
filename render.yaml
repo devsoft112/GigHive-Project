@@ -4,7 +4,7 @@
 services:
     - type: web # valid values: https://render.com/docs/yaml-spec#type
       region: ohio
-      name: sample-service-name
+      name: GigHive
       env: python # valid values: https://render.com/docs/yaml-spec#environment
       buildCommand: "./render_build.sh"
       startCommand: "gunicorn wsgi --chdir ./src/"
